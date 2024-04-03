@@ -57,6 +57,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 
 		public int Priority { get; set; }
 
+		public List<PokemonMove> PokemonMoves { get; set; } = new List<PokemonMove>();
+
 
 
 
