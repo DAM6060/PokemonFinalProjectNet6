@@ -4,7 +4,7 @@
 
 namespace PokemonFinalProjectNet6.Data.Migrations
 {
-    public partial class SeedDataAdded : Migration
+    public partial class InitialSeedWithoutJointTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,8 +24,8 @@ namespace PokemonFinalProjectNet6.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 0, "12d3e2ec-3066-45cd-9e11-eb20ddeb6790", "varnasharks.afc@gmail.com", false, false, null, "VARNASHARKS.AFC@GMAIL.COM", "DIMITARPLAYER", "AQAAAAEAACcQAAAAED8NCOBJGb12huoAckW6kzM5g3g1vSiWGaXwvaRNpi7b3/wZxaVyP40woj1IZAwZPg==", null, false, "20047250-b895-4e9a-8b2c-79710ac2db99", false, "DimitarPlayer" },
-                    { "dea12856-c198-4129-b3f3-b893d8395082", 0, "e55f12c7-62a1-4c96-97b3-de18cfb09a35", "ddimitar98@gmail.com", false, false, null, "DDIMITAR98@GMAIL.COM", "DIMITARADMIN", "AQAAAAEAACcQAAAAEHW0GlXYXznByvwTgYkya6JuAnALUqQ+SMjEeXKU1WdqUgpyCSyq/RYiP02eS4dW5g==", null, false, "3f4254b9-e84a-45c2-a0de-7450987ab4ba", false, "DimitarAdmin" }
+                    { "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 0, "f626d745-1344-4c96-b320-9f7992315db2", "varnasharks.afc@gmail.com", false, false, null, "VARNASHARKS.AFC@GMAIL.COM", "DIMITARPLAYER", "AQAAAAEAACcQAAAAEClfX2aXAlCJQrIqsbtXg37MzZ1esucsmOaHiVTQ99flXdGdEDq85pm4UGlwRfWFEw==", null, false, "4f31acfe-b4d5-4010-b38c-5cba2cd0efb9", false, "DimitarPlayer" },
+                    { "dea12856-c198-4129-b3f3-b893d8395082", 0, "977871f6-fb26-4d48-b499-863d898bcf06", "ddimitar98@gmail.com", false, false, null, "DDIMITAR98@GMAIL.COM", "DIMITARADMIN", "AQAAAAEAACcQAAAAEE9gfRgQ0CDcge/auybjLJR9e+alanIQVhm5GIG3XVRSDHCc7bvwL10DqEBW1RfGMg==", null, false, "1644c3f5-1b74-40d8-8006-2959c2e78094", false, "DimitarAdmin" }
                 });
 
             migrationBuilder.InsertData(
@@ -77,15 +77,15 @@ namespace PokemonFinalProjectNet6.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Pokemons",
-                columns: new[] { "Id", "AbilityId", "BaseAttack", "BaseDefense", "BaseHP", "BaseSpecialAttack", "BaseSpecialDefense", "BaseSpeed", "EvAttack", "EvDefence", "EvHP", "EvSpecialAttack", "EvSpecialDefense", "EvSpeed", "GenerationCustom", "Level", "Name", "PokeDexNumber", "TeamId", "Type1", "Type2" },
+                columns: new[] { "Id", "AbilityId", "Attack", "BaseAttack", "BaseDefense", "BaseHP", "BaseSpecialAttack", "BaseSpecialDefense", "BaseSpeed", "Defense", "EvAttack", "EvDefence", "EvHP", "EvSpecialAttack", "EvSpecialDefense", "EvSpeed", "GenerationCustom", "HP", "Level", "Name", "PokeDexNumber", "SpecialAttack", "SpecialDefense", "Speed", "TeamId", "Type1", "Type2" },
                 values: new object[,]
                 {
-                    { 1, 1, 82, 83, 80, 100, 100, 80, 0, 0, 252, 252, 4, 0, 1, 50, "Venusaur", 3, 1, "Grass", "Poison" },
-                    { 2, 2, 104, 71, 76, 104, 71, 108, 252, 0, 0, 0, 4, 252, 4, 50, "Infernape", 392, 1, "Fire", "Fighting" },
-                    { 3, 4, 134, 110, 100, 95, 100, 61, 252, 0, 252, 0, 4, 0, 2, 50, "Tyranitar", 248, 1, "Rock", "Dark" },
-                    { 4, 3, 130, 100, 70, 55, 80, 65, 252, 252, 0, 0, 4, 252, 2, 50, "Scizor", 212, 2, "Bug", "Steel" },
-                    { 5, 2, 104, 71, 76, 104, 71, 108, 252, 0, 0, 0, 4, 252, 4, 50, "Infernape", 392, 2, "Fire", "Fighting" },
-                    { 6, 1, 82, 83, 80, 100, 100, 80, 0, 0, 252, 4, 252, 0, 1, 50, "Venusaur", 3, 2, "Grass", "Poison" }
+                    { 1, 1, 82, 82, 83, 80, 100, 100, 80, 83, 0, 0, 0, 0, 4, 0, 1, 80, 50, "Venusaur", 3, 100, 100, 80, 1, "Grass", "Poison" },
+                    { 2, 2, 104, 104, 71, 76, 104, 71, 108, 71, 0, 0, 0, 0, 0, 0, 4, 76, 50, "Infernape", 392, 104, 71, 108, 1, "Fire", "Fighting" },
+                    { 3, 4, 134, 134, 110, 100, 95, 100, 61, 110, 0, 0, 0, 0, 0, 0, 2, 100, 50, "Tyranitar", 248, 95, 100, 61, 1, "Rock", "Dark" },
+                    { 4, 3, 130, 130, 100, 70, 55, 80, 65, 100, 0, 0, 0, 0, 0, 0, 2, 70, 50, "Scizor", 212, 55, 80, 65, 2, "Bug", "Steel" },
+                    { 5, 2, 104, 104, 71, 76, 104, 71, 108, 71, 0, 0, 0, 0, 0, 0, 4, 76, 50, "Infernape", 392, 104, 71, 108, 2, "Fire", "Fighting" },
+                    { 6, 1, 82, 82, 83, 80, 100, 100, 80, 83, 0, 0, 0, 0, 0, 0, 1, 80, 50, "Venusaur", 3, 100, 100, 80, 2, "Grass", "Poison" }
                 });
         }
 

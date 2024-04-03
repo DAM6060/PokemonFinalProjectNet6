@@ -24,10 +24,8 @@ namespace PokemonFinalProjectNet6.Data.Migrations
                     table.PrimaryKey("PK_Abilities", x => x.Id);
                 });
 
-            
 
-         
-
+           
             migrationBuilder.CreateTable(
                 name: "Moves",
                 columns: table => new
@@ -81,10 +79,6 @@ namespace PokemonFinalProjectNet6.Data.Migrations
                 {
                     table.PrimaryKey("PK_Sudokos", x => x.Id);
                 });
-
-
-           
-
 
             migrationBuilder.CreateTable(
                 name: "Players",
@@ -196,13 +190,7 @@ namespace PokemonFinalProjectNet6.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-
-          
-
-
-
-    
-
+            
             migrationBuilder.CreateIndex(
                 name: "IX_Players_UserId",
                 table: "Players",
@@ -231,29 +219,13 @@ namespace PokemonFinalProjectNet6.Data.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "AspNetRoleClaims");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserClaims");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserLogins");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserRoles");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserTokens");
-
+            
             migrationBuilder.DropTable(
                 name: "PokemonsMoves");
 
             migrationBuilder.DropTable(
                 name: "Sudokos");
 
-            migrationBuilder.DropTable(
-                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Moves");
@@ -270,8 +242,7 @@ namespace PokemonFinalProjectNet6.Data.Migrations
             migrationBuilder.DropTable(
                 name: "Players");
 
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
+           
         }
     }
 }

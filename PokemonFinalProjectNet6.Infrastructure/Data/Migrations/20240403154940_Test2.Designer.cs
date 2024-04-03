@@ -12,8 +12,8 @@ using PokemonFinalProjectNet6.Data;
 namespace PokemonFinalProjectNet6.Data.Migrations
 {
     [DbContext(typeof(PokemonDbContext))]
-    [Migration("20240402125407_SeedDataAdded")]
-    partial class SeedDataAdded
+    [Migration("20240403154940_Test2")]
+    partial class Test2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -145,15 +145,15 @@ namespace PokemonFinalProjectNet6.Data.Migrations
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "12d3e2ec-3066-45cd-9e11-eb20ddeb6790",
+                            ConcurrencyStamp = "0e7e65ca-4065-4a2d-925a-cddadc703b86",
                             Email = "varnasharks.afc@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "VARNASHARKS.AFC@GMAIL.COM",
                             NormalizedUserName = "DIMITARPLAYER",
-                            PasswordHash = "AQAAAAEAACcQAAAAED8NCOBJGb12huoAckW6kzM5g3g1vSiWGaXwvaRNpi7b3/wZxaVyP40woj1IZAwZPg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENSxTxuSZj27QaixK/W/6nhB1erA1UFOnSwTF7UqC9QrRIbvC+roH7KVkqQx900nLw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "20047250-b895-4e9a-8b2c-79710ac2db99",
+                            SecurityStamp = "dc62bc90-da9d-4916-84eb-f288ba72c8e0",
                             TwoFactorEnabled = false,
                             UserName = "DimitarPlayer"
                         },
@@ -161,15 +161,15 @@ namespace PokemonFinalProjectNet6.Data.Migrations
                         {
                             Id = "dea12856-c198-4129-b3f3-b893d8395082",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e55f12c7-62a1-4c96-97b3-de18cfb09a35",
+                            ConcurrencyStamp = "1fb2e384-f10b-49b5-b0b7-6e0d82d51ed7",
                             Email = "ddimitar98@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "DDIMITAR98@GMAIL.COM",
                             NormalizedUserName = "DIMITARADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHW0GlXYXznByvwTgYkya6JuAnALUqQ+SMjEeXKU1WdqUgpyCSyq/RYiP02eS4dW5g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKWzI/6u+PqNhrqIHXnu0eRUP5u8kDlvt6gQzYKjeBhDrCg9nxl6RYPerZg0yEm/wg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3f4254b9-e84a-45c2-a0de-7450987ab4ba",
+                            SecurityStamp = "63b1c145-1cf1-4f78-bdd4-61082630009a",
                             TwoFactorEnabled = false,
                             UserName = "DimitarAdmin"
                         });
@@ -808,6 +808,10 @@ namespace PokemonFinalProjectNet6.Data.Migrations
                     b.Property<int>("AbilityId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Attack")
+                        .HasColumnType("int")
+                        .HasComment("Actual Attack");
+
                     b.Property<int>("BaseAttack")
                         .HasColumnType("int");
 
@@ -825,6 +829,10 @@ namespace PokemonFinalProjectNet6.Data.Migrations
 
                     b.Property<int>("BaseSpeed")
                         .HasColumnType("int");
+
+                    b.Property<int>("Defense")
+                        .HasColumnType("int")
+                        .HasComment("Actual Defense");
 
                     b.Property<int>("EvAttack")
                         .HasColumnType("int")
@@ -854,6 +862,10 @@ namespace PokemonFinalProjectNet6.Data.Migrations
                         .HasColumnType("int")
                         .HasComment("Generation in which Pokemon is introduced");
 
+                    b.Property<int>("HP")
+                        .HasColumnType("int")
+                        .HasComment("Actual HP");
+
                     b.Property<int>("Level")
                         .HasColumnType("int");
 
@@ -863,6 +875,18 @@ namespace PokemonFinalProjectNet6.Data.Migrations
 
                     b.Property<int>("PokeDexNumber")
                         .HasColumnType("int");
+
+                    b.Property<int>("SpecialAttack")
+                        .HasColumnType("int")
+                        .HasComment("Actual Special Attack");
+
+                    b.Property<int>("SpecialDefense")
+                        .HasColumnType("int")
+                        .HasComment("Actual Special Defense");
+
+                    b.Property<int>("Speed")
+                        .HasColumnType("int")
+                        .HasComment("Actual Speed");
 
                     b.Property<int>("TeamId")
                         .HasColumnType("int")
@@ -891,22 +915,28 @@ namespace PokemonFinalProjectNet6.Data.Migrations
                         {
                             Id = 1,
                             AbilityId = 1,
+                            Attack = 82,
                             BaseAttack = 82,
                             BaseDefense = 83,
                             BaseHP = 80,
                             BaseSpecialAttack = 100,
                             BaseSpecialDefense = 100,
                             BaseSpeed = 80,
+                            Defense = 83,
                             EvAttack = 0,
                             EvDefence = 0,
-                            EvHP = 252,
-                            EvSpecialAttack = 252,
+                            EvHP = 0,
+                            EvSpecialAttack = 0,
                             EvSpecialDefense = 4,
                             EvSpeed = 0,
                             GenerationCustom = 1,
+                            HP = 80,
                             Level = 50,
                             Name = "Venusaur",
                             PokeDexNumber = 3,
+                            SpecialAttack = 100,
+                            SpecialDefense = 100,
+                            Speed = 80,
                             TeamId = 1,
                             Type1 = "Grass",
                             Type2 = "Poison"
@@ -915,22 +945,28 @@ namespace PokemonFinalProjectNet6.Data.Migrations
                         {
                             Id = 6,
                             AbilityId = 1,
+                            Attack = 82,
                             BaseAttack = 82,
                             BaseDefense = 83,
                             BaseHP = 80,
                             BaseSpecialAttack = 100,
                             BaseSpecialDefense = 100,
                             BaseSpeed = 80,
+                            Defense = 83,
                             EvAttack = 0,
                             EvDefence = 0,
-                            EvHP = 252,
-                            EvSpecialAttack = 4,
-                            EvSpecialDefense = 252,
+                            EvHP = 0,
+                            EvSpecialAttack = 0,
+                            EvSpecialDefense = 0,
                             EvSpeed = 0,
                             GenerationCustom = 1,
+                            HP = 80,
                             Level = 50,
                             Name = "Venusaur",
                             PokeDexNumber = 3,
+                            SpecialAttack = 100,
+                            SpecialDefense = 100,
+                            Speed = 80,
                             TeamId = 2,
                             Type1 = "Grass",
                             Type2 = "Poison"
@@ -939,22 +975,28 @@ namespace PokemonFinalProjectNet6.Data.Migrations
                         {
                             Id = 2,
                             AbilityId = 2,
+                            Attack = 104,
                             BaseAttack = 104,
                             BaseDefense = 71,
                             BaseHP = 76,
                             BaseSpecialAttack = 104,
                             BaseSpecialDefense = 71,
                             BaseSpeed = 108,
-                            EvAttack = 252,
+                            Defense = 71,
+                            EvAttack = 0,
                             EvDefence = 0,
                             EvHP = 0,
                             EvSpecialAttack = 0,
-                            EvSpecialDefense = 4,
-                            EvSpeed = 252,
+                            EvSpecialDefense = 0,
+                            EvSpeed = 0,
                             GenerationCustom = 4,
+                            HP = 76,
                             Level = 50,
                             Name = "Infernape",
                             PokeDexNumber = 392,
+                            SpecialAttack = 104,
+                            SpecialDefense = 71,
+                            Speed = 108,
                             TeamId = 1,
                             Type1 = "Fire",
                             Type2 = "Fighting"
@@ -963,22 +1005,28 @@ namespace PokemonFinalProjectNet6.Data.Migrations
                         {
                             Id = 5,
                             AbilityId = 2,
+                            Attack = 104,
                             BaseAttack = 104,
                             BaseDefense = 71,
                             BaseHP = 76,
                             BaseSpecialAttack = 104,
                             BaseSpecialDefense = 71,
                             BaseSpeed = 108,
-                            EvAttack = 252,
+                            Defense = 71,
+                            EvAttack = 0,
                             EvDefence = 0,
                             EvHP = 0,
                             EvSpecialAttack = 0,
-                            EvSpecialDefense = 4,
-                            EvSpeed = 252,
+                            EvSpecialDefense = 0,
+                            EvSpeed = 0,
                             GenerationCustom = 4,
+                            HP = 76,
                             Level = 50,
                             Name = "Infernape",
                             PokeDexNumber = 392,
+                            SpecialAttack = 104,
+                            SpecialDefense = 71,
+                            Speed = 108,
                             TeamId = 2,
                             Type1 = "Fire",
                             Type2 = "Fighting"
@@ -987,22 +1035,28 @@ namespace PokemonFinalProjectNet6.Data.Migrations
                         {
                             Id = 4,
                             AbilityId = 3,
+                            Attack = 130,
                             BaseAttack = 130,
                             BaseDefense = 100,
                             BaseHP = 70,
                             BaseSpecialAttack = 55,
                             BaseSpecialDefense = 80,
                             BaseSpeed = 65,
-                            EvAttack = 252,
-                            EvDefence = 252,
+                            Defense = 100,
+                            EvAttack = 0,
+                            EvDefence = 0,
                             EvHP = 0,
                             EvSpecialAttack = 0,
-                            EvSpecialDefense = 4,
-                            EvSpeed = 252,
+                            EvSpecialDefense = 0,
+                            EvSpeed = 0,
                             GenerationCustom = 2,
+                            HP = 70,
                             Level = 50,
                             Name = "Scizor",
                             PokeDexNumber = 212,
+                            SpecialAttack = 55,
+                            SpecialDefense = 80,
+                            Speed = 65,
                             TeamId = 2,
                             Type1 = "Bug",
                             Type2 = "Steel"
@@ -1011,22 +1065,28 @@ namespace PokemonFinalProjectNet6.Data.Migrations
                         {
                             Id = 3,
                             AbilityId = 4,
+                            Attack = 134,
                             BaseAttack = 134,
                             BaseDefense = 110,
                             BaseHP = 100,
                             BaseSpecialAttack = 95,
                             BaseSpecialDefense = 100,
                             BaseSpeed = 61,
-                            EvAttack = 252,
+                            Defense = 110,
+                            EvAttack = 0,
                             EvDefence = 0,
-                            EvHP = 252,
+                            EvHP = 0,
                             EvSpecialAttack = 0,
-                            EvSpecialDefense = 4,
+                            EvSpecialDefense = 0,
                             EvSpeed = 0,
                             GenerationCustom = 2,
+                            HP = 100,
                             Level = 50,
                             Name = "Tyranitar",
                             PokeDexNumber = 248,
+                            SpecialAttack = 95,
+                            SpecialDefense = 100,
+                            Speed = 61,
                             TeamId = 1,
                             Type1 = "Rock",
                             Type2 = "Dark"
@@ -1242,7 +1302,7 @@ namespace PokemonFinalProjectNet6.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("PokemonFinalProjectNet6.Infrastructure.Data.Models.Team", "Team")
-                        .WithMany("Pokemon")
+                        .WithMany("Pokemons")
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1299,7 +1359,7 @@ namespace PokemonFinalProjectNet6.Data.Migrations
 
             modelBuilder.Entity("PokemonFinalProjectNet6.Infrastructure.Data.Models.Team", b =>
                 {
-                    b.Navigation("Pokemon");
+                    b.Navigation("Pokemons");
                 });
 #pragma warning restore 612, 618
         }

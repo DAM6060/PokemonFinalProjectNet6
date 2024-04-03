@@ -14,29 +14,15 @@ namespace PokemonFinalProjectNet6.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<PokemonMove>()
-        .HasKey(pm => new { pm.PokemonId, pm.MoveId });
-
-
-            builder.Entity<PokemonMove>()
-         .HasOne(pm => pm.Pokemon)
-         .WithMany(p => p.PokemonMoves)
-         .HasForeignKey(pm => pm.PokemonId);
-
-            builder.Entity<PokemonMove>()
-                .HasOne(pm => pm.Move)
-                .WithMany(m => m.PokemonMoves)
-                .HasForeignKey(pm => pm.MoveId);
-
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new PlayerConfiguration());
             builder.ApplyConfiguration(new AbilityConfiguration());
             builder.ApplyConfiguration(new MoveConfiguration());
             builder.ApplyConfiguration(new TeamConfiguration());
             builder.ApplyConfiguration(new PokemonConfiguration());
-            builder.ApplyConfiguration(new PokemonMoveConifguration());
-
-
+            builder.Entity<PokemonMove>()
+                .HasKey(pm => new { pm.PokemonId, pm.MoveId });
+            //builder.ApplyConfiguration(new PokemonMoveConifguration());
 
 
             base.OnModelCreating(builder);

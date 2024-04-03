@@ -9,13 +9,14 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
         {
             var data = new SeedData();
 
+
             builder.HasData(new PokemonMove[] 
             { 
-                data.PokemonsMoves[0],
                 data.PokemonsMoves[1],
                 data.PokemonsMoves[2],
                 data.PokemonsMoves[3],
                 data.PokemonsMoves[4],
+                data.PokemonsMoves[0],
                 data.PokemonsMoves[5],
                 data.PokemonsMoves[6],
                 data.PokemonsMoves[7],

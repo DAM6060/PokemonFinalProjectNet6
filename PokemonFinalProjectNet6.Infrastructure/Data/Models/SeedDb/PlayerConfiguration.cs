@@ -9,7 +9,11 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
         {
             var data = new SeedData();
 
-            builder.HasData( new Player[] { data.Player1, data.Player2});
+            builder.HasData( new Player[] 
+            {
+                data.Player1,
+                data.Player2
+            });
         }
     }
 }

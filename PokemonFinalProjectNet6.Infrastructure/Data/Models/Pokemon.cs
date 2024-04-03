@@ -29,9 +29,9 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 
 		[Required]
 		[Comment("Actual HP")]
-		public int HP => (int)((2 * (double)BaseHP + (double)EvHP) * (double)Level / 100 + (double)Level + 10);
+		public int HP { get; set; }
 
-		[Required]
+        [Required]
 		public int BaseAttack { get; set; }
 
 		[Required]
@@ -41,7 +41,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 
 		[Required]
 		[Comment("Actual Attack")]
-		public int Attack => (int)((2 * (double)BaseAttack + (double)EvAttack) * (double)Level / 100 + 5);
+		public int Attack { get; set; }
 
 		[Required]
 		public int BaseDefense { get; set; }
@@ -53,9 +53,9 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 		public int EvDefence { get; set; } = 0;
 		[Required]
 		[Comment("Actual Defense")]
-		public int Defense => (int)((2 * (double)BaseDefense + (double)EvDefence) * (double)Level / 100 + 5);
+		public int Defense { get; set; }
 
-		[Required]
+        [Required]
 		public int BaseSpecialAttack { get; set; }
 
 		[Required]
@@ -64,9 +64,9 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 		public int EvSpecialAttack { get; set; } = 0;
 		[Required]
 		[Comment("Actual Special Attack")]
-		public int SpecialAttack => (int)((2 * (double)BaseSpecialAttack + (double)EvSpecialAttack) * (double)Level / 100 + 5);
+		public int SpecialAttack { get; set; }
 
-		[Required]
+        [Required]
 		public int BaseSpecialDefense { get; set; }
 
 		[Required]
@@ -76,9 +76,9 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 
 		[Required]
 		[Comment("Actual Special Defense")]
-		public int SpecialDefense => (int)((2 * (double)BaseSpecialDefense + (double)EvSpecialDefense) * (double)Level / 100 + 5);
+		public int SpecialDefense { get; set; }
 
-		[Required]
+        [Required]
 		public int BaseSpeed { get; set; }
 
 		[Required]
@@ -88,9 +88,9 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 
 		[Required]
 		[Comment("Actual Speed")]
-		public int Speed => (int)((2 * (double)BaseSpeed + (double)EvSpeed) * (double)Level / 100 + 5);
+		public int Speed { get; set; }
 
-		[NotMapped]
+        [NotMapped]
 		[Range(0, MaxTotalEvPoints, ErrorMessage = MaxEvStatErrorMessage)]
 		public int TotalEvPoints => EvHP + EvAttack + EvDefence + EvSpecialAttack + EvSpecialDefense + EvSpeed;
 
@@ -116,8 +116,6 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 		[Comment("Passive abuliity chosen by user")]
 		[ForeignKey(nameof(AbilityId))]
 		public Ability Ability { get; set; } = null!;
-
-		public List<Move> Moves { get; set; } = new List<Move>();
 
 
 		[Required]

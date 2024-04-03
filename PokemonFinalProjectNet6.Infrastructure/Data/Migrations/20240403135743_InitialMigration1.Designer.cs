@@ -12,8 +12,8 @@ using PokemonFinalProjectNet6.Data;
 namespace PokemonFinalProjectNet6.Data.Migrations
 {
     [DbContext(typeof(PokemonDbContext))]
-    [Migration("20240402122821_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20240403135743_InitialMigration1")]
+    partial class InitialMigration1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -358,6 +358,10 @@ namespace PokemonFinalProjectNet6.Data.Migrations
                     b.Property<int>("AbilityId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Attack")
+                        .HasColumnType("int")
+                        .HasComment("Actual Attack");
+
                     b.Property<int>("BaseAttack")
                         .HasColumnType("int");
 
@@ -628,7 +632,7 @@ namespace PokemonFinalProjectNet6.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("PokemonFinalProjectNet6.Infrastructure.Data.Models.Team", "Team")
-                        .WithMany("Pokemon")
+                        .WithMany("Pokemons")
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -685,7 +689,7 @@ namespace PokemonFinalProjectNet6.Data.Migrations
 
             modelBuilder.Entity("PokemonFinalProjectNet6.Infrastructure.Data.Models.Team", b =>
                 {
-                    b.Navigation("Pokemon");
+                    b.Navigation("Pokemons");
                 });
 #pragma warning restore 612, 618
         }

@@ -11,4 +11,9 @@
     <ProjectReference Include="..\PokemonFinalProjectNet6.Infrastructure\PokemonFinalProjectNet6.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Pokemon\" />
+    <Folder Include="Models\Team\" />
+  </ItemGroup>
+
 </Project>
