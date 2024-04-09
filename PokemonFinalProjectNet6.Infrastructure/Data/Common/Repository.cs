@@ -22,7 +22,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Common
             return DbSet<T>()
                 .AsNoTracking();
         }
-        public async Task AddASync<T>(T entity) where T : class
+        public async Task AddAsync<T>(T entity) where T : class
         {
             await DbSet<T>().AddAsync(entity);
         }
