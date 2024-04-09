@@ -22,5 +22,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
         public IdentityUser User { get; set; } = null!;
 
         public List<Team> Teams { get; set; } = new List<Team>();
+
+        public List<Pokemon> Pokemon { get; set; } = new List<Pokemon>();
     }
 }

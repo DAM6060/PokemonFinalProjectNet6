@@ -15,6 +15,6 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 		public string Description { get; set; } = string.Empty;
 
 		[Required]
-		public PhaseOfCombatAbility PhaseOfCombatActivaton { get; set; }		
+		public PhaseOfCombatAbility PhaseOfCombatActivaton { get; set; }
 	}
 }
