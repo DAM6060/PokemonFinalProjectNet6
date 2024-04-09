@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using PokemonFinalProjectNet6.Core.Contracts;
+using PokemonFinalProjectNet6.Core.Services;
 using PokemonFinalProjectNet6.Data;
 using PokemonFinalProjectNet6.Infrastructure.Data.Common;
 
@@ -9,9 +11,11 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            //services.AddScoped<IHouseService, HouseService>();
-            //services.AddScoped<IAgentService, AgentService>();
-            //services.AddScoped<IStatisticService, StatisticService>();
+            services.AddScoped<IPlayerService, PLayerService>();
+            services.AddScoped<IPokemonService, PokemonService>();
+            services.AddScoped<ITeamService, TeamService>();
+            services.AddScoped<IAbilityService, AbilityService>();
+            services.AddScoped<IMoveService, MoveService>();
 
             return services;
         }
