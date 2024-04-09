@@ -10,20 +10,20 @@
             <h1>@Model.Name :</h1>
         </div>
         <div class="col">
-            <div>@if(Model.Type2!="None")
+            <div >@if(Model.Type2!="None")
                 {
                     <h2>@Model.Type1 / @Model.Type2 </h2>                    
                 }
                 else
 				{
-					<h2>@Model.Type1</h2>
+                    <h2>@Model.Type1</h2>
 				}</div>
             </div>
         </div>
     </div>
 </div>
 <div style="text-align: center;">@Model.Ability.Name : @Model.Ability.Description</div>
-<table class="table" style="margin-left: 100px; margin-right: 100px">
+<table class="table">
     <thead>
         <tr>
             <th scope="col"></th>
