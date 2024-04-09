@@ -36,7 +36,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 data.Crunch,
                 data.BulletPunch,
                 data.Reflect,
-                data.LeechSeed
+                data.LeechSeed,
+                data.Earthquake
 
             });
         }

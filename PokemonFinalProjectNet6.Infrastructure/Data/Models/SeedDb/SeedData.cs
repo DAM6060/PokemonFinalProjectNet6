@@ -291,8 +291,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Id = 1,
                 Name = "Venusaur",
                 PokeDexNumber = 3,
-                Type1 = "Grass",
-                Type2 = "Poison",
+                Type1 = PokemonTypeCustom.Grass,
+                Type2 = PokemonTypeCustom.Poison,
                 AbilityId = Chlorophyll.Id,
                 BaseHP = 80,
                 BaseAttack = 82,
@@ -313,7 +313,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 SpecialAttack = 100,
                 SpecialDefense = 100,
                 Speed = 80,
-                TeamId = Team1.Id
+                TeamId = Team1.Id,
+                PlayerId = Player1.Id          
 
             };
 
@@ -322,8 +323,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Id = 2,
                 Name = "Infernape",
                 PokeDexNumber = 392,
-                Type1 = "Fire",
-                Type2 = "Fighting",
+                Type1 = PokemonTypeCustom.Fire,
+                Type2 = PokemonTypeCustom.Fighting,
                 AbilityId = IronFist.Id,
                 BaseHP = 76,
                 BaseAttack = 104,
@@ -344,7 +345,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 SpecialAttack = 104,
                 SpecialDefense = 71,
                 Speed = 108,
-                TeamId = Team1.Id
+                TeamId = Team1.Id,
+                PlayerId = Player1.Id
             };
 
             Tyranitar = new Pokemon()
@@ -352,8 +354,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Id = 3,
                 Name = "Tyranitar",
                 PokeDexNumber = 248,
-                Type1 = "Rock",
-                Type2 = "Dark",
+                Type1 = PokemonTypeCustom.Rock,
+                Type2 = PokemonTypeCustom.Dark,
                 AbilityId = Adaptability.Id,
                 BaseHP = 100,
                 BaseAttack = 134,
@@ -374,7 +376,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 SpecialAttack = 95,
                 SpecialDefense = 100,
                 Speed = 61,
-                TeamId = Team1.Id
+                TeamId = Team1.Id,
+                PlayerId = Player1.Id
             };
 
             Scizor = new Pokemon()
@@ -382,8 +385,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Id = 4,
                 Name = "Scizor",
                 PokeDexNumber = 212,
-                Type1 = "Bug",
-                Type2 = "Steel",
+                Type1 = PokemonTypeCustom.Bug,
+                Type2 = PokemonTypeCustom.Steel,
                 AbilityId = Technichian.Id,
                 BaseHP = 70,
                 BaseAttack = 130,
@@ -404,7 +407,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 SpecialAttack = 55,
                 SpecialDefense = 80,
                 Speed = 65,
-                TeamId = Team2.Id
+                TeamId = Team2.Id,
+                PlayerId = Player1.Id
             };
 
             Infernoape2 = new Pokemon()
@@ -412,8 +416,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Id = 5,
                 Name = "Infernape",
                 PokeDexNumber = 392,
-                Type1 = "Fire",
-                Type2 = "Fighting",
+                Type1 = PokemonTypeCustom.Fire,
+                Type2 = PokemonTypeCustom.Fighting,
                 AbilityId = IronFist.Id,
                 BaseHP = 76,
                 BaseAttack = 104,
@@ -434,15 +438,16 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 SpecialAttack = 104,
                 SpecialDefense = 71,
                 Speed = 108,
-                TeamId = Team2.Id
+                TeamId = Team2.Id,
+                PlayerId = Player1.Id
             };
             Venausor2 = new Pokemon()
             {
                 Id = 6,
                 Name = "Venusaur",
                 PokeDexNumber = 3,
-                Type1 = "Grass",
-                Type2 = "Poison",
+                Type1 = PokemonTypeCustom.Grass,
+                Type2 = PokemonTypeCustom.Poison,
                 AbilityId = Chlorophyll.Id,
                 BaseHP = 80,
                 BaseAttack = 82,
@@ -463,7 +468,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 SpecialAttack = 100,
                 SpecialDefense = 100,
                 Speed = 80,
-                TeamId = Team2.Id
+                TeamId = Team2.Id,
+                PlayerId= Player1.Id
 
             };
 
