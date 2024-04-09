@@ -14,6 +14,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Constants
 
 		public const int TeamNameMaxLength = 50;
 
+		public const int TeamNameMinLength = 3;
+
 		public const int TeamMaxPokemonCount3v3 = 3;
 
 		public const string TeamMaxPokemonCountErrorMessage = "The {0} must be less than {1}";
