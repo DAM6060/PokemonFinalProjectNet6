@@ -10,19 +10,28 @@ namespace PokemonFinalProjectNet6.Data
         public PokemonDbContext(DbContextOptions options)
             : base(options)
         {
+               
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.EnableSensitiveDataLogging();
+            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<PokemonMove>()
+                .HasKey(pm => new { pm.PokemonId, pm.MoveId });    
+           
+
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new PlayerConfiguration());
             builder.ApplyConfiguration(new AbilityConfiguration());
             builder.ApplyConfiguration(new MoveConfiguration());
             builder.ApplyConfiguration(new TeamConfiguration());
             builder.ApplyConfiguration(new PokemonConfiguration());
-            builder.Entity<PokemonMove>()
-                .HasKey(pm => new { pm.PokemonId, pm.MoveId });
-            //builder.ApplyConfiguration(new PokemonMoveConifguration());
+
+            builder.ApplyConfiguration(new PokemonMoveConifguration());
 
 
             base.OnModelCreating(builder);
