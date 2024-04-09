@@ -8,12 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PokemonFinalProjectNet6.Infrastructure\PokemonFinalProjectNet6.Infrastructure.csproj" />
+    <None Remove="Models\Pokemon\New Text Document.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Pokemon\" />
-    <Folder Include="Models\Team\" />
+    <ProjectReference Include="..\PokemonFinalProjectNet6.Infrastructure\PokemonFinalProjectNet6.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
