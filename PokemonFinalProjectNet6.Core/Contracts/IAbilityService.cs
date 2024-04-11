@@ -1,4 +1,6 @@
-﻿using PokemonFinalProjectNet6.Core.Models.Ability;
+﻿using PokemonFinalProjectNet6.Core.Enumerations;
+using PokemonFinalProjectNet6.Core.Models.Abilitiy;
+using PokemonFinalProjectNet6.Core.Models.Ability;
 using PokemonFinalProjectNet6.Core.Models.Move;
 using System;
 using System.Collections.Generic;
@@ -12,5 +14,11 @@ namespace PokemonFinalProjectNet6.Core.Contracts
     {
         Task<AbilityServiceModel> AbilityByIdAsync(int id);
 
+        Task<AbilityQueryModel> AllAbilitiesSearch(
+            string? searchTerm = null,
+            AbilitySorting sorting = AbilitySorting.Alphabetical,
+            int currentPage = 1,
+            int teamsPerPage = 10);
     }
+
 }

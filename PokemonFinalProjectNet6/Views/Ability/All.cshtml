@@ -1,0 +1,83 @@
+﻿@model AbilityQueryModel
+
+@{
+   ViewBag.title = "All Abilities";
+   ViewBag.Controller = "Ability";
+   ViewBag.Action = "All";
+}
+
+<h2 class="text-center">
+    @ViewBag.title
+</h2>
+<hr />
+
+<form method="get">
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label asp-for="SearchTerm"></label>
+            <input asp-for="SearchTerm" class="form-control" placeholder="...">
+        </div>
+        <div class="form-group col-md-3">
+            <div class="form-group">
+                <label asp-for="Sorting"></label>
+                <select asp-for="Sorting" class="form-control">
+                    <option value="0">Alphabetical</option>
+                    <option value="1">Most Used</option>
+                    <option value="2">Least Used</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group mt-4 p-2">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+<div class="row mb-5">
+    <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+           asp-controller="@ViewBag.Controller"
+           asp-action="@(ViewBag.Action)"
+           asp-route-currentPage="@Model.PreviousPage"
+           asp-route-searchTearm="@Model.SearchTerm"
+           asp-route-sorting="@((int)Model.Sorting)">Previous</a>
+    </div>
+    @{
+
+        var shouldButtonBeDisabled = Model.CurrentPage == Model.PagesCount;
+    }
+    <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-end">
+        <a class="btn btn-primary
+           @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
+           asp-controller="Team"
+           asp-action="LeaderBoards"
+           asp-route-currentPage="@(Model.CurrentPage + 1)"
+           asp-route-searchTearm="@Model.SearchTerm"
+           asp-route-sorting="@((int)Model.Sorting)">Next</a>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ability in Model.Abilities)
+        {
+            <tr>
+                <th scope="row">@ability.Name</th>
+                <td>@ability.Description</td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
