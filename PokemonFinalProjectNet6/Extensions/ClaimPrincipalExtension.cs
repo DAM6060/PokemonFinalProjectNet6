@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-namespace PokemonFinalProjectNet6.Extension
+﻿namespace System.Security.Claims
 {
     public static class ClaimPrincipalExtension
     {
