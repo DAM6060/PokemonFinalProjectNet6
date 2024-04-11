@@ -14,6 +14,9 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 		public string Name { get; set; } = string.Empty;
 
 		[Required]
+		public string Description { get; set; } = string.Empty;
+
+		[Required]
 		[Comment("Attack power of a move")]
 		public int Power { get; set; }
 

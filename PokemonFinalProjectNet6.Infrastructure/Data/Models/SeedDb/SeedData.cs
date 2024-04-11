@@ -522,7 +522,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 PowerPoints = 15,
                 Ailment = "Burn",
                 AilmentChance = 10,
-                DamageClass = DamageClass.Special
+                DamageClass = DamageClass.Special,
+                Description = "The target is scorched with an intense blast of fire. This may also leave the target with a burn."
             };
 
             ThunderPunch = new Move
@@ -535,7 +536,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 PowerPoints = 15,
                 Ailment = "Paralysis",
                 AilmentChance = 10,
-                DamageClass = DamageClass.Physical
+                DamageClass = DamageClass.Physical,
+                Description = "The target is punched with an electrified fist. This may also leave the target with paralysis."
             };
 
             GigaDrain = new Move
@@ -551,7 +553,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 DamageClass = DamageClass.Special,
                 IsEffectUser = true,
                 HealAmount = 50,
-                HealType = HealType.OpponentHP
+                HealType = HealType.OpponentHP,
+                Description = "A nutrient-draining attack. The user's HP is restored by half the damage taken by the target."
             };
 
             SleepPowder = new Move
@@ -564,9 +567,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 PowerPoints = 15,
                 Ailment = "Sleep",
                 AilmentChance = 100,
-                DamageClass = DamageClass.Status
-
-
+                DamageClass = DamageClass.Status,
+                Description = "The user scatters a big cloud of sleep-inducing dust around the target."
             };
 
             SolarBeam = new Move
@@ -578,7 +580,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Accuracy = 100,
                 PowerPoints = 10,
                 AilmentChance = 0,
-                DamageClass = DamageClass.Special
+                DamageClass = DamageClass.Special,
+                Description = "In this two-turn attack, the user gathers light, then blasts a bundled beam on the next turn."
             };
 
             Earthquake = new Move
@@ -589,7 +592,9 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Power = 100,
                 Accuracy = 100,
                 PowerPoints = 10,
-                DamageClass = DamageClass.Physical
+                DamageClass = DamageClass.Physical,
+                Description = "The user sets off an earthquake that strikes every Pokémon around it."
+
             };
 
             WingAttack = new Move
@@ -600,8 +605,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Power = 60,
                 Accuracy = 100,
                 PowerPoints = 35,
-                DamageClass = DamageClass.Physical
-
+                DamageClass = DamageClass.Physical,
+                Description = "The target is struck with large, imposing wings spread wide to inflict damage."
             };
 
             BugBite = new Move
@@ -613,7 +618,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Accuracy = 100,
                 PowerPoints = 20,
                 DamageClass = DamageClass.Physical,
-
+                Description = "The user bites the target. If the target is holding a Berry, the user eats it and gains its effect."
             };
 
             UTurn = new Move
@@ -627,7 +632,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Effect = "Force Switch",
                 EffectChance = 100,
                 DamageClass = DamageClass.Physical,
-                IsEffectUser = true
+                IsEffectUser = true,
+                Description = "After making its attack, the user rushes back to switch places with a party Pokémon in waiting."
             };
 
             CloseCombat = new Move
@@ -640,7 +646,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 PowerPoints = 5,
                 Effect = "Lower Def and SpDef",
                 DamageClass = DamageClass.Physical,
-                IsEffectUser = true
+                IsEffectUser = true,
+                Description = "The user fights the target up close without guarding itself. This also lowers the user's Defense and Sp. Def stats."
             };
 
             BulletPunch = new Move
@@ -652,7 +659,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Accuracy = 100,
                 PowerPoints = 30,
                 DamageClass = DamageClass.Physical,
-                Priority = 1
+                Priority = 1,
+                Description = "The user strikes the target with tough punches as fast as bullets."
             };
 
             SuperPower = new Move
@@ -666,7 +674,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Effect = "Lower Attack and Defense",
                 EffectChance = 100,
                 DamageClass = DamageClass.Physical,
-                IsEffectUser = true
+                IsEffectUser = true,
+                Description = "The user attacks the target with great power. However, this also lowers the user's Attack and Defense stats."
             };
 
             EarthPower = new Move
@@ -680,7 +689,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Effect = "Lower SpDef",
                 EffectChance = 10,
                 DamageClass = DamageClass.Special,
-                IsEffectUser = false
+                IsEffectUser = false,
+                Description = "The user makes the ground under the target erupt with power. This may also lower the target's Sp. Def stat."
             };
 
             RockSlide = new Move
@@ -694,7 +704,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Effect = "Flinch",
                 EffectChance = 30,
                 DamageClass = DamageClass.Physical,
-                IsEffectUser = false
+                IsEffectUser = false,
+                Description = "Large boulders are hurled at the opposing Pokémon to inflict damage. This may also make the opposing Pokémon flinch."
             };
 
             Crunch = new Move
@@ -708,7 +719,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Effect = "Lower SpDef",
                 EffectChance = 20,
                 DamageClass = DamageClass.Physical,
-                IsEffectUser = false
+                IsEffectUser = false,
+                Description = "The user crunches up the target with sharp fangs. This may also lower the target's Sp. Def stat."
             };
 
             IceBeam = new Move
@@ -721,7 +733,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 PowerPoints = 10,
                 Ailment = "Freeze",
                 AilmentChance = 10,
-                DamageClass = DamageClass.Special
+                DamageClass = DamageClass.Special,
+                Description = "The target is struck with an icy-cold beam of energy. This may also leave the target frozen."
             };
 
             FirePunch = new Move
@@ -734,8 +747,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 PowerPoints = 15,
                 Ailment = "Burn",
                 AilmentChance = 10,
-                DamageClass = DamageClass.Physical
-
+                DamageClass = DamageClass.Physical,
+                Description = "The target is punched with a fiery fist. This may also leave the target with a burn."
             };
 
             BrickBreak = new Move
@@ -749,7 +762,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Effect = "Breaks Light Screen and Reflect",
                 EffectChance = 100,
                 DamageClass = DamageClass.Physical,
-                IsEffectUser = false
+                IsEffectUser = false,
+                Description = "The user attacks with a swift chop. It can also break barriers, such as Light Screen and Reflect."
             };
 
             SludgeBomb = new Move
@@ -762,7 +776,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 PowerPoints = 10,
                 Ailment = "Poison",
                 AilmentChance = 30,
-                DamageClass = DamageClass.Special
+                DamageClass = DamageClass.Special,
+                Description = "Unsanitary sludge is hurled at the target. This may also poison the target."
             };
 
             Reflect = new Move
@@ -777,8 +792,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 EffectChance = 100,
                 EffectDuration = 5,
                 DamageClass = DamageClass.Status,
-                IsEffectUser = true
-
+                IsEffectUser = true,
+                Description = "A wondrous wall of light is put up to reduce damage from physical attacks for five turns."
             };
 
             LeechSeed = new Move
@@ -796,8 +811,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 DamageClass = DamageClass.Status,
                 IsEffectUser = false,
                 HealAmount = 12,
-                HealType = HealType.OpponentHP
-
+                HealType = HealType.OpponentHP,
+                Description = "A seed is planted on the target. It steals some HP from the target every turn."
             };
         }
     }
