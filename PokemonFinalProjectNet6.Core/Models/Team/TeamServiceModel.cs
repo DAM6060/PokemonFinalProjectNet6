@@ -12,6 +12,14 @@ namespace PokemonFinalProjectNet6.Core.Models.Team
 
         public string Name { get; set; } = string.Empty;
 
+        public int PlayerId { get; set; }
+
+        public List<string> Pokemons { get; set; } = new List<string>();
+
+        public int Wins { get; set; }
+
+        public int Losses { get; set; }
+
         
     }
 }

@@ -1,0 +1,133 @@
+﻿@model TeamLeaderBoardQueryModel
+
+@{
+	ViewBag.Wins = "LeaderBoards - Wins";
+	ViewBag.Newsest = "Newst Teams";
+	ViewBag.Oldest = "Oldes Teams";
+    ViewBag.MostPlayed = "LeaderBoards - Most Games Played";
+    ViewBag.BiggestPositiveDifferential = "LeaderBoards - Biggest Positive Differential";
+    ViewBag.BiggestNegativeDifferential = "LeaderBoards - Biggest Negative Differential";
+}
+
+<h2 class="text-center">
+    @if (Model.Sorting == 0)
+	{
+		<span>@ViewBag.Newsest</span>
+	}
+	else if ((int)Model.Sorting == 1)
+	{
+		<span>@ViewBag.Oldest</span>
+	}
+    else if ((int)Model.Sorting == 2)
+	{
+		<span>@ViewBag.Wins</span>
+	}
+    else if ((int)Model.Sorting == 3)
+    {
+        <span>@ViewBag.MostPlayed</span>
+    }
+    else if ((int)Model.Sorting == 4)
+	{
+		<span>@ViewBag.BiggestPositiveDifferential</span>
+	}
+    else if ((int)Model.Sorting == 5)
+	{
+		<span>@ViewBag.BiggestNegativeDifferential</span>
+	}
+</h2>
+<hr />
+
+<form method="get">
+    <div class="row">
+        <div class="form-group col-md-3 d-flex justify-content-between">
+            <div class="form-group">
+                <label asp-for="PokemonFiltering"></label>
+                <select asp-for="PokemonFiltering" class="form-control">
+                    <option value="">All</option>
+                    @foreach (var category in Model.PokemonNames)
+                    {
+                        <option value="@category">@category</option>
+                    }
+                </select>
+            </div>
+        </div>        
+
+        <div class="form-group col-md-3">
+            <div class="form-group">
+                <label asp-for="Sorting"></label>
+                <select asp-for="Sorting" class="form-control">
+                    <option value="0">Newest</option>
+                    <option value="1">Oldest</option>
+                    <option value="2">Most Wins</option>
+                    <option value="3">Most Games Played</option>
+                    <option value="4">Biggest Win Diff</option>
+                    <option value="5">Biggest Lose Diff</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group mt-4 p-2">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+<div class="row mb-5">
+    <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+           asp-controller="Team"
+           asp-action="LeaderBoards"
+           asp-route-currentPage="@Model.PreviousPage"
+           asp-route-pokemonFiltering="@Model.PokemonFiltering"
+           asp-route-sorting="@((int)Model.Sorting)">Previous</a>        
+    </div>
+    @{
+        
+        var shouldButtonBeDisabled = Model.CurrentPage == Model.PagesCount || !Model.Teams.Any();
+    }
+    <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-end">
+        <a class="btn btn-primary
+           @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
+           asp-controller="Team"
+           asp-action="LeaderBoards"
+           asp-route-currentPage="@(Model.CurrentPage + 1)"
+           asp-route-pokemonFiltering="@Model.PokemonFiltering"           
+           asp-route-sorting="@((int)Model.Sorting)">Next</a>
+    </div>
+</div>
+
+@if (!Model.Teams.Any())
+{
+    <h3 class="text-center">No Teams found by the given criteria!</h3>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Team Name</th>
+            <th scope="col">P1</th>
+            <th scope="col">P2</th>
+            <th scope="col">P3</th>
+            <th scope="col">Wins</th>
+            <th scope="col">Losses</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var teams in Model.Teams)
+    {
+        <tr>
+            <th scope="row">@teams.Name</th>                
+			<td>@teams.Pokemons[0]</td>
+			<td>@teams.Pokemons[1]</td>
+			<td>@teams.Pokemons[2]</td>
+			<td>@teams.Wins</td>
+			<td>@teams.Losses</td>
+         </tr>
+    }
+    </tbody>
+</table>
+
