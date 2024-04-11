@@ -1,0 +1,30 @@
+﻿@inject IPlayerService playerservice
+
+<ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Team" asp-action="LeaderBoards">LeaderBoard</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Ability" asp-action="All">Abilities</a>
+    </li>
+    <li class="nav-item">
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Move" asp-action="All">Moves</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Sudoko" asp-action="Play">Sudoko Challenge</a>
+    </li>
+    @if (this.User?.Identity?.IsAuthenticated ?? false)
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Team" asp-action="Mine">My Teams</a>
+        </li>
+        @if (await playerservice.ExistsByIdAsync(User.Id()))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Team" asp-action="Add">Creat a Team</a>
+            </li>
+        }
+
+    }
+</ul>
