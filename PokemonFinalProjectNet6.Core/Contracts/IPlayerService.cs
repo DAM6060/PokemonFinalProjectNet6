@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PokemonFinalProjectNet6.Core.Models.Player;
 
 namespace PokemonFinalProjectNet6.Core.Contracts
 {
@@ -17,5 +13,6 @@ namespace PokemonFinalProjectNet6.Core.Contracts
         Task CreateAsync(string userId, string name);
 
         Task<int?> GetPlayerIdAsync(string userId);
+        
     }
 }
