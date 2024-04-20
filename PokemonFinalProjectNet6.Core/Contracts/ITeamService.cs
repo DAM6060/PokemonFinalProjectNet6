@@ -1,12 +1,12 @@
 ﻿using PokemonFinalProjectNet6.Core.Enumerations;
-using PokemonFinalProjectNet6.Core.Models.Pokemon;
+using PokemonFinalProjectNet6.Core.Models.Battle;
 using PokemonFinalProjectNet6.Core.Models.Team;
 
 namespace PokemonFinalProjectNet6.Core.Contracts
 {
-    public interface ITeamService
+	public interface ITeamService
     {
-        Task<int> CreateAsync(TeamFormModel model, int playerId, params PokemonFormModel[] pokemons);
+        Task<int> CreateAsync(TeamFormModel model);
 
         Task<TeamLeaderBoardQueryModel> TeamLeaderBoardAsync(
             string? pokemonFiltering = null,
@@ -14,5 +14,13 @@ namespace PokemonFinalProjectNet6.Core.Contracts
             int currentPage=1,
             int teamsPerPage=10);
 
-    }
+		Task<IEnumerable<TeamServiceModel>> GetTeamsByPlayerIdForBattleAsync(int playerId);
+
+        Task<BattleTeamServiceModel> GetBattleTeamServiceByIdAsync(int teamId);
+
+        Task<IEnumerable<TeamServiceModel>> GetTeamsByPlayerIdAsync(int playerId);
+
+		Task DeleteAsync(int teamId);
+
+	}
 }

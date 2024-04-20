@@ -1,6 +1,7 @@
 ﻿using PokemonFinalProjectNet6.Core.Enumerations;
 using PokemonFinalProjectNet6.Core.Models.Abilitiy;
 using PokemonFinalProjectNet6.Core.Models.Ability;
+using PokemonFinalProjectNet6.Core.Models.Battle;
 using PokemonFinalProjectNet6.Core.Models.Move;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace PokemonFinalProjectNet6.Core.Contracts
             AbilitySorting sorting = AbilitySorting.Alphabetical,
             int currentPage = 1,
             int teamsPerPage = 10);
+        Task<List<AbilityServiceModel>> GetAllAbilitiesServiceModel();
     }
 
 }

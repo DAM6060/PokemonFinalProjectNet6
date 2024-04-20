@@ -1,11 +1,6 @@
 ﻿using PokemonFinalProjectNet6.Core.Models.Move;
 using PokemonFinalProjectNet6.Core.Models.Pokemon;
 using PokemonFinalProjectNet6.Infrastructure.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PokemonFinalProjectNet6.Core.Contracts
 {
@@ -13,9 +8,9 @@ namespace PokemonFinalProjectNet6.Core.Contracts
     {
         //Task<IEnumerable<HouseCategoryServiceModel>> AllCategoriesAsync();
 
-        Task<bool> SpeciesExistsAsync(int pokedexnumber);
+        Task<bool> SpeciesExistsAsync(string name);
 
-        Task<int> CreateAsync(PokemonFormModel model, int playerId, params MoveServiceModel[] moves);
+        Task<int> CreateAsync(PokemonFormModel model, int playerId, int teamId);
 
         //Task<HouseQueryServiceModel> AllAsync(
         //    string? category = null,
@@ -40,8 +35,11 @@ namespace PokemonFinalProjectNet6.Core.Contracts
 
         Task<PokemonFormModel?> GetPokemonFormModelByIdAsync(int id);
 
+        Task<PokemonFormModel> GetPokemonBaseValuesByNameAsync(string name);
+
         Task<Pokemon> GetPokemonByIdAsync(int id);
 
         Task DeleteAsync(int pokemonId);
+        
     }
 }
