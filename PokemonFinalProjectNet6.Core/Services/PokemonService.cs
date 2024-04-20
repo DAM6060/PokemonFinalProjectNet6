@@ -42,16 +42,9 @@ namespace PokemonFinalProjectNet6.Core.Services
                 .ToListAsync();
         }
 
-        public async Task<int> CreateAsync(PokemonFormModel model, int playerId, params MoveServiceModel[] moves)
+        public async Task<int> CreateAsync(PokemonFormModel model, int playerId, int teamId)
         {
-            //Need to Populate PokemonMove From PokemonFormModelinput
-            // maybe we can do the same as in the TeamService
-            //Add Params PokemonMoveFormModel[] moves to the method signature
-            //them foreach and creat Move that has Id of the Pokemon
-            List<int> move = new List<int>();      
-
             
-
             Pokemon pokemon = new Pokemon()
             {
                 Name = model.Name,
@@ -74,29 +67,31 @@ namespace PokemonFinalProjectNet6.Core.Services
                 BaseSpeed = model.BaseSpeed,
                 EvSpeed = model.EvSpeed,
                 Speed = model.Speed,
-                TeamId = model.TeamId,
+                TeamId = teamId,
                 AbilityId = model.AbilityId,
                 Type1 = model.Type1,
-                Type2 = model.Type2
-                
-
-                               
-
+                Type2 = model.Type2,
+                PlayerId = playerId
             };
 
             
             await repository.AddAsync(pokemon);
-            await repository.SaveChangesAsync();
+			await repository.SaveChangesAsync();
+
+			var pokemonId = pokemon.Id;
 
             //If it doesnt work like this we can pull this guy
+            
 
             for (int i = 0; i < 3; i++)
             {
                 PokemonMove pokemonMove = new PokemonMove()
                 {
-                    MoveId = moves[i].Id,
-                    PokemonId = pokemon.Id
+                    MoveId = model.MovesIdsForDb.ElementAt(i),
+
+					PokemonId = pokemon.Id
                 };
+                await repository.AddAsync(pokemonMove);
             }
 
             await repository.SaveChangesAsync();
@@ -106,6 +101,9 @@ namespace PokemonFinalProjectNet6.Core.Services
 
         public async Task DeleteAsync(int pokemonId)
         {
+            await repository.All<PokemonMove>()
+				.Where(pm => pm.PokemonId == pokemonId)
+				.ForEachAsync(pm => repository.DeleteAsync<PokemonMove>(pokemonId));			
             await repository.DeleteAsync<Pokemon>(pokemonId);
 
             await repository.SaveChangesAsync();
@@ -128,7 +126,7 @@ namespace PokemonFinalProjectNet6.Core.Services
 
             // Create A method to add moves From PokemonMove Model to PokemonFormModel
             //Similar to what is done with the categories maybe 
-            var pokemon = await  repository.AllAsReadOnly<Pokemon>()
+            var pokemon = await  repository.All<Pokemon>()
                 .Where(p => p.Id == id)
                 .Select(p => new PokemonFormModel
                 {
@@ -163,23 +161,25 @@ namespace PokemonFinalProjectNet6.Core.Services
             throw new NotImplementedException();
         }
 
-        public async Task<bool> SpeciesExistsAsync(int pokedexnumber)
+        public async Task<bool> SpeciesExistsAsync(string name)
         {
             return await repository.AllAsReadOnly<Pokemon>()
-                .AnyAsync(p => p.PokeDexNumber == pokedexnumber);
+                .AnyAsync(p => p.Name == name);
            
         }
 
         public Task<Pokemon?> GetPokemonByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return repository.All<Pokemon>()
+				.Where(p => p.Id == id)
+				.FirstOrDefaultAsync();
         }
 
-        public async Task<PokemonServiceModel> PokemonDetailsByIdAsync(int id)
+        public async Task<PokemonViewModel> PokemonDetailsByIdAsync(int id)
         {
             return await repository.AllAsReadOnly<Pokemon>()
                 .Where(p => p.Id == id)
-                .Select(p => new PokemonServiceModel
+                .Select(p => new PokemonViewModel
                 {
                     Id = p.Id,
                     Name = p.Name,
@@ -190,7 +190,7 @@ namespace PokemonFinalProjectNet6.Core.Services
                     BaseAttack = p.BaseAttack,
                     EvAttack = p.EvAttack,
                     Attack = p.Attack,
-                    BaseSpecialAttack = p.BaseSpecialAttack,
+                    BaseSpeicalAttack = p.BaseSpecialAttack,
                     EvSpecialAttack = p.EvSpecialAttack,
                     SpecialAttack = p.SpecialAttack,
                     BaseDefense = p.BaseDefense,
@@ -210,12 +210,34 @@ namespace PokemonFinalProjectNet6.Core.Services
                         Name = p.Ability.Name,
                         Description = p.Ability.Description
                     },
-                    //await abilityService.AbilityByIdAsync(p.AbilityId)
-                    //Player = await playerService.PlayerByIdAsync(p.PlayerId),
-                    //Moves = await moveService.AllMovesByPokemonIdAsync(p.Id)
+                    //add moves
                     
                 })
                 .FirstAsync();
         }
-    }
+
+        public async Task<PokemonFormModel> GetPokemonBaseValuesByNameAsync(string name)
+        {
+            return await repository.All<Pokemon>()
+                .Where(p => p.Name == name)
+                .Select(p => new PokemonFormModel
+				{
+                    Name = p.Name,
+                    BaseHp = p.BaseHP,                    
+                    BaseAttack = p.BaseAttack,                    
+                    BaseSpecialAttack = p.BaseSpecialAttack,                    
+                    BaseDefense = p.BaseDefense,                    
+                    BaseSpecialDefense = p.BaseSpecialDefense,                    
+                    BaseSpeed = p.BaseSpeed,                    
+                    Type1 = p.Type1,
+                    Type2 = p.Type2,                    
+                })
+                .FirstAsync();
+        }
+
+		Task<PokemonServiceModel> IPokemonService.PokemonDetailsByIdAsync(int id)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

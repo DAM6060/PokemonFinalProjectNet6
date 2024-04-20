@@ -1,0 +1,52 @@
+﻿@model TeamFormModel
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" placeholder="Name...">
+        <span asp-validation-for="Name" class="small text-danger"></span>
+     </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="ChosenPokemon1">Pokemon 1</label>
+                <select asp-for="ChosenPokemon1" class="form-control">
+                    @foreach (var species in Model.PokemonSpecies)
+                    {
+                        <option value="@species">@species</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="ChosenPokemon2">Pokemon 2</label>
+                <select asp-for="ChosenPokemon2" class="form-control">
+                    @foreach (var species in Model.PokemonSpecies)
+                    {
+                        <option value="@species">@species</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="ChosenPokemon3">Pokemon 3</label>
+                <select asp-for="ChosenPokemon3" class="form-control">
+                    @foreach (var species in Model.PokemonSpecies)
+                    {
+                        <option value="@species">@species</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <input type="submit" value="Select" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"/>
+}

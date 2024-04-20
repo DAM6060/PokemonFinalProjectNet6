@@ -80,6 +80,22 @@ namespace PokemonFinalProjectNet6.Core.Services
             };
         }
 
+        public Task<List<MoveServiceModel>> GetAllMovesServiceModel()
+        {
+            return repository.AllAsReadOnly<Move>()
+                .Select(m => new MoveServiceModel
+                {
+                    Id = m.Id,
+                    Name = m.Name,
+                    Power = m.Power,
+                    Accuracy = m.Accuracy,
+                    PowerPoints = m.PowerPoints,
+                    Type = m.Type,
+                    Description = m.Description
+                })
+                .ToListAsync(); 
+        }
+
         public async Task<MoveServiceModel> MoveByIdAsync(int id)
         {
             return await repository.AllAsReadOnly<MoveServiceModel>()

@@ -83,5 +83,17 @@ namespace PokemonFinalProjectNet6.Core.Services
                 Abilities = abilities
             };
         }
+
+        public async Task<List<AbilityServiceModel>> GetAllAbilitiesServiceModel()
+        {
+            return await repository.AllAsReadOnly<Ability>()
+                .Select(m => new AbilityServiceModel
+                {
+                    Id = m.Id,
+                    Name = m.Name,
+                    Description = m.Description
+                })
+                .ToListAsync();
+        }
     }
 }

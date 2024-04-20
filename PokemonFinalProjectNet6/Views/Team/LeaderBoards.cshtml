@@ -119,11 +119,19 @@
     <tbody>
     @foreach (var teams in Model.Teams)
     {
+        var i = 0; 
+        if (teams.Pokemons.Count < 3)
+		{
+			for (int j = teams.Pokemons.Count; j < 3; j++)
+			{
+				teams.Pokemons.Add("No Pokemon");
+			}
+		}
         <tr>
             <th scope="row">@teams.Name</th>                
-			<td>@teams.Pokemons[0]</td>
-			<td>@teams.Pokemons[1]</td>
-			<td>@teams.Pokemons[2]</td>
+			<td>@teams.Pokemons[0] </td>
+			<td>@teams.Pokemons[1] </td>
+			<td>@teams.Pokemons[2] </td>
 			<td>@teams.Wins</td>
 			<td>@teams.Losses</td>
          </tr>

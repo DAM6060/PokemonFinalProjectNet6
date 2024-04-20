@@ -1,0 +1,399 @@
+﻿@model TeamFormModel
+
+@{
+	ViewData["Title"] = "Add Pokemons To Team";
+}
+
+<div class="row">
+	<div class="col">
+		<h2>Add Pokemons To Team</h2>
+		<h3 class="small text-danger">Please select make sure each pokemon has different moves or else you will have to start over</h3>
+	</div>
+</div>
+
+
+<form method="post">
+	<div class="form-group">
+		<div class="form-group">
+			<input asp-for="PokemonForDB1.Name" type="hidden" value="@Model.PokemonForDB1.Name" />
+			<input asp-for="PokemonForDB1.Type1" type="hidden" value="@Model.PokemonForDB1.Type1" />
+			<input asp-for="PokemonForDB1.Type2" type="hidden" value="@Model.PokemonForDB1.Type2" />
+			<input asp-for="PokemonForDB1.BaseHp" type="hidden" value="@Model.PokemonForDB1.BaseHp" />
+			<input asp-for="PokemonForDB1.BaseAttack" type="hidden" value="@Model.PokemonForDB1.BaseAttack" />
+			<input asp-for="PokemonForDB1.BaseDefense" type="hidden" value="@Model.PokemonForDB1.BaseDefense" />
+			<input asp-for="PokemonForDB1.BaseSpecialAttack" type="hidden" value="@Model.PokemonForDB1.BaseSpecialAttack" />
+			<input asp-for="PokemonForDB1.BaseSpecialDefense" type="hidden" value="@Model.PokemonForDB1.BaseSpecialDefense" />
+			<input asp-for="PokemonForDB1.BaseSpeed" type="hidden" value="@Model.PokemonForDB1.BaseSpeed" />
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<p>@Model.PokemonForDB1.Name :</p>
+					</div>
+					<div class="col">
+						<div>
+							@if (Model.PokemonForDB1.Type2.ToString() != "None")
+							{
+								<p>@Model.PokemonForDB1.Type1 / @Model.PokemonForDB1.Type2 </p>
+							}
+							else
+							{
+								<p>@Model.PokemonForDB1.Type1</p>
+							}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div classrc="row">
+				<div class="form-group">
+					<label asp-for="PokemonForDB1.EvHp">EvHp</label>
+					<input asp-for="PokemonForDB1.EvHp" class="form-range" min="0" max="255">
+					<span asp-validation-for="PokemonForDB1.EvHp" class="small text-danger"></span>
+					<span class="ml-2">Base: @Model.PokemonForDB1.BaseHp</span>
+				</div>
+				<div class="form-group">
+					<label asp-for="PokemonForDB1.EvAttack">EvAttack</label>
+					<input asp-for="PokemonForDB1.EvAttack" class="form-control" />
+					<span asp-validation-for="PokemonForDB1.EvAttack" class="small text-danger"></span>
+					<span class="ml-2">Base: @Model.PokemonForDB1.BaseAttack</span>
+				</div>
+				<div class="form-group">
+					<label asp-for="PokemonForDB1.EvDefense">EvDefense</label>
+					<input asp-for="PokemonForDB1.EvDefense" class="form-control" />
+					<span asp-validation-for="PokemonForDB1.EvDefense" class="small text-danger"></span>
+					<span class="ml-2">Base: @Model.PokemonForDB1.BaseDefense</span>
+				</div>
+				<div class="form-group">
+					<label asp-for="PokemonForDB1.EvSpecialAttack">EvSpecialAttack</label>
+					<input asp-for="PokemonForDB1.EvSpecialAttack" class="form-control" />
+					<span asp-validation-for="PokemonForDB1.EvSpecialAttack" class="small text-danger"></span>
+					<span class="ml-2">Base: @Model.PokemonForDB1.BaseSpecialAttack</span>
+				</div>
+				<div class="form-group">
+					<label asp-for="PokemonForDB1.EvSpecialDefense">EvSpecialDefense</label>
+					<input asp-for="PokemonForDB1.EvSpecialDefense" class="form-control" />
+					<span asp-validation-for="PokemonForDB1.EvSpecialDefense" class="small text-danger"></span>
+					<span class="ml-2">Base: @Model.PokemonForDB1.BaseSpecialDefense</span>
+				</div>
+				<div class="form-group
+											">
+					<label asp-for="PokemonForDB1.EvSpeed">EvSpeed</label>
+					<input asp-for="PokemonForDB1.EvSpeed" class="form-control" />
+					<span asp-validation-for="PokemonForDB1.EvSpeed" class="small text-danger"></span>
+					<span class="ml-2">Base: @Model.PokemonForDB1.BaseSpeed</span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="PokemonForDB1.AbilityId"></label>
+					<select asp-for="PokemonForDB1.AbilityId" class="form-control">
+						@foreach (var ability in Model.Abilities)
+						{
+							<option value="@ability.Id">@ability.Name</option>
+						}
+					</select>
+					<span asp-validation-for="PokemonForDB1.AbilityId" class="small text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="PokemonForDB1.Move1IdForDb">Move 1</label>
+					<select asp-for="PokemonForDB1.Move1IdForDb" class="form-control">
+						@foreach (var move in Model.MovesForDropDown)
+						{
+							<option value="@move.Id">@move.Name</option>
+						}
+					</select>
+					<span asp-validation-for="PokemonForDB1.Move1IdForDb" class="small text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="PokemonForDB1.Move2IdForDb">Move 2</label>
+					<select asp-for="PokemonForDB1.Move2IdForDb" class="form-control">
+						@foreach (var move in Model.MovesForDropDown)
+						{
+							<option value="@move.Id">@move.Name</option>
+						}
+					</select>
+					<span asp-validation-for="PokemonForDB1.Move2IdForDb" class="small text
+								-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="PokemonForDB1.Move3IdForDb">Move 3</label>
+					<select asp-for="PokemonForDB1.Move3IdForDb" class="form-control">
+						@foreach (var move in Model.MovesForDropDown)
+						{
+							<option value="@move.Id">@move.Name</option>
+						}
+					</select>
+					<span asp-validation-for="PokemonForDB1.Move3IdForDb" class="small text
+										-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="PokemonForDB1.Move4IdForDb">Move 4</label>
+					<select asp-for="PokemonForDB1.Move4IdForDb" class="form-control">
+						@foreach (var move in Model.MovesForDropDown)
+						{
+							<option value="@move.Id">@move.Name</option>
+						}
+					</select>
+					<span asp-validation-for="PokemonForDB1.Move4IdForDb" class="small text-danger"></span>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="form-group">
+				<input asp-for="PokemonForDB2.Name" type="hidden" value="@Model.PokemonForDB2.Name" />
+				<input asp-for="PokemonForDB2.Type1" type="hidden" value="@Model.PokemonForDB2.Type1" />
+				<input asp-for="PokemonForDB2.Type2" type="hidden" value="@Model.PokemonForDB2.Type2" />
+				<input asp-for="PokemonForDB2.BaseHp" type="hidden" value="@Model.PokemonForDB2.BaseHp" />
+				<input asp-for="PokemonForDB2.BaseAttack" type="hidden" value="@Model.PokemonForDB2.BaseAttack" />
+				<input asp-for="PokemonForDB2.BaseDefense" type="hidden" value="@Model.PokemonForDB2.BaseDefense" />
+				<input asp-for="PokemonForDB2.BaseSpecialAttack" type="hidden" value="@Model.PokemonForDB2.BaseSpecialAttack" />
+				<input asp-for="PokemonForDB2.BaseSpecialDefense" type="hidden" value="@Model.PokemonForDB2.BaseSpecialDefense" />
+				<input asp-for="PokemonForDB2.BaseSpeed" type="hidden" value="@Model.PokemonForDB2.BaseSpeed" />
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<p>@Model.PokemonForDB2.Name :</p>
+						</div>
+						<div class="col">
+							<div>
+								@if (Model.PokemonForDB2.Type2.ToString() != "None")
+								{
+									<p>@Model.PokemonForDB2.Type1 / @Model.PokemonForDB2.Type2 </p>
+								}
+								else
+								{
+									<p>@Model.PokemonForDB2.Type1</p>
+								}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label asp-for="PokemonForDB2.EvHp">EvHp</label>
+						<input asp-for="PokemonForDB2.EvHp" class="form-range" min="0" max="255">
+						<span asp-validation-for="PokemonForDB2.EvHp" class="small text
+										-danger"></span>
+						<span class="ml-2">Base: @Model.PokemonForDB2.BaseHp</span>
+					</div>
+					<div class="form-group">
+						<label asp-for="PokemonForDB2.EvAttack">EvAttack</label>
+						<input asp-for="PokemonForDB2.EvAttack" class="form-control" />
+						<span asp-validation-for="PokemonForDB2.EvAttack" class="small text-danger"></span>
+						<span class="ml-2">Base: @Model.PokemonForDB2.BaseAttack</span>
+					</div>
+					<div class="form-group">
+						<label asp-for="PokemonForDB2.EvDefense">EvDefense</label>
+						<input asp-for="PokemonForDB2.EvDefense" class="form-control" />
+						<span asp-validation-for="PokemonForDB2.EvDefense" class="small text-danger"></span>
+						<span class="ml-2">Base: @Model.PokemonForDB2.BaseDefense</span>
+					</div>
+					<div class="form-group">
+						<label asp-for="PokemonForDB2.EvSpecialAttack">EvSpecialAttack</label>
+						<input asp-for="PokemonForDB2.EvSpecialAttack" class="form-control" />
+						<span asp-validation-for="PokemonForDB2.EvSpecialAttack" class="small text-danger"></span>
+						<span class="ml-2">Base: @Model.PokemonForDB2.BaseSpecialAttack</span>
+					</div>
+					<div class="form-group">
+						<label asp-for="PokemonForDB2.EvSpecialDefense">EvSpecialDefense</label>
+						<input asp-for="PokemonForDB2.EvSpecialDefense" class="form-control" />
+						<span asp-validation-for="PokemonForDB2.EvSpecialDefense" class="small text-danger"></span>
+						<span class="ml-2">Base: @Model.PokemonForDB2.BaseSpecialDefense</span>
+					</div>
+					<div class="form-group">
+						<label asp-for="PokemonForDB2.EvSpeed">EvSpeed</label>
+						<input asp-for="PokemonForDB2.EvSpeed" class="form-control" />
+						<span asp-validation-for="PokemonForDB2.EvSpeed" class="small text-danger"></span>
+						<span class="ml-2">Base: @Model.PokemonForDB2.BaseSpeed</span>
+					</div>
+					<div class="form-group">
+						<label asp-for="PokemonForDB2.AbilityId"></label>
+						<select asp-for="PokemonForDB2.AbilityId" class="form-control">
+							@foreach (var ability in Model.Abilities)
+							{
+								<option value="@ability.Id">@ability.Name</option>
+							}
+						</select>
+						<span asp-validation-for="PokemonForDB2.AbilityId" class="small text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="PokemonForDB2.Move1IdForDb">Move 1</label>
+						<select asp-for="PokemonForDB2.Move1IdForDb" class="form-control">
+							@foreach (var move in Model.MovesForDropDown)
+							{
+								<option value="@move.Id">@move.Name</option>
+							}
+						</select>
+						<span asp-validation-for="PokemonForDB2.Move1IdForDb" class="small text
+										-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="PokemonForDB2.Move2IdForDb">Move 2</label>
+						<select asp-for="PokemonForDB2.Move2IdForDb" class="form-control">
+							@foreach (var move in Model.MovesForDropDown)
+							{
+								<option value="@move.Id">@move.Name</option>
+							}
+						</select>
+						<span asp-validation-for="PokemonForDB2.Move2IdForDb" class="small text
+										-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="PokemonForDB2.Move3IdForDb">Move 3</label>
+						<select asp-for="PokemonForDB2.Move3IdForDb" class="form-control">
+							@foreach (var move in Model.MovesForDropDown)
+							{
+								<option value="@move.Id">@move.Name</option>
+							}
+						</select>
+						<span asp-validation-for="PokemonForDB2.Move3IdForDb" class="small text
+										-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="PokemonForDB2.Move4IdForDb">Move 4</label>
+						<select asp-for="PokemonForDB2.Move4IdForDb" class="form-control">
+							@foreach (var move in Model.MovesForDropDown)
+							{
+								<option value="@move.Id">@move.Name</option>
+							}
+						</select>
+						<span asp-validation-for="PokemonForDB2.Move4IdForDb" class="small text-danger"></span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-group">
+					<input asp-for="PokemonForDB3.Name" type="hidden" value="@Model.PokemonForDB3.Name" />
+					<input asp-for="PokemonForDB3.Type1" type="hidden" value="@Model.PokemonForDB3.Type1" />
+					<input asp-for="PokemonForDB3.Type2" type="hidden" value="@Model.PokemonForDB3.Type2" />
+					<input asp-for="PokemonForDB3.BaseHp" type="hidden" value="@Model.PokemonForDB3.BaseHp" />
+					<input asp-for="PokemonForDB3.BaseAttack" type="hidden" value="@Model.PokemonForDB3.BaseAttack" />
+					<input asp-for="PokemonForDB3.BaseDefense" type="hidden" value="@Model.PokemonForDB3.BaseDefense" />
+					<input asp-for="PokemonForDB3.BaseSpecialAttack" type="hidden" value="@Model.PokemonForDB3.BaseSpecialAttack" />
+					<input asp-for="PokemonForDB3.BaseSpecialDefense" type="hidden" value="@Model.PokemonForDB3.BaseSpecialDefense" />
+					<input asp-for="PokemonForDB3.BaseSpeed" type="hidden" value="@Model.PokemonForDB3.BaseSpeed" />
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<p>@Model.PokemonForDB3.Name :</p>
+							</div>
+							<div class="col">
+								<div>
+									@if (Model.PokemonForDB3.Type2.ToString() != "None")
+									{
+										<p>@Model.PokemonForDB3.Type1 / @Model.PokemonForDB3.Type2 </p>
+									}
+									else
+									{
+										<p>@Model.PokemonForDB3.Type1</p>
+									}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group">
+							<label asp-for="PokemonForDB3.EvHp">EvHp</label>
+							<input asp-for="PokemonForDB3.EvHp" class="form-range" min="0" max="255">
+							<span asp-validation-for="PokemonForDB3.EvHp" class="small text-danger"></span>
+							<span class="ml-2">Base: @Model.PokemonForDB3.BaseHp</span>
+						</div>
+						<div class="form-group">
+							<label asp-for="PokemonForDB3.EvAttack">EvAttack</label>
+							<input asp-for="PokemonForDB3.EvAttack" class="form-control" />
+							<span asp-validation-for="PokemonForDB3.EvAttack" class="small text-danger"></span>
+							<span class="ml-2">Base: @Model.PokemonForDB3.BaseAttack</span>
+						</div>
+						<div class="form-group">
+							<label asp-for="PokemonForDB3.EvDefense">EvDefense</label>
+							<input asp-for="PokemonForDB3.EvDefense" class="form-control" />
+							<span asp-validation-for="PokemonForDB3.EvDefense" class="small text-danger"></span>
+							<span class="ml-2">Base: @Model.PokemonForDB3.BaseDefense</span>
+						</div>
+						<div class="form-group">
+							<label asp-for="PokemonForDB3.EvSpecialAttack">EvSpecialAttack</label>
+							<input asp-for="PokemonForDB3.EvSpecialAttack" class="form-control" />
+							<span asp-validation-for="PokemonForDB3.EvSpecialAttack" class="small text-danger"></span>
+							<span class="ml-2">Base: @Model.PokemonForDB3.BaseSpecialAttack</span>
+						</div>
+						<div class="form-group">
+							<label asp-for="PokemonForDB3.EvSpecialDefense">EvSpecialDefense</label>
+							<input asp-for="PokemonForDB3.EvSpecialDefense" class="form-control" />
+							<span asp-validation-for="PokemonForDB3.EvSpecialDefense" class="small text-danger"></span>
+							<span class="ml-2">Base: @Model.PokemonForDB3.BaseSpecialDefense</span>
+						</div>
+						<div class="form-group">
+							<label asp-for="PokemonForDB3.EvSpeed">EvSpeed</label>
+							<input asp-for="PokemonForDB3.EvSpeed" class="form-control" />
+							<span asp-validation-for="PokemonForDB3.EvSpeed" class="small text-danger"></span>
+							<span class="ml-2">Base: @Model.PokemonForDB3.BaseSpeed</span>
+						</div>
+						<div class="form-group">
+							<label asp-for="PokemonForDB3.AbilityId"></label>
+							<select asp-for="PokemonForDB3.AbilityId" class="form-control">
+								@foreach (var ability in Model.Abilities)
+								{
+									<option value="@ability.Id">@ability.Name</option>
+								}
+							</select>
+							<span asp-validation-for="PokemonForDB3.AbilityId" class="small text-danger"></span>
+						</div>
+						<div class="form-group
+															">
+							<label asp-for="PokemonForDB3.Move1IdForDb">Move 1</label>
+							<select asp-for="PokemonForDB3.Move1IdForDb" class="form-control">
+								@foreach (var move in Model.MovesForDropDown)
+								{
+									<option value="@move.Id">@move.Name</option>
+								}
+							</select>
+							<span asp-validation-for="PokemonForDB3.Move1IdForDb" class="small text
+										-danger"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="PokemonForDB3.Move2IdForDb">Move 2</label>
+							<select asp-for="PokemonForDB3.Move2IdForDb" class="form-control">
+								@foreach (var move in Model.MovesForDropDown)
+								{
+									<option value="@move.Id">@move.Name</option>
+								}
+							</select>
+							<span asp-validation-for="PokemonForDB3.Move2IdForDb" class="small text
+										-danger"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="PokemonForDB3.Move3IdForDb">Move 3</label>
+							<select asp-for="PokemonForDB3.Move3IdForDb" class="form-control">
+								@foreach (var move in Model.MovesForDropDown)
+								{
+									<option value="@move.Id">@move.Name</option>
+								}
+							</select>
+							<span asp-validation-for="PokemonForDB3.Move3IdForDb" class="small text
+										-danger"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="PokemonForDB3.Move4IdForDb">Move 4</label>
+							<select asp-for="PokemonForDB3.Move4IdForDb" class="form-control">
+								@foreach (var move in Model.MovesForDropDown)
+								{
+									<option value="@move.Id">@move.Name</option>
+								}
+							</select>
+							<span asp-validation-for="PokemonForDB3.Move4IdForDb" class="small text-danger"></span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<input type="submit" value="Add Pokemons" class="btn btn-primary" />
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</form>
+
+
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.2.0/dist/js/bootstrap.bundle.min.js"></script>
+}
