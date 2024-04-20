@@ -25,7 +25,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 
 		[Required]
 		[Comment("Effort values for health points set by player upon creation. Starting Value set to 0")]
-		[Range(0, MaxEvPerStat, ErrorMessage = MaxEvStatErrorMessage)]
+		
 		public int EvHP { get; set; } 
 
 		[Required]
@@ -37,7 +37,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 
 		[Required]
 		[Comment("Effort values for attack set by player upon creation. Starting Value set to 0")]
-		[Range(0, MaxEvPerStat, ErrorMessage = MaxEvStatErrorMessage)]
+		
 		public int EvAttack { get; set; } 
 
 		[Required]
@@ -50,7 +50,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 
 		[Required]
 		[Comment("Effort values for defence set by player upon creation. Starting Value set to 0")]
-		[Range(0, MaxEvPerStat, ErrorMessage = MaxEvStatErrorMessage)]
+		
 		public int EvDefence { get; set; } 
 		[Required]
 		[Comment("Actual Defense")]
@@ -61,7 +61,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 
 		[Required]
 		[Comment("Effort values for Speacial Attack set by player upon creation. Starting Value set to 0")]
-		[Range(0, MaxEvPerStat, ErrorMessage = MaxEvStatErrorMessage)]
+		
 		public int EvSpecialAttack { get; set; } 
 		[Required]
 		[Comment("Actual Special Attack")]
@@ -72,7 +72,6 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 
 		[Required]
 		[Comment("Effort values for Speacial Defeense set by player upon creation. Starting Value set to 0")]
-		[Range(0, MaxEvPerStat, ErrorMessage = MaxEvStatErrorMessage)]
 		public int EvSpecialDefense { get; set; }
 
 		[Required]
@@ -84,16 +83,12 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 
 		[Required]
 		[Comment("Effort values for Speed set by player upon creation. Starting Value set to 0")]
-		[Range(0, MaxEvPerStat, ErrorMessage = MaxEvStatErrorMessage)]
+		
 		public int EvSpeed { get; set; } 
 
 		[Required]
 		[Comment("Actual Speed")]
 		public int Speed { get; set; }
-
-        [NotMapped]
-		[Range(0, MaxTotalEvPoints, ErrorMessage = MaxEvStatErrorMessage)]
-		public int TotalEvPoints => EvHP + EvAttack + EvDefence + EvSpecialAttack + EvSpecialDefense + EvSpeed;
 
 		[Required]
 		[Display(Name = "PrimaryPokemonType")]

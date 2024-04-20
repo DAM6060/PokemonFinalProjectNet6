@@ -22,6 +22,7 @@ namespace PokemonFinalProjectNet6.Core.Models.Battle
         public PokemonTypeCustom Type2 { get; set; }
         public BattleAbilityServiceModel Ability { get; set; }
         public List<BattleMoveServiceModel> Moves { get; set; } = new List<BattleMoveServiceModel>();
+        public bool IsFainted { get; set; }
         
     }
 }

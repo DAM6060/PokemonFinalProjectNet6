@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PokemonFinalProjectNet6.Infrastructure.Data.Models;
 using PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb;
+using System.Reflection.Emit;
 
 namespace PokemonFinalProjectNet6.Data
 {
@@ -10,7 +11,7 @@ namespace PokemonFinalProjectNet6.Data
         public PokemonDbContext(DbContextOptions options)
             : base(options)
         {
-               
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -21,8 +22,8 @@ namespace PokemonFinalProjectNet6.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<PokemonMove>()
-                .HasKey(pm => new { pm.PokemonId, pm.MoveId });    
-           
+                .HasKey(pm => new { pm.PokemonId, pm.MoveId });
+
 
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new PlayerConfiguration());
@@ -32,6 +33,7 @@ namespace PokemonFinalProjectNet6.Data
             builder.ApplyConfiguration(new PokemonConfiguration());
 
             builder.ApplyConfiguration(new PokemonMoveConifguration());
+
 
 
             base.OnModelCreating(builder);
@@ -44,5 +46,9 @@ namespace PokemonFinalProjectNet6.Data
         public DbSet<Move> Moves { get; set; } = null!;
         public DbSet<Player> Players { get; set; } = null!;
         public DbSet<PokemonMove> PokemonsMoves { get; set; } = null!;
+
+        public DbSet<Lobby> Lobbies { get; set; } = null!;
+
+        
     }
 }

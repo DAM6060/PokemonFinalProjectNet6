@@ -21,7 +21,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 		[MaxLength(TeamNameMaxLength, ErrorMessage = TeamNameMaxLengthErrorMessage)]
 		public string Name { get; set; } = string.Empty;
 
-		[Required]
+		
 		[Comment("Collection of teams's pokemons")]
 		public List<Pokemon> Pokemons { get; set; } = new List<Pokemon>();
 
@@ -39,5 +39,11 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 		[Required]
         [Comment("Number of Losses")]
         public int Losses { get; set; } = 0;
+
+		public int? LobbyId { get; set; }
+		[ForeignKey(nameof(LobbyId))]
+		public Lobby? Lobby { get; set; }
+		
     }
+
 }

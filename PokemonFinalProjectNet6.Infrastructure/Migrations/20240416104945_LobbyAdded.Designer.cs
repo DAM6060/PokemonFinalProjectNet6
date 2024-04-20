@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PokemonFinalProjectNet6.Data;
 
@@ -11,9 +12,10 @@ using PokemonFinalProjectNet6.Data;
 namespace PokemonFinalProjectNet6.Infrastructure.Migrations
 {
     [DbContext(typeof(PokemonDbContext))]
-    partial class PokemonDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240416104945_LobbyAdded")]
+    partial class LobbyAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,15 +145,15 @@ namespace PokemonFinalProjectNet6.Infrastructure.Migrations
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5c38e555-eb7d-481c-b9b4-4ed6e82e1589",
+                            ConcurrencyStamp = "a6655937-acc7-4692-940a-dc7c1488897e",
                             Email = "varnasharks.afc@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "VARNASHARKS.AFC@GMAIL.COM",
                             NormalizedUserName = "DIMITARPLAYER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEP05HDI5VsCW/cjG0cFskpsHH1VRwyScGJenBmYVuxHKArye+7bEVSE3DALAPvtKtw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGYSrdDxb4s+flj1NtaKgviAO+lJqt90zLAeOzFiwJHp5Ph2FLWwa+OGp81BoCkuOA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "095eaf36-6fb4-43f9-a19e-814cea363748",
+                            SecurityStamp = "b96f86eb-f24c-4f42-8b5c-5ab33f2954b3",
                             TwoFactorEnabled = false,
                             UserName = "DimitarPlayer"
                         },
@@ -159,15 +161,15 @@ namespace PokemonFinalProjectNet6.Infrastructure.Migrations
                         {
                             Id = "dea12856-c198-4129-b3f3-b893d8395082",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8c0cbd54-422b-4d71-a023-e8ccb2690691",
+                            ConcurrencyStamp = "edb3562c-12fd-4212-8bf5-4a86da8f3b08",
                             Email = "ddimitar98@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "DDIMITAR98@GMAIL.COM",
                             NormalizedUserName = "DIMITARADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIYMBl88QmO3xvdsq0GtPxvGrVcCo34LbddYnKVNojJf9t8X399f4KwKWkKNJiHpWw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELOB4tpZXgJUWwXKCE34oo/CMexj+Be061I49YdmBbalDKTCOQJ397xtmQc9b095yA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "067b4b2f-b2aa-4b74-9b25-c510eda1c529",
+                            SecurityStamp = "66d30de9-05de-4573-993b-e21d3638e064",
                             TwoFactorEnabled = false,
                             UserName = "DimitarAdmin"
                         });

@@ -10,10 +10,10 @@ namespace PokemonFinalProjectNet6.Core.Models.Battle
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-
+        
         public List<BattlePokemonServiceModel> Pokemons { get; set; } = new List<BattlePokemonServiceModel>();
 
-        public string PlayerId { get; set; } = string.Empty;
+        public int PlayerId { get; set; }
 
         public int Wins { get; set; }
 
