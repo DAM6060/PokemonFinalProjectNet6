@@ -27,6 +27,13 @@
     <tbody>
         @foreach (var team in Model)
         {
+            if (team.Pokemons.Count < 3)
+            {
+                for (int j = team.Pokemons.Count; j < 3; j++)
+                {
+                    team.Pokemons.Add("No Pokemon");
+                }
+            }
             <tr>
                 <th scope="row">@team.Name</th>
                 <td>@team.Pokemons[0]</td>
@@ -34,9 +41,12 @@
                 <td>@team.Pokemons[2]</td>
                 <td>@team.Wins</td>
                 <td>@team.Losses</td>
-                <a asp-controller="Team" asp-action="Details" asp-route-id="@team.Id" class="btn btn-primary">Details</a>
-                <a asp-controller="Team" asp-action="Edit" asp-route-id="@team.Id" class="btn btn-warning">Edit</a>
+                <td>
+                <a asp-controller="Team" asp-action="Details" asp-route-id="@team.Id" class="btn btn-primary">Details</a> 
+                </td>                
+                <td>
                 <a asp-controller="Team" asp-action="Delete" asp-route-id="@team.Id" class="btn btn-danger">Delete</a>
+                </td>
             </tr>
         }
     </tbody>

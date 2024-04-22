@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PokemonFinalProjectNet6.Core.Contracts;
 using PokemonFinalProjectNet6.Core.Enumerations;
+using PokemonFinalProjectNet6.Core.Models.Ability;
 using PokemonFinalProjectNet6.Core.Models.Battle;
+using PokemonFinalProjectNet6.Core.Models.Move;
 using PokemonFinalProjectNet6.Core.Models.Pokemon;
 using PokemonFinalProjectNet6.Core.Models.Team;
 using PokemonFinalProjectNet6.Infrastructure.Constants;
@@ -10,7 +12,7 @@ using PokemonFinalProjectNet6.Infrastructure.Data.Models;
 
 namespace PokemonFinalProjectNet6.Core.Services
 {
-    public class TeamService : ITeamService
+	public class TeamService : ITeamService
     {
         private readonly IRepository repository;
         private readonly IPokemonService pokemonService;
@@ -59,7 +61,15 @@ namespace PokemonFinalProjectNet6.Core.Services
 
 		public async Task DeleteAsync(int teamId)
 		{
-			var team = repository.All<Team>().FirstOrDefault(t => t.Id == teamId);
+			var team = repository.All<Team>().
+                Where(t => t.Id == teamId).
+                Select(t => new Team
+                {
+                    Id = t.Id,
+                    Name = t.Name,
+                    PlayerId = t.PlayerId,
+                    Pokemons = t.Pokemons
+                }).FirstOrDefault();
 
             foreach (var pokemon in team.Pokemons)
             {
@@ -69,7 +79,12 @@ namespace PokemonFinalProjectNet6.Core.Services
             await repository.SaveChangesAsync();
 		}
 
-		public async Task<BattleTeamServiceModel> GetBattleTeamServiceByIdAsync(int teamId)
+		public Task<bool> ExistsById(int teamId)
+		{
+            return repository.AllAsReadOnly<Team>().AnyAsync(t => t.Id == teamId);
+		}
+
+		public async Task<BattleTeamServiceModel?> GetBattleTeamServiceByIdAsync(int teamId)
 		{
 			return await repository.AllAsReadOnly<Team>()
 				.Where(t => t.Id == teamId)
@@ -119,7 +134,55 @@ namespace PokemonFinalProjectNet6.Core.Services
                         Type2 = p.Type2,
                         IsFainted = false
 					}).ToList()
-				}).FirstAsync();
+				}).FirstOrDefaultAsync();
+		}
+
+		public async Task<TeamViewModel?> GetTeamDetailsAsync(int id)
+		{
+            return await repository.AllAsReadOnly<Team>()
+                    .Where(t => t.Id == id)
+                    .Select(t => new TeamViewModel()
+                    {
+                        Id = t.Id,
+                        Name = t.Name,
+                        PlayerId = t.PlayerId,
+                        Pokemons = t.Pokemons.Select(p => new PokemonViewModel
+                        {
+                            Id = p.Id,
+                            Name = p.Name,
+                            PokeDexNumber = p.PokeDexNumber,
+                            BaseHp = p.BaseHP,
+                            EvHp = p.EvHP,
+                            HP = p.HP,
+                            BaseAttack = p.BaseAttack,
+                            EvAttack = p.EvAttack,
+                            Attack = p.Attack,
+                            BaseSpeicalAttack = p.BaseSpecialAttack,
+                            EvSpecialAttack = p.EvSpecialAttack,
+                            SpecialAttack = p.SpecialAttack,
+                            BaseDefense = p.BaseDefense,
+                            EvDefense = p.EvDefence,
+                            Defense = p.Defense,
+                            BaseSpecialDefense = p.BaseSpecialDefense,
+                            EvSpecialDefense = p.EvSpecialDefense,
+                            SpecialDefense = p.SpecialDefense,
+                            BaseSpeed = p.BaseSpeed,
+                            EvSpeed = p.EvSpeed,
+                            Speed = p.Speed,
+                            Type1 = p.Type1.ToString(),
+                            Type2 = p.Type2.ToString(),
+                            Ability = new AbilityServiceModel
+                            {
+                                Id = p.AbilityId,
+                                Name = p.Ability.Name
+                            },
+                            Moves = p.PokemonMoves.Select(pm => new MoveServiceModel
+                            {
+                                Id = pm.MoveId,
+                                Name = pm.Move.Name
+                            }).ToList()
+                        }).ToList()
+                    }).FirstOrDefaultAsync();
 		}
 
 		public async Task<IEnumerable<TeamServiceModel>> GetTeamsByPlayerIdAsync(int playerId)
@@ -148,6 +211,11 @@ namespace PokemonFinalProjectNet6.Core.Services
 					PlayerId = t.PlayerId,
 					Pokemons = t.Pokemons.Select(p => p.Name).ToList(),
 				}).ToListAsync();
+		}
+
+		public Task<bool> PlayerHasTeam(int teamId, int playerId)
+		{
+            return repository.AllAsReadOnly<Team>().AnyAsync(t => t.Id == teamId && t.PlayerId == playerId);
 		}
 
 		public async Task<TeamLeaderBoardQueryModel> TeamLeaderBoardAsync(

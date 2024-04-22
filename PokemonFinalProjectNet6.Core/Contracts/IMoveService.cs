@@ -19,6 +19,8 @@ namespace PokemonFinalProjectNet6.Core.Contracts
             int currentPage = 1,
             int teamsPerPage = 10);
 
+        Task DeleteAllPokemonMoveByPokemonIdAsync(int pokemonId);
+
         
     }
 }

@@ -67,7 +67,7 @@ namespace PokemonFinalProjectNet6.Controllers
 
         }
 
-        [AllowAnonymous]
+      
         [HttpGet]
         public async Task<IActionResult> Add()
         {
@@ -130,11 +130,6 @@ namespace PokemonFinalProjectNet6.Controllers
             model.PokemonForDB3 = pokemonsToAdd[2];
             model.MovesForDropDown = await moveService.GetAllMovesServiceModel();
             model.Abilities = await abilityService.GetAllAbilitiesServiceModel();
-			
-
-			
-
-
 
 			return View(model);
         }
@@ -158,6 +153,7 @@ namespace PokemonFinalProjectNet6.Controllers
            
 			if (ModelState.IsValid == false || duplicates == true)
             {
+                
 				model.PokemonSpecies = await pokemonService.AllSpeciesNamesAsync();
 				model.MovesForDropDown = await moveService.GetAllMovesServiceModel();
 				model.Abilities = await abilityService.GetAllAbilitiesServiceModel();
@@ -179,26 +175,74 @@ namespace PokemonFinalProjectNet6.Controllers
 			return RedirectToAction(nameof(LeaderBoards));
 		}
 
-        private async Task<PokemonFormModel> PopulateModels(PokemonFormModel model , string PokemonName, int playerid)
+        public async Task<IActionResult> Details(int id)
         {
-            var newPokemonModel = await pokemonService.GetPokemonBaseValuesByNameAsync(PokemonName);
+			var team = await teamService.GetTeamDetailsAsync(id);
 
-            newPokemonModel.EvAttack = model.EvAttack;
-            newPokemonModel.EvDefense = model.EvDefense;
-            newPokemonModel.EvHp = model.EvHp;
-            newPokemonModel.EvSpecialAttack = model.EvSpecialAttack;
-            newPokemonModel.EvSpecialDefense = model.EvSpecialDefense;
-            newPokemonModel.EvSpeed = model.EvSpeed;
-            newPokemonModel.AbilityId = model.AbilityId;
-            newPokemonModel.Move1IdForDb = model.Move1IdForDb;
-            newPokemonModel.Move2IdForDb = model.Move2IdForDb;
-            newPokemonModel.Move3IdForDb = model.Move3IdForDb;
-            newPokemonModel.Move4IdForDb = model.Move4IdForDb;
-            newPokemonModel.PlayerId = playerid;
-            newPokemonModel.Name = PokemonName;
+			if (team == null)
+            {
+				return NotFound();
+			}
 
-            return newPokemonModel;
+			return View(team);
+		}
+        
+        [HttpGet]
+		public async Task<IActionResult> Delete(int id)
+        {
+            if (await teamService.ExistsById(id) == false)
+            {
+                return BadRequest();
+            }
+            var playerId = await playerService.GetPlayerIdAsync(User.Id());
+
+            if (playerId == null)
+            {
+                return RedirectToAction(nameof(PlayerController.Become), "Player");
+            }
+            if (await teamService.PlayerHasTeam(id, playerId ?? 0) == false)
+            {
+                return Unauthorized();
+            }
+			var team = await teamService.GetTeamDetailsAsync(id);
+
+            var model = new TeamServiceModel()
+            {
+				Id = team.Id,
+				Name = team.Name,
+				PlayerId = team.PlayerId,
+				Pokemons = team.Pokemons.Select(p => p.Name).ToList(),
+				Wins = team.Wins,
+				Losses = team.Losses
+			};
+
+            return View(model);			
+		}
+        [HttpPost]
+        public async Task<IActionResult> Delete(TeamServiceModel model)
+        {
+			if (await teamService.ExistsById(model.Id) == false)
+            {
+				return BadRequest();
+			}
+			var playerId = await playerService.GetPlayerIdAsync(User.Id());
+
+			if (playerId == null)
+            {
+				return RedirectToAction(nameof(PlayerController.Become), "Player");
+			}
+			if (await teamService.PlayerHasTeam(model.Id, playerId ?? 0) == false)
+            {
+				return Unauthorized();
+			}
+            await teamService.DeleteAsync(model.Id);
+
+            return RedirectToAction(nameof(MyTeams));
         }
+
+        
+        
+
         
     }
 }

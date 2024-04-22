@@ -1,1 +1,94 @@
-﻿@Model
+﻿@model PokemonViewModel
+@inject IPokemonService pokemonService
+@inject IPlayerService playerService
+
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h1>@Model.Name :</h1>
+		</div>
+		<div class="col">
+			<div>
+				@if (Model.Type2 != "None")
+				{
+					<h2>@Model.Type1 / @Model.Type2 </h2>
+				}
+				else
+				{
+					<h2>@Model.Type1</h2>
+				}
+			</div>
+		</div>
+	</div>
+</div>
+
+<div style="text-align: center;">@Model.Ability.Name : @Model.Ability.Description</div>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col"></th>
+			<th scope="col">Base</th>
+			<th scope="col">EV</th>
+			<th scope="col">Actual</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">HP</th>
+			<td>@Model.BaseHp</td>
+			<td>@Model.EvHp</td>
+			<td>@Model.HP</td>
+
+		</tr>
+		<tr>
+			<th scope="row">Attack</th>
+			<td>@Model.BaseAttack</td>
+			<td>@Model.EvAttack</td>
+			<td>@Model.Attack</td>
+
+		</tr>
+		<tr>
+			<th scope="row">Defence</th>
+			<td>@Model.BaseDefense</td>
+			<td>@Model.EvDefense</td>
+			<td>@Model.Defense</td>
+
+		</tr>
+		<tr>
+			<th scope="row">SpecailAttack</th>
+			<td>@Model.BaseSpeicalAttack</td>
+			<td>@Model.EvSpecialAttack</td>
+			<td>@Model.SpecialAttack</td>
+
+		</tr>
+		<tr>
+			<th scope="row">SpecialDefence</th>
+			<td>@Model.BaseSpecialDefense</td>
+			<td>@Model.EvSpecialDefense</td>
+			<td>@Model.SpecialDefense</td>
+
+		</tr>
+		<tr>
+			<th scope="row">Speed</th>
+			<td>@Model.BaseSpeed</td>
+			<td>@Model.EvSpeed</td>
+			<td>@Model.Speed</td>
+
+		</tr>
+	</tbody>
+</table>
+@foreach (var move in Model.Moves)
+{
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h3>@move.Name</h3>
+			</div>
+		</div>
+	</div>
+}
+@if (await pokemonService.PlayerHasPokemonWithId(Model.Id, await playerService.GetPlayerIdAsync(User.Id()) ?? 0))
+{
+	<a asp-controller="Pokemon" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+}
+

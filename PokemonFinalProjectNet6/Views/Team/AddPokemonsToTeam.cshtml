@@ -8,6 +8,8 @@
 	<div class="col">
 		<h2>Add Pokemons To Team</h2>
 		<h3 class="small text-danger">Please select make sure each pokemon has different moves or else you will have to start over</h3>
+		<h3 class="small text-danger">Please select make sure each pokemon has no more than 510 in TotalEvs or you will start over</h3>
+		
 	</div>
 </div>
 
@@ -52,32 +54,32 @@
 				</div>
 				<div class="form-group">
 					<label asp-for="PokemonForDB1.EvAttack">EvAttack</label>
-					<input asp-for="PokemonForDB1.EvAttack" class="form-control" />
+					<input asp-for="PokemonForDB1.EvAttack" class="form-control" min="0" max="255">
 					<span asp-validation-for="PokemonForDB1.EvAttack" class="small text-danger"></span>
 					<span class="ml-2">Base: @Model.PokemonForDB1.BaseAttack</span>
 				</div>
 				<div class="form-group">
 					<label asp-for="PokemonForDB1.EvDefense">EvDefense</label>
-					<input asp-for="PokemonForDB1.EvDefense" class="form-control" />
+					<input asp-for="PokemonForDB1.EvDefense" class="form-control" min="0" max="255"> 
 					<span asp-validation-for="PokemonForDB1.EvDefense" class="small text-danger"></span>
 					<span class="ml-2">Base: @Model.PokemonForDB1.BaseDefense</span>
 				</div>
 				<div class="form-group">
 					<label asp-for="PokemonForDB1.EvSpecialAttack">EvSpecialAttack</label>
-					<input asp-for="PokemonForDB1.EvSpecialAttack" class="form-control" />
+					<input asp-for="PokemonForDB1.EvSpecialAttack" class="form-control" min="0" max="255">
 					<span asp-validation-for="PokemonForDB1.EvSpecialAttack" class="small text-danger"></span>
 					<span class="ml-2">Base: @Model.PokemonForDB1.BaseSpecialAttack</span>
 				</div>
 				<div class="form-group">
 					<label asp-for="PokemonForDB1.EvSpecialDefense">EvSpecialDefense</label>
-					<input asp-for="PokemonForDB1.EvSpecialDefense" class="form-control" />
+					<input asp-for="PokemonForDB1.EvSpecialDefense" class="form-control" min="0" max="255"> 
 					<span asp-validation-for="PokemonForDB1.EvSpecialDefense" class="small text-danger"></span>
 					<span class="ml-2">Base: @Model.PokemonForDB1.BaseSpecialDefense</span>
 				</div>
 				<div class="form-group
 											">
 					<label asp-for="PokemonForDB1.EvSpeed">EvSpeed</label>
-					<input asp-for="PokemonForDB1.EvSpeed" class="form-control" />
+					<input asp-for="PokemonForDB1.EvSpeed" class="form-control" min="0" max="255"> 
 					<span asp-validation-for="PokemonForDB1.EvSpeed" class="small text-danger"></span>
 					<span class="ml-2">Base: @Model.PokemonForDB1.BaseSpeed</span>
 				</div>
@@ -176,31 +178,31 @@
 					</div>
 					<div class="form-group">
 						<label asp-for="PokemonForDB2.EvAttack">EvAttack</label>
-						<input asp-for="PokemonForDB2.EvAttack" class="form-control" />
+						<input asp-for="PokemonForDB2.EvAttack" class="form-control" min="0" max="255" />
 						<span asp-validation-for="PokemonForDB2.EvAttack" class="small text-danger"></span>
 						<span class="ml-2">Base: @Model.PokemonForDB2.BaseAttack</span>
 					</div>
 					<div class="form-group">
 						<label asp-for="PokemonForDB2.EvDefense">EvDefense</label>
-						<input asp-for="PokemonForDB2.EvDefense" class="form-control" />
+						<input asp-for="PokemonForDB2.EvDefense" class="form-control" min="0" max="255" />
 						<span asp-validation-for="PokemonForDB2.EvDefense" class="small text-danger"></span>
 						<span class="ml-2">Base: @Model.PokemonForDB2.BaseDefense</span>
 					</div>
 					<div class="form-group">
 						<label asp-for="PokemonForDB2.EvSpecialAttack">EvSpecialAttack</label>
-						<input asp-for="PokemonForDB2.EvSpecialAttack" class="form-control" />
+						<input asp-for="PokemonForDB2.EvSpecialAttack" class="form-control" min="0" max="255" />
 						<span asp-validation-for="PokemonForDB2.EvSpecialAttack" class="small text-danger"></span>
 						<span class="ml-2">Base: @Model.PokemonForDB2.BaseSpecialAttack</span>
 					</div>
 					<div class="form-group">
 						<label asp-for="PokemonForDB2.EvSpecialDefense">EvSpecialDefense</label>
-						<input asp-for="PokemonForDB2.EvSpecialDefense" class="form-control" />
+						<input asp-for="PokemonForDB2.EvSpecialDefense" class="form-control" min="0" max="255" />
 						<span asp-validation-for="PokemonForDB2.EvSpecialDefense" class="small text-danger"></span>
 						<span class="ml-2">Base: @Model.PokemonForDB2.BaseSpecialDefense</span>
 					</div>
 					<div class="form-group">
 						<label asp-for="PokemonForDB2.EvSpeed">EvSpeed</label>
-						<input asp-for="PokemonForDB2.EvSpeed" class="form-control" />
+						<input asp-for="PokemonForDB2.EvSpeed" class="form-control" min="0" max="255" />
 						<span asp-validation-for="PokemonForDB2.EvSpeed" class="small text-danger"></span>
 						<span class="ml-2">Base: @Model.PokemonForDB2.BaseSpeed</span>
 					</div>
@@ -298,31 +300,31 @@
 						</div>
 						<div class="form-group">
 							<label asp-for="PokemonForDB3.EvAttack">EvAttack</label>
-							<input asp-for="PokemonForDB3.EvAttack" class="form-control" />
+							<input asp-for="PokemonForDB3.EvAttack" class="form-control" min="0" max="255" />
 							<span asp-validation-for="PokemonForDB3.EvAttack" class="small text-danger"></span>
 							<span class="ml-2">Base: @Model.PokemonForDB3.BaseAttack</span>
 						</div>
 						<div class="form-group">
 							<label asp-for="PokemonForDB3.EvDefense">EvDefense</label>
-							<input asp-for="PokemonForDB3.EvDefense" class="form-control" />
+							<input asp-for="PokemonForDB3.EvDefense" class="form-control" min="0" max="255" />
 							<span asp-validation-for="PokemonForDB3.EvDefense" class="small text-danger"></span>
 							<span class="ml-2">Base: @Model.PokemonForDB3.BaseDefense</span>
 						</div>
 						<div class="form-group">
 							<label asp-for="PokemonForDB3.EvSpecialAttack">EvSpecialAttack</label>
-							<input asp-for="PokemonForDB3.EvSpecialAttack" class="form-control" />
+							<input asp-for="PokemonForDB3.EvSpecialAttack" class="form-control" min="0" max="255" />
 							<span asp-validation-for="PokemonForDB3.EvSpecialAttack" class="small text-danger"></span>
 							<span class="ml-2">Base: @Model.PokemonForDB3.BaseSpecialAttack</span>
 						</div>
 						<div class="form-group">
 							<label asp-for="PokemonForDB3.EvSpecialDefense">EvSpecialDefense</label>
-							<input asp-for="PokemonForDB3.EvSpecialDefense" class="form-control" />
+							<input asp-for="PokemonForDB3.EvSpecialDefense" class="form-control" min="0" max="255" />
 							<span asp-validation-for="PokemonForDB3.EvSpecialDefense" class="small text-danger"></span>
 							<span class="ml-2">Base: @Model.PokemonForDB3.BaseSpecialDefense</span>
 						</div>
 						<div class="form-group">
 							<label asp-for="PokemonForDB3.EvSpeed">EvSpeed</label>
-							<input asp-for="PokemonForDB3.EvSpeed" class="form-control" />
+							<input asp-for="PokemonForDB3.EvSpeed" class="form-control" min="0" max="255" />
 							<span asp-validation-for="PokemonForDB3.EvSpeed" class="small text-danger"></span>
 							<span class="ml-2">Base: @Model.PokemonForDB3.BaseSpeed</span>
 						</div>

@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonFinalProjectNet6.Core.Contracts;
-using PokemonFinalProjectNet6.Core.Models.Abilitiy;
 using PokemonFinalProjectNet6.Core.Models.Move;
-using PokemonFinalProjectNet6.Core.Services;
 
 namespace PokemonFinalProjectNet6.Controllers
 {
-    public class MoveController : BaseController
+	public class MoveController : BaseController
     {
         private readonly IMoveService moveService;
 

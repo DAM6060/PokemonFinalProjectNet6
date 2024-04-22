@@ -16,11 +16,18 @@ namespace PokemonFinalProjectNet6.Core.Contracts
 
 		Task<IEnumerable<TeamServiceModel>> GetTeamsByPlayerIdForBattleAsync(int playerId);
 
-        Task<BattleTeamServiceModel> GetBattleTeamServiceByIdAsync(int teamId);
+        Task<BattleTeamServiceModel?> GetBattleTeamServiceByIdAsync(int teamId);
 
         Task<IEnumerable<TeamServiceModel>> GetTeamsByPlayerIdAsync(int playerId);
 
 		Task DeleteAsync(int teamId);
 
-	}
+        Task<TeamViewModel?> GetTeamDetailsAsync(int teamId);
+
+        Task<bool> ExistsById(int teamId);
+
+        Task<bool> PlayerHasTeam(int teamId, int playerId);
+
+        
+    }
 }

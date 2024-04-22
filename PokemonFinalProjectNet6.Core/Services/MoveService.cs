@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace PokemonFinalProjectNet6.Core.Services
 {
-    public class MoveService : IMoveService
+	public class MoveService : IMoveService
     {
         private readonly IRepository repository;
 
@@ -80,7 +80,20 @@ namespace PokemonFinalProjectNet6.Core.Services
             };
         }
 
-        public Task<List<MoveServiceModel>> GetAllMovesServiceModel()
+		public async Task DeleteAllPokemonMoveByPokemonIdAsync(int pokemonId)
+		{
+            await repository.All<PokemonMove>()
+                .Where(pm => pm.PokemonId == pokemonId)
+                .ForEachAsync(pm => repository
+                .DeleteAsync<PokemonMove>(pokemonId));
+
+            await repository.SaveChangesAsync();
+			
+		}
+
+		
+
+		public Task<List<MoveServiceModel>> GetAllMovesServiceModel()
         {
             return repository.AllAsReadOnly<Move>()
                 .Select(m => new MoveServiceModel

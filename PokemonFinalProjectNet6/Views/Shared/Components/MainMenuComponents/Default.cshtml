@@ -17,7 +17,7 @@
     @if (this.User?.Identity?.IsAuthenticated ?? false)
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Team" asp-action="Mine">My Teams</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Team" asp-action="MyTeams">My Teams</a>
         </li>
         @if (await playerservice.ExistsByIdAsync(User.Id()))
         {

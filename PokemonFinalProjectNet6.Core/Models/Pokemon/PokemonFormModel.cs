@@ -17,8 +17,7 @@ namespace PokemonFinalProjectNet6.Core.Models.Pokemon
         [Required(ErrorMessage = RequiredErrorMessage)]
         public int BaseHp { get; set; }
 
-        [Required(ErrorMessage = RequiredErrorMessage)]
-        
+        [Required(ErrorMessage = RequiredErrorMessage)]        
         public int EvHp { get; set; }
 
         [Required(ErrorMessage = RequiredErrorMessage)]
@@ -47,7 +46,6 @@ namespace PokemonFinalProjectNet6.Core.Models.Pokemon
         public int BaseSpecialAttack { get; set; }
 
         [Required(ErrorMessage = RequiredErrorMessage)]
-        
         public int EvSpecialAttack { get; set; }
 
         [Required(ErrorMessage = RequiredErrorMessage)]
@@ -72,7 +70,7 @@ namespace PokemonFinalProjectNet6.Core.Models.Pokemon
         public int Speed => (int)((((double)2 * (double)BaseSpeed + ((double)EvSpeed / (double)4)) * (double)Level / (double)100) + (double)5);
 
         [Required(ErrorMessage = RequiredErrorMessage)]
-        [Range(typeof(int), MinEvPerStat, MaxTotalEvPoints, ErrorMessage = MaxEvStatErrorMessage)]
+        [Range(0,510,ErrorMessage =MaxTotalEvPoints)]
         public int TotalEvPoints => EvHp + EvAttack + EvDefense + EvSpecialAttack + EvSpecialDefense + EvSpeed;
 
         [Required(ErrorMessage = RequiredErrorMessage)]
@@ -90,9 +88,7 @@ namespace PokemonFinalProjectNet6.Core.Models.Pokemon
         public int Move4IdForDb { get; set; }      
         public HashSet<int> MovesIdsForDb => new HashSet<int> { Move1IdForDb, Move2IdForDb, Move3IdForDb, Move4IdForDb };
 		public int TeamId { get; set; }
-
         public int PlayerId { get; set; }
-
 		public IEnumerable<MoveServiceModel> MovesForDropDown { get; set; } = new List<MoveServiceModel>();
 		public IEnumerable<AbilityServiceModel> Abilities { get; set; } = new List<AbilityServiceModel>();
 

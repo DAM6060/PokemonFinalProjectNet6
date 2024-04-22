@@ -4,6 +4,7 @@ using PokemonFinalProjectNet6.Core.Models.Move;
 using PokemonFinalProjectNet6.Core.Models.Pokemon;
 using PokemonFinalProjectNet6.Infrastructure.Data.Common;
 using PokemonFinalProjectNet6.Infrastructure.Data.Models;
+using System.Reflection.Metadata.Ecma335;
 using static PokemonFinalProjectNet6.Infrastructure.Constants.Constant;
 
 
@@ -24,16 +25,6 @@ namespace PokemonFinalProjectNet6.Core.Services
             this.playerService = playerService;
         }
 
-        public Task<IEnumerable<PokemonFormModel>> AllPokemonByUserId(string userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<PokemonFormModel>> AllPokemonByPlayerIdAsync(int playerId)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<IEnumerable<string>> AllSpeciesNamesAsync()
         {
             return await repository.AllAsReadOnly<Pokemon>()
@@ -43,8 +34,7 @@ namespace PokemonFinalProjectNet6.Core.Services
         }
 
         public async Task<int> CreateAsync(PokemonFormModel model, int playerId, int teamId)
-        {
-            
+        {            
             Pokemon pokemon = new Pokemon()
             {
                 Name = model.Name,
@@ -72,29 +62,13 @@ namespace PokemonFinalProjectNet6.Core.Services
                 Type1 = model.Type1,
                 Type2 = model.Type2,
                 PlayerId = playerId
-            };
-
-            
+            };            
             await repository.AddAsync(pokemon);
-			await repository.SaveChangesAsync();
-
-			var pokemonId = pokemon.Id;
-
-            //If it doesnt work like this we can pull this guy
-            
-
-            for (int i = 0; i < 3; i++)
-            {
-                PokemonMove pokemonMove = new PokemonMove()
-                {
-                    MoveId = model.MovesIdsForDb.ElementAt(i),
-
-					PokemonId = pokemon.Id
-                };
-                await repository.AddAsync(pokemonMove);
-            }
-
             await repository.SaveChangesAsync();
+
+			AddPokemonMoves(pokemon.Id, model.MovesIdsForDb);
+
+			await repository.SaveChangesAsync();
 
             return pokemon.Id;
         }
@@ -103,63 +77,66 @@ namespace PokemonFinalProjectNet6.Core.Services
         {
             await repository.All<PokemonMove>()
 				.Where(pm => pm.PokemonId == pokemonId)
-				.ForEachAsync(pm => repository.DeleteAsync<PokemonMove>(pokemonId));			
-            await repository.DeleteAsync<Pokemon>(pokemonId);
+				.ForEachAsync(pm => repository
+                .DeleteAsync<PokemonMove>(pokemonId));
+			
 
+			await repository.DeleteAsync<Pokemon>(pokemonId);
             await repository.SaveChangesAsync();
         }
 
-        public Task EditAsync(int pokemonId, PokemonFormModel model)
+        public async Task EditAsync(int pokemonId, PokemonFormModel model)
         {
-            throw new NotImplementedException();
+			
+
+			var pokemon = repository.All<Pokemon>().Include(p => p.PokemonMoves)
+				.FirstOrDefault(p => p.Id == pokemonId);
+            
+
+			if (pokemon != null)
+            {
+                pokemon.Name = model.Name;
+                pokemon.BaseHP = model.BaseHp;
+                pokemon.EvHP = model.EvHp;
+                pokemon.HP = model.HP;
+                pokemon.BaseAttack = model.BaseAttack;
+                pokemon.EvAttack = model.EvAttack;
+                pokemon.Attack = model.Attack;
+                pokemon.BaseDefense = model.BaseDefense;
+                pokemon.EvDefence = model.EvDefense;
+                pokemon.Defense = model.Defense;
+                pokemon.BaseSpecialAttack = model.BaseSpecialAttack;
+                pokemon.EvSpecialAttack = model.EvSpecialAttack;
+                pokemon.SpecialAttack = model.SpecialAttack;
+                pokemon.BaseSpecialDefense = model.BaseSpecialDefense;
+                pokemon.EvSpecialDefense = model.EvSpecialDefense;
+                pokemon.SpecialDefense = model.SpecialDefense;
+                pokemon.BaseSpeed = model.BaseSpeed;
+                pokemon.EvSpeed = model.EvSpeed;
+                pokemon.Speed = model.Speed;
+                pokemon.Type1 = model.Type1;
+                pokemon.Type2 = model.Type2;
+                pokemon.AbilityId = model.AbilityId;
+                
+                
+				await repository.SaveChangesAsync();
+
+                pokemon.PokemonMoves.Clear();
+
+                await repository.SaveChangesAsync();
+                AddPokemonMoves(pokemon.Id, model.MovesIdsForDb);				
+
+				await repository.SaveChangesAsync();
+
+			}
         }
 
-        public async Task<bool> ExistsAsync(int id)
+        public async Task<bool> ExistsAsync(int pokemonId)
         {
             return await repository.AllAsReadOnly<Pokemon>()
-                .AnyAsync(p => p.Id == id);
+                .AnyAsync(p => p.Id == pokemonId);
         }
-
-        public async Task<PokemonFormModel?> GetPokemonFormModelByIdAsync(int id)
-        {
-            //Again we need to populate PokemonMove from PokemonFormModel
-
-            // Create A method to add moves From PokemonMove Model to PokemonFormModel
-            //Similar to what is done with the categories maybe 
-            var pokemon = await  repository.All<Pokemon>()
-                .Where(p => p.Id == id)
-                .Select(p => new PokemonFormModel
-                {
-                    Name = p.Name,
-                    BaseHp = p.BaseHP,
-                    EvHp = p.EvHP,                    
-                    BaseAttack = p.BaseAttack,
-                    EvAttack = p.EvAttack,                    
-                    BaseDefense = p.BaseDefense,
-                    EvDefense = p.EvDefence,
-                    BaseSpecialAttack = p.BaseSpecialAttack,
-                    EvSpecialAttack = p.EvSpecialAttack,
-                    BaseSpecialDefense = p.BaseSpecialDefense,
-                    EvSpecialDefense = p.EvSpecialDefense,
-                    BaseSpeed = p.BaseSpeed,
-                    EvSpeed = p.EvSpeed,
-                    Type1 = p.Type1,
-                    Type2 = p.Type2,
-                    AbilityId = p.AbilityId
-
-                })
-                .FirstOrDefaultAsync();
-
-            //Add  moves to pokemon here
-
-            return pokemon;
-
-        }
-
-        public Task<bool> HasPlayerWithIdAsync(int pokemonId, string playerId)
-        {
-            throw new NotImplementedException();
-        }
+                        
 
         public async Task<bool> SpeciesExistsAsync(string name)
         {
@@ -168,17 +145,17 @@ namespace PokemonFinalProjectNet6.Core.Services
            
         }
 
-        public Task<Pokemon?> GetPokemonByIdAsync(int id)
+        public Task<Pokemon?> GetPokemonByIdAsync(int pokemonId)
         {
             return repository.All<Pokemon>()
-				.Where(p => p.Id == id)
+				.Where(p => p.Id == pokemonId)
 				.FirstOrDefaultAsync();
         }
 
-        public async Task<PokemonViewModel> PokemonDetailsByIdAsync(int id)
+        public async Task<PokemonViewModel> PokemonDetailsByIdAsync(int pokemonId)
         {
             return await repository.AllAsReadOnly<Pokemon>()
-                .Where(p => p.Id == id)
+                .Where(p => p.Id == pokemonId)
                 .Select(p => new PokemonViewModel
                 {
                     Id = p.Id,
@@ -207,11 +184,13 @@ namespace PokemonFinalProjectNet6.Core.Services
                     Ability = new Models.Ability.AbilityServiceModel()
                     {
                         Id = p.AbilityId,
-                        Name = p.Ability.Name,
-                        Description = p.Ability.Description
+                        Name = p.Ability.Name                        
                     },
-                    //add moves
-                    
+                    Moves = p.PokemonMoves.Select(pm => new MoveServiceModel
+                    {
+                        Id = pm.MoveId,
+                        Name = pm.Move.Name                        
+                    }).ToList()                    
                 })
                 .FirstAsync();
         }
@@ -235,9 +214,59 @@ namespace PokemonFinalProjectNet6.Core.Services
                 .FirstAsync();
         }
 
-		Task<PokemonServiceModel> IPokemonService.PokemonDetailsByIdAsync(int id)
-		{
-			throw new NotImplementedException();
+        public async Task<bool> PlayerHasPokemonWithId(int pokemonId, int playerId)
+        {
+            return await repository.AllAsReadOnly<Pokemon>()
+                .AnyAsync(p => p.Id == pokemonId && p.PlayerId == playerId);
+        }
+
+        public async Task<PokemonFormModel> GetPokemonFormModelByIdAsync(int id)
+        {
+            var moves = await repository.All<PokemonMove>()
+                .Where(pm => pm.PokemonId == id)
+                .Select(pm => pm.MoveId).ToListAsync();
+            
+
+            return await repository.All<Pokemon>()
+                .Where(p => p.Id == id)
+                .Select(p => new PokemonFormModel
+                {
+                    Name = p.Name,
+                    BaseHp = p.BaseHP,
+                    EvHp = p.EvHP,                    
+                    BaseAttack = p.BaseAttack,
+                    EvAttack = p.EvAttack,                    
+                    BaseDefense = p.BaseDefense,
+                    EvDefense = p.EvDefence,                  
+                    BaseSpecialAttack = p.BaseSpecialAttack,
+                    EvSpecialAttack = p.EvSpecialAttack,                   
+                    BaseSpecialDefense = p.BaseSpecialDefense,
+                    EvSpecialDefense = p.EvSpecialDefense,                    
+                    BaseSpeed = p.BaseSpeed,
+                    EvSpeed = p.EvSpeed,                    
+                    Type1 = p.Type1,
+                    Type2 = p.Type2,
+                    AbilityId = p.Ability.Id,                    
+                    TeamId = p.TeamId,
+                    PlayerId = p.PlayerId,
+                    Move1IdForDb = moves[0],
+                    Move2IdForDb = moves[1],
+                    Move3IdForDb = moves[2],
+                    Move4IdForDb = moves[3]
+                    
+                }).FirstAsync();
+        }
+        private async void AddPokemonMoves(int pokemonId, IEnumerable<int> moves)
+        {
+			for (int i = 0; i < 4; i++)
+			{
+				PokemonMove pokemonMove = new PokemonMove()
+                {
+					MoveId = moves.ElementAt(i),
+					PokemonId = pokemonId
+				};
+				await repository.AddAsync(pokemonMove);
+			}
 		}
-	}
+    }
 }
