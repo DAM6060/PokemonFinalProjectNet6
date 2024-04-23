@@ -4,6 +4,7 @@ using System.Diagnostics;
 
 namespace PokemonFinalProjectNet6.Controllers
 {
+	
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
@@ -17,12 +18,7 @@ namespace PokemonFinalProjectNet6.Controllers
 		public IActionResult Index()
 		{
 			return View();
-		}
-
-		public IActionResult Privacy()
-		{
-			return View();
-		}
+		}		
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error(int statusCode)

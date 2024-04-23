@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using PokemonFinalProjectNet6.Attributes;
 using PokemonFinalProjectNet6.Core.Contracts;
 using PokemonFinalProjectNet6.Core.Models.Player;
 using System.Security.Claims;
@@ -18,6 +20,8 @@ namespace PokemonFinalProjectNet6.Controllers
             logger = _logger;
         }
         [HttpGet]
+        [AllowAnonymous]
+        [MustNotBePlayerAttribute]
         public IActionResult Become()
         {
             var model = new PlayerFormModel();
@@ -25,7 +29,9 @@ namespace PokemonFinalProjectNet6.Controllers
             return View(model);
         }
         [HttpPost]
-        public async Task<IActionResult> Become(PlayerFormModel model)
+		[AllowAnonymous]
+		[MustNotBePlayerAttribute]
+		public async Task<IActionResult> Become(PlayerFormModel model)
         {
             if(await playerService.UserWithNameExistsAsync(model.Name))
             {

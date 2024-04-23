@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PokemonFinalProjectNet6.Attributes;
 using PokemonFinalProjectNet6.Core.Contracts;
 using PokemonFinalProjectNet6.Core.Models.Pokemon;
 using System.Security.Claims;
@@ -56,18 +57,14 @@ namespace PokemonFinalProjectNet6.Controllers
         }
 
         [HttpGet]
+        [MustBePlayer]
         public async Task<IActionResult> Edit(int id)
         {
             if (await pokemonService.ExistsAsync(id) == false)
             {
                 return BadRequest();
             }
-            var playerId = await playerService.GetPlayerIdAsync(User.Id());
-
-            if (playerId == null)
-            {
-                return RedirectToAction(nameof(PlayerController.Become), "Player");
-            }
+            var playerId = await playerService.GetPlayerIdAsync(User.Id());            
 
             if (await pokemonService.PlayerHasPokemonWithId(id , playerId.Value) ==false)
             {
@@ -82,6 +79,7 @@ namespace PokemonFinalProjectNet6.Controllers
         }
 
         [HttpPost]
+        [MustBePlayer]
         public async Task<IActionResult> Edit(int id, PokemonFormModel model)
         {
             if (await pokemonService.ExistsAsync(id) == false)
@@ -90,11 +88,6 @@ namespace PokemonFinalProjectNet6.Controllers
             }
 
             var playerId = await playerService.GetPlayerIdAsync(User.Id());
-
-            if (playerId == null)
-            {
-                return RedirectToAction(nameof(PlayerController.Become), "Player");
-            }
 
             if (await pokemonService.PlayerHasPokemonWithId(id, playerId.Value) == false)
             {
@@ -114,8 +107,6 @@ namespace PokemonFinalProjectNet6.Controllers
             await pokemonService.EditAsync(id, model);
 
             return RedirectToAction(nameof(Details), new { id });
-        }   
-
-       
+        }       
     }
 }
