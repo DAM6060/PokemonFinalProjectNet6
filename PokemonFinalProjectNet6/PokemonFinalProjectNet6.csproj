@@ -16,10 +16,17 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Data\" />
+    <Folder Include="Views\Hubs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\85a3329e4202059593616d3b42f16e8d.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,17 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.SignalR.Client;
+using PokemonFinalProjectNet6.Attributes;
 using PokemonFinalProjectNet6.Core.Contracts;
+using PokemonFinalProjectNet6.Core.Models.Battle;
 using PokemonFinalProjectNet6.Core.Models.Player;
 using PokemonFinalProjectNet6.Hubs;
 using System.Security.Claims;
 
 namespace PokemonFinalProjectNet6.Controllers
 {
+    
     public class BattleController : BaseController
     {
         private readonly IBattleService battleService;
         private readonly IPlayerService playerService;
-        private readonly ILobbyService lobbyService; // This will be used to start a battle and matching players
+        private readonly ILobbyService lobbyService; 
         private readonly IHubContext<BattleHub> battleHubContext;
         private readonly ITeamService teamService;
         
@@ -28,7 +32,8 @@ namespace PokemonFinalProjectNet6.Controllers
 
         }
         [HttpGet]
-        public async Task<IActionResult> TeamSelect()
+		[MustBePlayer]
+		public async Task<IActionResult> TeamSelect()
         {
             var playerId = await playerService.GetPlayerIdAsync(User.Id());
 
@@ -42,26 +47,51 @@ namespace PokemonFinalProjectNet6.Controllers
             return View(model);
         }
         [HttpPost]
-        public async Task<IActionResult> TeamSelect(int teamId)
+		[MustBePlayer]
+		public async Task<IActionResult> TeamSelect(int teamId)
         {
-            var team = await teamService.GetBattleTeamServiceByIdAsync(teamId);
+            var playerId = await playerService.GetPlayerIdAsync(User.Id());           
 
-            return RedirectToAction();            
-        }        
+            if (await teamService.ExistsById(teamId) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await teamService.PlayerHasTeamAsync(teamId, (int)playerId) == false)
+            {
+				return Unauthorized();
+			}
+
+            return RedirectToAction(nameof(LaunchBattle),new {teamId, playerId});            
+        }
+		[MustBePlayer]
+		public async Task<IActionResult> LaunchBattle(int teamId, int playerId) 
+        {
+            int lobbyId =  await lobbyService.JoinLobbyAsync(teamId, playerId);
+
+            var lobby = await lobbyService.GetLobbyByIdAsync(lobbyId);
+
+            await ConnectUserToHub(lobby.Players.Where(x => x.Id ==playerId).First());
+
+            return Ok();           
         
-        //public Task<IActionResult> LaunchBattle() 
-        //{
-        //    int lobbyId = lobbyService.JoinLobby();
-        //
-        //}
-        //public Task<IActionResult> MakeMove()
-        //{
-        //
-        //}
-        //public Task<IActionResult> EndBattle()
-        //{
-        //
-        //}
+        }
+		//public Task<IActionResult> MakeMove()
+		//{
+		//
+		//}
+		//public Task<IActionResult> EndBattle()
+		//{
+		//
+		//}
+		
+		private async Task ConnectUserToHub(PlayerServiceModel player)
+        {
+			var hubConnection = new HubConnectionBuilder().WithAutomaticReconnect().Build();
+			await hubConnection.StartAsync();
+			player.Connection = hubConnection;
+		}
+
         
 
         

@@ -7,7 +7,7 @@ using PokemonFinalProjectNet6.Infrastructure.Data.Common;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class ServiceCollectionExtension
+	public static class ServiceCollectionExtension
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
@@ -16,6 +16,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ITeamService, TeamService>();
             services.AddScoped<IAbilityService, AbilityService>();
             services.AddScoped<IMoveService, MoveService>();
+            services.AddScoped<IBattleService, BattleService>();
+            services.AddSignalR();
 
             return services;
         }

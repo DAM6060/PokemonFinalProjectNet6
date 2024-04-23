@@ -137,6 +137,11 @@ namespace PokemonFinalProjectNet6.Core.Services
 				}).FirstOrDefaultAsync();
 		}
 
+		public Task<Team> GetTeamByTeamIdAsync(int teamId)
+		{
+			throw new NotImplementedException();
+		}
+
 		public async Task<TeamViewModel?> GetTeamDetailsAsync(int id)
 		{
             return await repository.AllAsReadOnly<Team>()
@@ -213,9 +218,9 @@ namespace PokemonFinalProjectNet6.Core.Services
 				}).ToListAsync();
 		}
 
-		public Task<bool> PlayerHasTeam(int teamId, int playerId)
+		public async Task<bool> PlayerHasTeamAsync(int teamId, int playerId)
 		{
-            return repository.AllAsReadOnly<Team>().AnyAsync(t => t.Id == teamId && t.PlayerId == playerId);
+            return await repository.AllAsReadOnly<Team>().AnyAsync(t => t.Id == teamId && t.PlayerId == playerId);
 		}
 
 		public async Task<TeamLeaderBoardQueryModel> TeamLeaderBoardAsync(

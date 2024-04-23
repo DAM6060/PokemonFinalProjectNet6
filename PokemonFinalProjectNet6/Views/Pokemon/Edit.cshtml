@@ -42,31 +42,31 @@
 				</div>
 				<div class="form-group">
 					<label asp-for="EvAttack">EvAttack</label>
-					<input asp-for="EvAttack" class="form-control" />
+					<input asp-for="EvAttack" class="form-control" min="0" max="255" />
 					<span asp-validation-for="EvAttack" class="small text-danger"></span>
 					<span class="ml-2">Base: @Model.BaseAttack</span>
 				</div>
 				<div class="form-group">
 					<label asp-for="EvDefense">EvDefense</label>
-					<input asp-for="EvDefense" class="form-control" />
+					<input asp-for="EvDefense" class="form-control" min="0" max="255" />
 					<span asp-validation-for="EvDefense" class="small text-danger"></span>
 					<span class="ml-2">Base: @Model.BaseDefense</span>
 				</div>
 				<div class="form-group">
 					<label asp-for="EvSpecialAttack">EvSpecialAttack</label>
-					<input asp-for="EvSpecialAttack" class="form-control" />
+					<input asp-for="EvSpecialAttack" class="form-control" min="0" max="255" />
 					<span asp-validation-for="EvSpecialAttack" class="small text-danger"></span>
 					<span class="ml-2">Base: @Model.BaseSpecialAttack</span>
 				</div>
 				<div class="form-group">
 					<label asp-for="EvSpecialDefense">EvSpecialDefense</label>
-					<input asp-for="EvSpecialDefense" class="form-control" />
+					<input asp-for="EvSpecialDefense" class="form-control" min="0" max="255" />
 					<span asp-validation-for="EvSpecialDefense" class="small text-danger"></span>
 					<span class="ml-2">Base: @Model.BaseSpecialDefense</span>
 				</div>
 				<div class="form-group">
 					<label asp-for="EvSpeed">EvSpeed</label>
-					<input asp-for="EvSpeed" class="form-control" />
+					<input asp-for="EvSpeed" class="form-control" min="0" max="255" />
 					<span asp-validation-for="EvSpeed" class="small text-danger"></span>
 					<span class="ml-2">Base: @Model.BaseSpeed</span>
 				</div>

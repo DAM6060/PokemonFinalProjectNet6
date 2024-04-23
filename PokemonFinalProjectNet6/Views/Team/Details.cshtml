@@ -1,9 +1,15 @@
 ﻿@model TeamViewModel
+@inject ITeamService teamService
+@inject IPlayerService playerService
 
 @for (int i = 0; i < Model.Pokemons.Count(); i++)
 {
 	<partial name="_PokemonPartial" model="@Model.Pokemons[i]" />
 }
 
-<a asp-controller="Team" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-primary">Delete</a>
+@if (await teamService.PlayerHasTeamAsync(Model.Id, await playerService.GetPlayerIdAsync(User.Id()) ?? 0) == false)
+{
+	<a asp-controller="Team" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-primary">Delete</a>
+}
+
 

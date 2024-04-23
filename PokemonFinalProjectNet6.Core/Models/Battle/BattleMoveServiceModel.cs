@@ -22,6 +22,7 @@ namespace PokemonFinalProjectNet6.Core.Models.Battle
         public int AilmentChance { get; set; }
         public DamageClass DamageClass { get; set; }
         public bool? IsEffectUser { get; set; }
+        public bool isHealMove { get; set; }
         public int HealAmount { get; set; }
         public HealType HealType { get; set; }
         public int Priority { get; set; }

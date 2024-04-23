@@ -1,6 +1,7 @@
 ﻿using PokemonFinalProjectNet6.Core.Enumerations;
 using PokemonFinalProjectNet6.Core.Models.Battle;
 using PokemonFinalProjectNet6.Core.Models.Team;
+using PokemonFinalProjectNet6.Infrastructure.Data.Models;
 
 namespace PokemonFinalProjectNet6.Core.Contracts
 {
@@ -26,8 +27,11 @@ namespace PokemonFinalProjectNet6.Core.Contracts
 
         Task<bool> ExistsById(int teamId);
 
-        Task<bool> PlayerHasTeam(int teamId, int playerId);
+        Task<bool> PlayerHasTeamAsync(int teamId, int playerId);
 
-        
-    }
+        Task<Team> GetTeamByTeamIdAsync(int teamId);
+
+
+
+	}
 }

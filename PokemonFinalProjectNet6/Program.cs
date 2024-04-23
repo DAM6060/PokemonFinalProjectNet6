@@ -1,3 +1,5 @@
+using PokemonFinalProjectNet6.Hubs;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -17,13 +19,14 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-	app.UseDeveloperExceptionPage();
-	app.UseMigrationsEndPoint();
+    app.UseDeveloperExceptionPage();
+    app.UseMigrationsEndPoint();
 }
 else
 {
-	app.UseExceptionHandler("/Home/Error");
-	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+	app.UseExceptionHandler("/Home/Error/500");
+    app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");
+	
 	app.UseHsts();
 }
 
@@ -35,9 +38,12 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+
 app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapHub<BattleHub>("/battleHub");
+
 app.MapRazorPages();
 
 app.Run();

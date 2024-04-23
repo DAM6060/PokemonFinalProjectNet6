@@ -7,7 +7,7 @@ using PokemonFinalProjectNet6.Infrastructure.Data.Models;
 
 namespace PokemonFinalProjectNet6.Core.Services
 {
-    public class PLayerService : IPlayerService
+	public class PLayerService : IPlayerService
     {
         private readonly IRepository repository;
 
@@ -34,7 +34,13 @@ namespace PokemonFinalProjectNet6.Core.Services
            
         }
 
-        public async Task<int?> GetPlayerIdAsync(string userId)
+		public async Task<Player> GetPlayerByPlayerIdAsync(int playerId)
+		{
+			return await repository.AllAsReadOnly<Player>()
+				.FirstOrDefaultAsync(p => p.Id == playerId);
+		}
+
+		public async Task<int?> GetPlayerIdAsync(string userId)
         {
             return (await repository.AllAsReadOnly<Player>()
                 .FirstOrDefaultAsync(p => p.UserId == userId))?.Id;
