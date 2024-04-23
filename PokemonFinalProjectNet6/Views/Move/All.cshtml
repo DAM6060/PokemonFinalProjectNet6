@@ -1,128 +1,135 @@
 ﻿@model MoveQueryModel
 
 @{
-    ViewBag.title = "All Moves";
-    ViewBag.Controller = "Move";
-    ViewBag.Action = "All";
-    object num = MoveQueryModel.Types;
+	ViewBag.title = "All Moves";
+	ViewBag.Controller = "Move";
+	ViewBag.Action = "All";
+	object num = MoveQueryModel.Types;
 
-    
+
 }
 
 <h2 class="text-center">
-    @ViewBag.title
+	@ViewBag.title
 </h2>
 <hr />
 
 <form method="get">
-    <div class="row">
-        <div class="form-group col-md-3 d-flex justify-content-between">
-            <div class="form-group">
-                <label asp-for="TypeFilter">Type</label>
-                <select asp-for="TypeFilter" class="form-control">         
-                    @foreach (var types in MoveQueryModel.Types)
-                    {
-                        if (types == 0)
-                        {
-                            <option value="">All</option>
-                        }
-                        else
-                        {
-                            <option value="@types">@types</option>
-                        }
-                        
-                    }
-                </select>
-            </div>
-        </div>
-        <div class="form-group col-md-3 d-flex justify-content-between">
-            <div class="form-group">
-                <label asp-for="DamageClassFilter">Damage Class</label>
-                <select asp-for="DamageClassFilter" class="form-control">
-                    <option value="">All</option>
-                    @foreach (DamageClass damagageClass in MoveQueryModel.DamageClasses)
-                    {
-                        <option value="@damagageClass">@damagageClass</option>
-                    }
-                </select>
-            </div>
-        </div>
-        <div class="form-group col-md-3">
-            <label asp-for="SearchTerm"></label>
-            <input asp-for="SearchTerm" class="form-control" placeholder="...">
-        </div>
-        <div class="form-group col-md-3">
-            <div class="form-group">
-                <label asp-for="Sorting"></label>
-                <select asp-for="Sorting" class="form-control">
-                    <option value="0">Alphabetical</option>
-                    <option value="1">Highest Power</option>
-                </select>
-            </div>
-        </div>
+	<div class="row">
+		<div class="form-group col-md-3 d-flex justify-content-between">
+			<div class="form-group">
+				<label asp-for="TypeFilter">Type</label>
+				<select asp-for="TypeFilter" class="form-control">
+					@foreach (var types in MoveQueryModel.Types)
+					{
+						if (types == 0)
+						{
+							<option value="">All</option>
+						}
+						else
+						{
+							<option value="@types">@types</option>
+						}
 
-        <div class="col-md-3">
-            <div class="form-group mt-4 p-2">
-                <input type="submit" value="Search" class="btn btn-primary" />
-            </div>
-        </div>
-    </div>
+					}
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-md-3 d-flex justify-content-between">
+			<div class="form-group">
+				<label asp-for="DamageClassFilter">Damage Class</label>
+				<select asp-for="DamageClassFilter" class="form-control">
+					<option value="">All</option>
+					@foreach (DamageClass damagageClass in MoveQueryModel.DamageClasses)
+					{
+						<option value="@damagageClass">@damagageClass</option>
+					}
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-md-3">
+			<label asp-for="SearchTerm"></label>
+			<input asp-for="SearchTerm" class="form-control" placeholder="...">
+		</div>
+		<div class="form-group col-md-3">
+			<div class="form-group">
+				<label asp-for="Sorting"></label>
+				<select asp-for="Sorting" class="form-control">
+					<option value="0">Alphabetical</option>
+					<option value="1">Highest Power</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="form-group mt-4 p-2">
+				<input type="submit" value="Search" class="btn btn-primary" />
+			</div>
+		</div>
+	</div>
 </form>
 
 
 
 <div class="row mb-5">
-    <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start">
-        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
-           asp-controller="@ViewBag.Controller"
-           asp-action="@(ViewBag.Action)"
-           asp-route-currentPage="@Model.PreviousPage"
-           asp-route-searchTearm="@Model.SearchTerm"
-           asp-route-damageClassFilter="@Model.DamageClassFilter"
-           asp-route-typeFilter="@Model.TypeFilter"
-           asp-route-sorting="@((int)Model.Sorting)">Previous</a>
-    </div>
-    @{
+	<div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start">
+		<a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+		   asp-controller="@ViewBag.Controller"
+		   asp-action="@(ViewBag.Action)"
+		   asp-route-currentPage="@Model.PreviousPage"
+		   asp-route-searchTearm="@Model.SearchTerm"
+		   asp-route-damageClassFilter="@Model.DamageClassFilter"
+		   asp-route-typeFilter="@Model.TypeFilter"
+		   asp-route-sorting="@((int)Model.Sorting)">Previous</a>
+	</div>
+	@{
 
-        var shouldButtonBeDisabled = Model.CurrentPage == Model.PagesCount;
-    }
-    <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-end">
-        <a class="btn btn-primary
+		var shouldButtonBeDisabled = Model.CurrentPage == Model.PagesCount;
+	}
+	<div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-end">
+		<a class="btn btn-primary
            @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
-           asp-controller="@ViewBag.Controller"
-           asp-action="@ViewBag.Action"
-           asp-route-currentPage="@(Model.CurrentPage + 1)"
-           asp-route-searchTearm="@Model.SearchTerm"
-           asp-route-damageClassFilter="@Model.DamageClassFilter"
-           asp-route-typeFilter="@Model.TypeFilter"
-           asp-route-sorting="@((int)Model.Sorting)">Next</a>
-    </div>
+		   asp-controller="@ViewBag.Controller"
+		   asp-action="@ViewBag.Action"
+		   asp-route-currentPage="@(Model.CurrentPage + 1)"
+		   asp-route-searchTearm="@Model.SearchTerm"
+		   asp-route-damageClassFilter="@Model.DamageClassFilter"
+		   asp-route-typeFilter="@Model.TypeFilter"
+		   asp-route-sorting="@((int)Model.Sorting)">Next</a>
+	</div>
 </div>
 
 <table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Power</th>
-            <th scope="col">Accuracy</th>
-            <th scope="col">PP</th>
-            <th scope="col">Type</th>
-            <th scope="col">Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var move in Model.Moves)
-        {
-            <tr>
-                <th scope="row">@move.Name</th>
-                <td>@move.Power</td>
-                <td>@move.Accuracy</td>
-                <td>@move.PowerPoints</td>
-                <td>@move.Type</td>
-                <td>@move.Description</td>
+	<thead>
+		<tr>
+			<th scope="col">Name</th>
+			<th scope="col">Power</th>
+			<th scope="col">Accuracy</th>
+			<th scope="col">PP</th>
+			<th scope="col">Type</th>
+			<th scope="col">Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var move in Model.Moves)
+		{
+			<tr>
+				<th scope="row">@move.Name</th>
+				<td>@move.Power</td>
+				<td>@move.Accuracy</td>
+				<td>@move.PowerPoints</td>
+				<td>@move.Type</td>
+				<td>@move.Description</td>
+				@if (User.IsAdmin())
+				{
+					<td>
+						<a class="btn btn-warning" asp-area="Admin" asp-controller="Move" asp-action="Edit" asp-route-id="@move.Id">Edit</a>
+					</td>
+				}
 
-            </tr>
-        }
-    </tbody>
+
+			</tr>
+		}
+	</tbody>
 </table>
 

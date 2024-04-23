@@ -2,11 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using PokemonFinalProjectNet6.Infrastructure.Data.Models;
 using PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb;
-using System.Reflection.Emit;
 
 namespace PokemonFinalProjectNet6.Data
 {
-    public class PokemonDbContext : IdentityDbContext
+	public class PokemonDbContext : IdentityDbContext
     {
         public PokemonDbContext(DbContextOptions options)
             : base(options)

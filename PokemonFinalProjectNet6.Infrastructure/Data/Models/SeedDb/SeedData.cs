@@ -19,8 +19,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
         public List<PokemonMove> PokemonsMoves { get; set; }
 
         public IdentityUser AdminUser { get; set; }
-
-        public IdentityUser PlayerUser { get; set; }
+        public IdentityUser PlayerUser { get; set; }        
 
         public Player Player1 { get; set; }
 
@@ -100,11 +99,13 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
             AdminUser = new IdentityUser
             {
                 Id = "dea12856-c198-4129-b3f3-b893d8395082",
-                UserName = "DimitarAdmin",
-                NormalizedUserName = "DIMITARADMIN",
+                UserName = "DimitarAdmin@admin.com",
+                NormalizedUserName = "DIMITARADMIN@ADMIN.COm",
                 Email = "ddimitar98@gmail.com",
                 NormalizedEmail = "DDIMITAR98@GMAIL.COM"
             };
+
+            
 
             AdminUser.PasswordHash =
                  hasher.HashPassword(AdminUser, "Dimi123");
@@ -113,11 +114,12 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
             {
 
                 Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
-                UserName = "DimitarPlayer",
-                NormalizedUserName = "DIMITARPLAYER",
+                UserName = "DimitarPlayer@player.com",
+                NormalizedUserName = "DIMITARPLAYER@PLAYER.COM",
                 Email = "varnasharks.afc@gmail.com",
                 NormalizedEmail = "VARNASHARKS.AFC@GMAIL.COM"
             };
+            
             PlayerUser.PasswordHash =
                  hasher.HashPassword(PlayerUser, "Sharks123");
         }

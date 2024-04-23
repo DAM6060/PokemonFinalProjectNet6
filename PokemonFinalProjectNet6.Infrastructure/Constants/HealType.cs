@@ -8,6 +8,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Constants
 {
     public enum HealType
     {
+        NoHeal=0,
         OwnHP=1,
         OpponentHP=2,
     }

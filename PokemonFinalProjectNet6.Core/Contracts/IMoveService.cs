@@ -7,8 +7,6 @@ namespace PokemonFinalProjectNet6.Core.Contracts
 {
     public interface IMoveService
     {
-        Task<MoveServiceModel> MoveByIdAsync(int id);
-
         Task<List<MoveServiceModel>> GetAllMovesServiceModel();
 
         Task<MoveQueryModel> AllMovesSearch(
@@ -18,9 +16,11 @@ namespace PokemonFinalProjectNet6.Core.Contracts
             MoveSorting sorting = MoveSorting.Alphabetical,
             int currentPage = 1,
             int teamsPerPage = 10);
-
-        Task DeleteAllPokemonMoveByPokemonIdAsync(int pokemonId);
-
         
-    }
+        Task<int> CreateAsync(MoveFormModel model);
+		Task<MoveFormModel> GetMoveFormModelAsync(int moveId);
+
+        Task<bool> ExistsByIdAsync(int id);
+		Task EditAsync(MoveFormModel model);
+	}
 }
