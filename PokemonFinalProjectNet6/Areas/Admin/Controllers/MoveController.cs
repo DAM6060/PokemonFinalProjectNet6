@@ -21,15 +21,14 @@ namespace PokemonFinalProjectNet6.Areas.Admin.Controllers
 		}
 		[HttpPost]
 		public async Task<IActionResult> Add(MoveFormModel model)
-		{
-			var manipulatedModel = MoveManipulation(model);
+		{			
 
-			if (!ModelState.IsValid || manipulatedModel == null)
+			if (!ModelState.IsValid || model == null)
 			{
 				return View(model);
 			}
 
-			await moveService.CreateAsync(manipulatedModel);
+			await moveService.CreateAsync(model);
 
 			return RedirectToAction("Index", "Home", new { area = "Admin" });
 		}
@@ -42,6 +41,7 @@ namespace PokemonFinalProjectNet6.Areas.Admin.Controllers
 				return BadRequest();
 			}
 			var model = await moveService.GetMoveFormModelAsync(Id);
+
 			if (model == null)
 			{
 				return BadRequest();
@@ -51,41 +51,16 @@ namespace PokemonFinalProjectNet6.Areas.Admin.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Edit(MoveFormModel model)
 		{
-			var manipulatedModel = MoveManipulation(model);
-
-			if (!ModelState.IsValid || manipulatedModel == null)
+			if (!ModelState.IsValid || model == null)
 			{
 				return View(model);
 			}
-			await moveService.EditAsync(manipulatedModel);
+			await moveService.EditAsync(model);
 
 			return RedirectToAction("Index", "Home", new { area = "Admin" });
 		}
 
-		private MoveFormModel MoveManipulation(MoveFormModel model)
-		{
-			if (model.Effect.ToLower() == "none")
-			{
-				model.Effect = "";
-				model.EffectChance = 0;
-				model.EffectDuration = 0;
-			}
-			if (model.Ailment.ToLower() == "none")
-			{
-				model.Ailment = "";
-				model.AilmentChance = 0;
-
-			}
-			if (model.isEffectUserString == "Not applicable")
-			{
-				model.IsEffectUser = null;
-			}
-			else
-			{
-				model.IsEffectUser = model.isEffectUserString == "Yes";
-			}
-			return model;
-		}
+		
 
 
 	}
