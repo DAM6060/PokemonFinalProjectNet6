@@ -15,9 +15,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IPokemonService, PokemonService>();
             services.AddScoped<ITeamService, TeamService>();
             services.AddScoped<IAbilityService, AbilityService>();
-            services.AddScoped<IMoveService, MoveService>();
-            
-            services.AddSignalR();
+            services.AddScoped<IMoveService, MoveService>();       
 
             return services;
         }
