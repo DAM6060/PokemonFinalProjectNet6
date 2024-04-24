@@ -40,9 +40,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
         [Comment("Number of Losses")]
         public int Losses { get; set; } = 0;
 
-		public int? LobbyId { get; set; }
-		[ForeignKey(nameof(LobbyId))]
-		public Lobby? Lobby { get; set; }
+		
 		
     }
 

@@ -12,7 +12,6 @@ namespace PokemonFinalProjectNet6.Areas.Admin.Controllers
 		{
 			pokemonService = _pokemonService;
 		}
-
 		[HttpGet]
 		public IActionResult AddSpecies()
 		{

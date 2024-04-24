@@ -45,7 +45,7 @@ namespace PokemonFinalProjectNet6.Data
         public DbSet<Player> Players { get; set; } = null!;
         public DbSet<PokemonMove> PokemonsMoves { get; set; } = null!;
 
-        public DbSet<Lobby> Lobbies { get; set; } = null!;
+        
 
         
     }
