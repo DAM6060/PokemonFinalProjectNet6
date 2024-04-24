@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PokemonFinalProjectNet6.Infrastructure.Constants
+﻿namespace PokemonFinalProjectNet6.Infrastructure.Constants
 {
 
 
-    public static class PokemonTypeChart
+	public static class PokemonTypeChart
     {
         static float h = 0.5f;
         static float d = 2f;

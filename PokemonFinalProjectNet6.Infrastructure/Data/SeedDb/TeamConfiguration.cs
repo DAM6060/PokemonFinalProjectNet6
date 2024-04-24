@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PokemonFinalProjectNet6.Infrastructure.Data.Models;
 
-namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
+namespace PokemonFinalProjectNet6.Infrastructure.Data.SeedDb
 {
     public class TeamConfiguration : IEntityTypeConfiguration<Team>
     {

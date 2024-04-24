@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using PokemonFinalProjectNet6.Infrastructure.Constants;
+using PokemonFinalProjectNet6.Infrastructure.Data.Models;
 
-namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
+namespace PokemonFinalProjectNet6.Infrastructure.Data.SeedDb
 {
     public class SeedData
     {
@@ -19,7 +20,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
         public List<PokemonMove> PokemonsMoves { get; set; }
 
         public IdentityUser AdminUser { get; set; }
-        public IdentityUser PlayerUser { get; set; }        
+        public IdentityUser PlayerUser { get; set; }
 
         public Player Player1 { get; set; }
 
@@ -107,7 +108,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 NormalizedEmail = "DDIMITAR98@GMAIL.COM"
             };
 
-            
+
 
             AdminUser.PasswordHash =
                  hasher.HashPassword(AdminUser, "Dimi123");
@@ -121,7 +122,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Email = "varnasharks.afc@gmail.com",
                 NormalizedEmail = "VARNASHARKS.AFC@GMAIL.COM"
             };
-            
+
             PlayerUser.PasswordHash =
                  hasher.HashPassword(PlayerUser, "Sharks123");
         }
@@ -264,7 +265,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 {
                     PokemonId = Infernoape2.Id,
                     MoveId = UTurn.Id
-                }               
+                }
             };
         }
 
@@ -289,12 +290,12 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
             };
             AdminTean = new Team()
             {
-				Id = 3,
-				Name = "AdminTeamForSpeciesAddition",
-				PlayerId = Player2.Id,
-				Wins = 1000,
-				Losses = 0
-			};
+                Id = 3,
+                Name = "AdminTeamForSpeciesAddition",
+                PlayerId = Player2.Id,
+                Wins = 1000,
+                Losses = 0
+            };
         }
         public void SeedPokemon()
         {
@@ -302,7 +303,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
             {
                 Id = 1,
                 Name = "Venusaur",
-                
+
                 Type1 = PokemonTypeCustom.Grass,
                 Type2 = PokemonTypeCustom.Poison,
                 AbilityId = Chlorophyll.Id,
@@ -312,7 +313,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 BaseSpecialAttack = 100,
                 BaseSpecialDefense = 100,
                 BaseSpeed = 80,
-                
+
                 EvHP = 0,
                 EvAttack = 0,
                 EvDefence = 0,
@@ -326,7 +327,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 SpecialDefense = 100,
                 Speed = 80,
                 TeamId = Team1.Id,
-                PlayerId = Player1.Id          
+                PlayerId = Player1.Id
 
             };
 
@@ -334,7 +335,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
             {
                 Id = 2,
                 Name = "Infernape",
-                
+
                 Type1 = PokemonTypeCustom.Fire,
                 Type2 = PokemonTypeCustom.Fighting,
                 AbilityId = IronFist.Id,
@@ -344,7 +345,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 BaseSpecialAttack = 104,
                 BaseSpecialDefense = 71,
                 BaseSpeed = 108,
-                
+
                 EvHP = 0,
                 EvAttack = 0,
                 EvDefence = 0,
@@ -365,7 +366,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
             {
                 Id = 3,
                 Name = "Tyranitar",
-                
+
                 Type1 = PokemonTypeCustom.Rock,
                 Type2 = PokemonTypeCustom.Dark,
                 AbilityId = Adaptability.Id,
@@ -375,7 +376,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 BaseSpecialAttack = 95,
                 BaseSpecialDefense = 100,
                 BaseSpeed = 61,
-                
+
                 EvHP = 0,
                 EvAttack = 0,
                 EvDefence = 0,
@@ -396,7 +397,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
             {
                 Id = 4,
                 Name = "Scizor",
-                
+
                 Type1 = PokemonTypeCustom.Bug,
                 Type2 = PokemonTypeCustom.Steel,
                 AbilityId = Technichian.Id,
@@ -406,7 +407,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 BaseSpecialAttack = 55,
                 BaseSpecialDefense = 80,
                 BaseSpeed = 65,
-               
+
                 EvHP = 0,
                 EvAttack = 0,
                 EvDefence = 0,
@@ -427,7 +428,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
             {
                 Id = 5,
                 Name = "Infernape",
-                
+
                 Type1 = PokemonTypeCustom.Fire,
                 Type2 = PokemonTypeCustom.Fighting,
                 AbilityId = IronFist.Id,
@@ -437,7 +438,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 BaseSpecialAttack = 104,
                 BaseSpecialDefense = 71,
                 BaseSpeed = 108,
-               
+
                 EvHP = 0,
                 EvAttack = 0,
                 EvDefence = 0,
@@ -457,7 +458,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
             {
                 Id = 6,
                 Name = "Venusaur",
-                
+
                 Type1 = PokemonTypeCustom.Grass,
                 Type2 = PokemonTypeCustom.Poison,
                 AbilityId = Chlorophyll.Id,
@@ -467,7 +468,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 BaseSpecialAttack = 100,
                 BaseSpecialDefense = 100,
                 BaseSpeed = 80,
-                
+
                 EvHP = 0,
                 EvAttack = 0,
                 EvDefence = 0,
@@ -481,7 +482,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 SpecialDefense = 100,
                 Speed = 80,
                 TeamId = Team2.Id,
-                PlayerId= Player1.Id
+                PlayerId = Player1.Id
 
             };
 

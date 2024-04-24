@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
+namespace PokemonFinalProjectNet6.Infrastructure.Data.SeedDb
 {
     public class UserConfiguration : IEntityTypeConfiguration<IdentityUser>
     {

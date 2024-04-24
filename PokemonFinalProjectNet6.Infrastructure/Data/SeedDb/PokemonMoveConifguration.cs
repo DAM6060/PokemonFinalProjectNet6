@@ -1,22 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PokemonFinalProjectNet6.Infrastructure.Data.Models;
 
-namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
+namespace PokemonFinalProjectNet6.Infrastructure.Data.SeedDb
 {
-    public class PokemonMoveConifguration : IEntityTypeConfiguration<PokemonMove>
+	public class PokemonMoveConifguration : IEntityTypeConfiguration<PokemonMove>
     {
         public void Configure(EntityTypeBuilder<PokemonMove> builder)
         {
             var data = new SeedData();
 
 
-            builder.HasData(new PokemonMove[] 
+            builder.HasData(new PokemonMove[]
             {
                 data.PokemonsMoves[0],
                 data.PokemonsMoves[1],
                 data.PokemonsMoves[2],
                 data.PokemonsMoves[3],
-                data.PokemonsMoves[4],                
+                data.PokemonsMoves[4],
                 data.PokemonsMoves[5],
                 data.PokemonsMoves[6],
                 data.PokemonsMoves[7],

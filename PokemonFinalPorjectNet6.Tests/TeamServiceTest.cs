@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using PokemonFinalProjectNet6.Core.Models.Battle;
+using PokemonFinalProjectNet6.Core.Models;
 using PokemonFinalProjectNet6.Core.Models.Pokemon;
 using PokemonFinalProjectNet6.Core.Models.Team;
 using PokemonFinalProjectNet6.Core.Services;
@@ -406,29 +406,8 @@ namespace PokemonFinalPorjectNet6.Tests
 			Assert.That(result.First().Wins, Is.EqualTo(teams[0].Wins));
 			Assert.That(result, Is.TypeOf<List<TeamServiceModel>>());
 		}
-		[Test]
-		public async Task GetBattleTeamServiceByIdAsyncReturnsCorrectTeam()
-		{
-			var team = await teamService.GetBattleTeamServiceByIdAsync(1);
-			Assert.That(team.Name, Is.EqualTo(teams[0].Name));
-			Assert.That(team.Wins, Is.EqualTo(teams[0].Wins));
-			Assert.That(team.Losses, Is.EqualTo(teams[0].Losses));
-			Assert.That(team.Pokemons.First().Name, Is.EqualTo(teams[0].Pokemons[0].Name));
-			Assert.That(team.Pokemons.First().Type1, Is.EqualTo(teams[0].Pokemons[0].Type1));
-			Assert.That(team.Pokemons.First().Type2, Is.EqualTo(teams[0].Pokemons[0].Type2));			
-			Assert.That(team.Pokemons.First().IsFainted, Is.EqualTo(false));
-			Assert.That(team, Is.TypeOf<BattleTeamServiceModel>());
-		}
-		[Test]
-		public async Task GetTeamsByPlayerIdForBattleAsyncReturnsCorrectTeams()
-		{
-			var result = await teamService.GetTeamsByPlayerIdForBattleAsync(1);
-			Assert.That(result.First().Name, Is.EqualTo(teams[0].Name));
-			Assert.That(result.First().Wins, Is.EqualTo(teams[0].Wins));
-			Assert.That(result.First().Losses, Is.EqualTo(teams[0].Losses));
-			Assert.That(result.First().Pokemons.First(), Is.EqualTo(teams[0].Pokemons[0].Name));
-			Assert.That(result, Is.TypeOf<List<TeamServiceModel>>());
-		}
+		
+		
 		[Test]
 		public async Task TeamLeaderBoardAsyncReturnsCorrectTeams()
 		{

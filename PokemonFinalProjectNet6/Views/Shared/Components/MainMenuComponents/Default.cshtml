@@ -10,10 +10,7 @@
     <li class="nav-item">
     <li class="nav-item">
         <a class="nav-link text-dark" asp-area="" asp-controller="Move" asp-action="All">Moves</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Sudoko" asp-action="Play">Sudoko Challenge</a>
-    </li>
+    </li>    
     @if (this.User?.Identity?.IsAuthenticated ?? false)
     {
         <li class="nav-item">

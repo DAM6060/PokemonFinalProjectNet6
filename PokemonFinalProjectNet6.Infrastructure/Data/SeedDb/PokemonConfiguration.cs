@@ -1,14 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PokemonFinalProjectNet6.Infrastructure.Data.Models;
 
-namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
+namespace PokemonFinalProjectNet6.Infrastructure.Data.SeedDb
 {
-    public class PokemonConfiguration : IEntityTypeConfiguration<Pokemon>
+	public class PokemonConfiguration : IEntityTypeConfiguration<Pokemon>
     {
         public void Configure(EntityTypeBuilder<Pokemon> builder)
         {
@@ -16,7 +12,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
 
             builder.HasData(new Pokemon[]
             {
-               data.Venausor1,           
+               data.Venausor1,
                data.Venausor2,
                data.Infernoape1,
                data.Infernoape2,

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using PokemonFinalProjectNet6.Attributes;
 using PokemonFinalProjectNet6.Core.Contracts;
 using PokemonFinalProjectNet6.Core.Models.Pokemon;
@@ -65,8 +64,6 @@ namespace PokemonFinalProjectNet6.Controllers
 			return View(model);
 
 		}
-
-
 		[HttpGet]
 		[MustBePlayer]
 		public async Task<IActionResult> Add()
@@ -226,17 +223,6 @@ namespace PokemonFinalProjectNet6.Controllers
 
 			return RedirectToAction(nameof(MyTeams));
 		}
-
-		//private async Task<IActionResult> PlayerHasTeamCheck(int teamid)
-		//{
-		//	var playerId = await playerService.GetPlayerIdAsync(User.Id());
-		//
-		//	if (await teamService.PlayerHasTeamAsync(teamid, playerId ?? 0) == false)
-		//	{
-		//		return Unauthorized();
-		//	}
-		//	return ;
-		//}
 
 	}
 }

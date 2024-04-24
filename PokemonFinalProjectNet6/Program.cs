@@ -1,4 +1,4 @@
-using PokemonFinalProjectNet6.Hubs;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,7 +47,7 @@ app.UseEndpoints(endpoints =>
 				name: "default",
 						pattern: "{controller=Home}/{action=Index}/{id?}");
 	
-	endpoints.MapHub<BattleHub>("/battleHub");
+	
 	endpoints.MapRazorPages();
 });
 

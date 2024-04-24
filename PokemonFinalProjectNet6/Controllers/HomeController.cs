@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PokemonFinalProjectNet6.Models;
-using System.Diagnostics;
 using static PokemonFinalProjectNet6.Areas.Admin.AdminConstants;
 
 namespace PokemonFinalProjectNet6.Controllers
 {
-	
+
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;

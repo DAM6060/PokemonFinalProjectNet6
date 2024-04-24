@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PokemonFinalProjectNet6.Infrastructure.Data.Models;
-using PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb;
+using PokemonFinalProjectNet6.Infrastructure.Data.SeedDb;
 
 namespace PokemonFinalProjectNet6.Data
 {

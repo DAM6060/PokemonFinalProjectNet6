@@ -1,11 +1,10 @@
 ﻿using PokemonFinalProjectNet6.Core.Enumerations;
-using PokemonFinalProjectNet6.Core.Models.Battle;
 using PokemonFinalProjectNet6.Core.Models.Move;
 using PokemonFinalProjectNet6.Infrastructure.Constants;
 
 namespace PokemonFinalProjectNet6.Core.Contracts
 {
-    public interface IMoveService
+	public interface IMoveService
     {
         Task<List<MoveServiceModel>> GetAllMovesServiceModel();
 

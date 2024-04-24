@@ -1,15 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PokemonFinalProjectNet6.Infrastructure.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
+namespace PokemonFinalProjectNet6.Infrastructure.Data.SeedDb
 {
-    public class MoveConfiguration : IEntityTypeConfiguration<Move>
+	public class MoveConfiguration : IEntityTypeConfiguration<Move>
     {
         public void Configure(EntityTypeBuilder<Move> builder)
         {

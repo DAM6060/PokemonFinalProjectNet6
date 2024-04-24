@@ -32,44 +32,12 @@ namespace PokemonFinalProjectNet6.Core.Services
             return await repository.AllAsReadOnly<Player>()
                 .AnyAsync(p => p.UserId == userId);
            
-        }
-
-		public async Task<Player> GetPlayerByPlayerIdAsync(int playerId)
-		{
-			return await repository.AllAsReadOnly<Player>()
-				.FirstOrDefaultAsync(p => p.Id == playerId);
-		}
+        }		
 
 		public async Task<int?> GetPlayerIdAsync(string userId)
         {
             return (await repository.AllAsReadOnly<Player>()
                 .FirstOrDefaultAsync(p => p.UserId == userId))?.Id;
-        }
-
-        public async Task<PlayerTeamsServiceModel> GetTeamsByPlayerIdForBattleAsync(int playerId)
-        {
-            var teams = await repository.AllAsReadOnly<Team>()
-                .Where(t => t.PlayerId == playerId)
-                .Select(t => new TeamServiceModel
-                {
-                    Id = t.Id,
-                    Name = t.Name,
-                    PlayerId = t.PlayerId,
-                    Pokemons = t.Pokemons.Select(p => p.Name).ToList(),
-                    Wins = t.Wins,
-                    Losses = t.Losses
-                }).ToListAsync();
-
-            return new PlayerTeamsServiceModel
-            {
-				Teams = teams
-			};
-        }
-
-        public async Task<bool> UserHasTeamsAsync(string userId)
-        {
-            return await repository.AllAsReadOnly<Team>()
-                .AnyAsync(t => t.Player.UserId == userId);
         }
 
         public Task<bool> UserWithNameExistsAsync(string name)
