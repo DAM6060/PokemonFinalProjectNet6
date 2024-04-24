@@ -4,6 +4,7 @@ using PokemonFinalProjectNet6.Core.Models.Move;
 using PokemonFinalProjectNet6.Core.Models.Pokemon;
 using PokemonFinalProjectNet6.Infrastructure.Data.Common;
 using PokemonFinalProjectNet6.Infrastructure.Data.Models;
+using System.Buffers.Text;
 using System.Reflection.Metadata.Ecma335;
 using static PokemonFinalProjectNet6.Infrastructure.Constants.Constant;
 
@@ -13,16 +14,11 @@ namespace PokemonFinalProjectNet6.Core.Services
     public class PokemonService : IPokemonService
     {
         private readonly IRepository repository;
-        private readonly IMoveService moveService;
-        private readonly IAbilityService abilityService;
-        private readonly IPlayerService playerService;
+        
 
-        public PokemonService(IRepository _repository, IMoveService moveService, IAbilityService abilityService, IPlayerService playerService)
+        public PokemonService(IRepository _repository)
         {
-            repository = _repository;
-            this.moveService = moveService;
-            this.abilityService = abilityService;
-            this.playerService = playerService;
+            repository = _repository;            
         }
 
         public async Task<IEnumerable<string>> AllSpeciesNamesAsync()
@@ -87,8 +83,6 @@ namespace PokemonFinalProjectNet6.Core.Services
 
         public async Task EditAsync(int pokemonId, PokemonFormModel model)
         {
-			
-
 			var pokemon = repository.All<Pokemon>().Include(p => p.PokemonMoves)
 				.FirstOrDefault(p => p.Id == pokemonId);
             
@@ -159,8 +153,7 @@ namespace PokemonFinalProjectNet6.Core.Services
                 .Select(p => new PokemonViewModel
                 {
                     Id = p.Id,
-                    Name = p.Name,
-                    PokeDexNumber = p.PokeDexNumber,
+                    Name = p.Name,                    
                     BaseHp = p.BaseHP,
                     EvHp = p.EvHP,
                     HP = p.HP,
@@ -268,5 +261,98 @@ namespace PokemonFinalProjectNet6.Core.Services
 				await repository.AddAsync(pokemonMove);
 			}
 		}
-    }
+
+		public async Task CreateSpeciesAsync(PokemonSpeciesFormModel model)
+		{
+            if (model != null)
+            {
+                var pokemon = new Pokemon
+                {
+                    Name = model.Name,
+                    Level = model.Level,
+                    BaseHP = model.BaseHP,
+                    BaseAttack = model.BaseAttack,
+                    BaseDefense = model.BaseDefense,
+                    BaseSpecialAttack = model.BaseSpecialAttack,
+                    BaseSpecialDefense = model.BaseSpecialDefense,
+                    BaseSpeed = model.BaseSpeed,
+                    Type1 = model.Type1,
+                    Type2 = model.Type2,
+                    AbilityId = model.AbilityId,
+                    TeamId = model.TeamId,
+                    PlayerId = model.PlayerId,
+                    HP = model.HP,
+                    Attack = model.Attack,
+                    Defense = model.Defense,
+                    SpecialAttack = model.SpecialAttack,
+                    SpecialDefense = model.SpecialDefense,
+                    Speed = model.Speed,
+                    EvHP = model.EvHP,
+                    EvAttack = model.EvAttack,
+                    EvDefence = model.EvDefense,
+                    EvSpecialAttack = model.EvSpecialAttack,
+                    EvSpecialDefense = model.EvSpecialDefense,
+                    EvSpeed = model.EvSpeed
+
+                };
+                await repository.AddAsync(pokemon);
+                await repository.SaveChangesAsync();
+            }
+		}
+
+		public async Task<PokemonSpeciesFormModel> GetPokemonSpeciesFormModelAsync(string name)
+		{
+			return await repository.AllAsReadOnly<Pokemon>()
+				.Where(p => p.Name == name)
+				.Select(p => new PokemonSpeciesFormModel
+                {
+					Name = p.Name,
+					Level = p.Level,
+					BaseHP = p.BaseHP,
+					BaseAttack = p.BaseAttack,
+					BaseDefense = p.BaseDefense,
+					BaseSpecialAttack = p.BaseSpecialAttack,
+					BaseSpecialDefense = p.BaseSpecialDefense,
+					BaseSpeed = p.BaseSpeed,
+					Type1 = p.Type1,
+					Type2 = p.Type2,
+					
+				})
+				.FirstAsync();
+		}
+        //May Remove this or think about it latter 
+		public async Task EditSpecies(PokemonSpeciesFormModel model)
+		{
+			var pokemons = await repository.All<Pokemon>().
+                Where(p => p.Name == model.Name)
+				.ToListAsync();
+
+			if (pokemons != null)
+            {
+                foreach (var pokemon in pokemons)
+                {
+                    await EditAndSavePokemonValues(pokemon, model);
+				}
+            }
+		}
+        private async Task EditAndSavePokemonValues(Pokemon pokemon, PokemonSpeciesFormModel model)
+        {
+			pokemon.Name = model.Name;
+			pokemon.Type1 = model.Type1;
+			pokemon.Type2 = model.Type2;
+			pokemon.BaseHP = model.BaseHP;
+			pokemon.BaseAttack = model.BaseAttack;
+			pokemon.BaseDefense = model.BaseDefense;
+			pokemon.BaseSpecialAttack = model.BaseSpecialAttack;
+			pokemon.BaseSpecialDefense = model.BaseSpecialDefense;
+			pokemon.BaseSpeed = model.BaseSpeed;
+			pokemon.HP = (int)((((double)2 * (double)model.BaseHP + ((double)pokemon.EvHP / (double)4)) * (double)pokemon.Level / (double)100) + (double)pokemon.Level + (double)10);
+			pokemon.Attack = (int)((((double)2 * (double)model.BaseAttack + ((double)pokemon.EvAttack / (double)4)) * (double)pokemon.Level / (double)100) + (double)5);
+			pokemon.Defense = (int)((((double)2 * (double)model.BaseDefense + ((double)pokemon.EvDefence / (double)4)) * (double)pokemon.Level / (double)100) + (double)5);
+			pokemon.SpecialAttack = (int)((((double)2 * (double)model.BaseSpecialAttack + ((double)pokemon.EvSpecialAttack / (double)4)) * (double)pokemon.Level / (double)100) + (double)5);
+			pokemon.SpecialDefense = (int)((((double)2 * (double)model.BaseSpecialDefense + ((double)pokemon.EvSpecialDefense / (double)4)) * (double)pokemon.Level / (double)100) + (double)5);
+			pokemon.Speed = (int)((((double)2 * (double)model.BaseSpeed + ((double)pokemon.EvSpeed / (double)4)) * (double)pokemon.Level / (double)100) + (double)5);
+			await repository.SaveChangesAsync();
+		}
+	}
 }

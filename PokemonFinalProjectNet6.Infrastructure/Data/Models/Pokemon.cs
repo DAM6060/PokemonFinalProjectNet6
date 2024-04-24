@@ -13,10 +13,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 		public int Id { get; set; }
 
 		[Required]
-		public string Name { get; set; } = string.Empty;
-
-		[Required]
-		public int PokeDexNumber { get; set; }
+		public string Name { get; set; } = string.Empty;		
 
 		public int Level { get; set; } = PokemonLevel;
 
@@ -99,11 +96,6 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 		[Display(Name = "SecondaryPokemonType")]
 		[Comment("The secondary type of a pokemon")]
 		public PokemonTypeCustom Type2 { get; set; }
-
-		[Required]
-		[Comment("Generation in which Pokemon is introduced")]
-		[Range(0, 10)]
-		public int GenerationCustom { get; set; }
 
 		[Required]
 		public int AbilityId { get; set; }

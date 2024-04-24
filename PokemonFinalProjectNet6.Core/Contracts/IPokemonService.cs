@@ -28,5 +28,8 @@ namespace PokemonFinalProjectNet6.Core.Contracts
         Task DeleteAsync(int pokemonId);
 
         Task<PokemonFormModel> GetPokemonFormModelByIdAsync(int id);
-    }
+		Task CreateSpeciesAsync(PokemonSpeciesFormModel model);
+		Task<PokemonSpeciesFormModel> GetPokemonSpeciesFormModelAsync(string name);
+		Task EditSpecies(PokemonSpeciesFormModel model);
+	}
 }

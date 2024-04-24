@@ -42,7 +42,11 @@ namespace PokemonFinalProjectNet6.Infrastructure.Constants
 
         public const string LenghtMessage = "The field {0} must be between {2} and {1} characters long";
 
-		public const int UserNameMaxLength = 20;
+		
+
+		public const int PokemonCreationAbilityId = 1;
+		public const int AdminUserTeamId = 3;
+		public const int AdminPlayerUserId = 2;
 
     }
 }

@@ -12,7 +12,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
             builder.HasData(new Team[]
             {
                 data.Team1,
-                data.Team2
+                data.Team2,
+                data.AdminTean
             });
         }
     }

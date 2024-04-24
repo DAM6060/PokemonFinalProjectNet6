@@ -29,6 +29,8 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
 
         public Team Team2 { get; set; }
 
+        public Team AdminTean { get; set; }
+
         public Pokemon Venausor1 { get; set; }
 
         public Pokemon Venausor2 { get; set; }
@@ -285,6 +287,14 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 Wins = 100,
                 Losses = 0
             };
+            AdminTean = new Team()
+            {
+				Id = 3,
+				Name = "AdminTeamForSpeciesAddition",
+				PlayerId = Player2.Id,
+				Wins = 1000,
+				Losses = 0
+			};
         }
         public void SeedPokemon()
         {
@@ -292,7 +302,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
             {
                 Id = 1,
                 Name = "Venusaur",
-                PokeDexNumber = 3,
+                
                 Type1 = PokemonTypeCustom.Grass,
                 Type2 = PokemonTypeCustom.Poison,
                 AbilityId = Chlorophyll.Id,
@@ -302,7 +312,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 BaseSpecialAttack = 100,
                 BaseSpecialDefense = 100,
                 BaseSpeed = 80,
-                GenerationCustom = 1,
+                
                 EvHP = 0,
                 EvAttack = 0,
                 EvDefence = 0,
@@ -324,7 +334,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
             {
                 Id = 2,
                 Name = "Infernape",
-                PokeDexNumber = 392,
+                
                 Type1 = PokemonTypeCustom.Fire,
                 Type2 = PokemonTypeCustom.Fighting,
                 AbilityId = IronFist.Id,
@@ -334,7 +344,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 BaseSpecialAttack = 104,
                 BaseSpecialDefense = 71,
                 BaseSpeed = 108,
-                GenerationCustom = 4,
+                
                 EvHP = 0,
                 EvAttack = 0,
                 EvDefence = 0,
@@ -355,7 +365,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
             {
                 Id = 3,
                 Name = "Tyranitar",
-                PokeDexNumber = 248,
+                
                 Type1 = PokemonTypeCustom.Rock,
                 Type2 = PokemonTypeCustom.Dark,
                 AbilityId = Adaptability.Id,
@@ -365,7 +375,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 BaseSpecialAttack = 95,
                 BaseSpecialDefense = 100,
                 BaseSpeed = 61,
-                GenerationCustom = 2,
+                
                 EvHP = 0,
                 EvAttack = 0,
                 EvDefence = 0,
@@ -386,7 +396,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
             {
                 Id = 4,
                 Name = "Scizor",
-                PokeDexNumber = 212,
+                
                 Type1 = PokemonTypeCustom.Bug,
                 Type2 = PokemonTypeCustom.Steel,
                 AbilityId = Technichian.Id,
@@ -396,7 +406,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 BaseSpecialAttack = 55,
                 BaseSpecialDefense = 80,
                 BaseSpeed = 65,
-                GenerationCustom = 2,
+               
                 EvHP = 0,
                 EvAttack = 0,
                 EvDefence = 0,
@@ -417,7 +427,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
             {
                 Id = 5,
                 Name = "Infernape",
-                PokeDexNumber = 392,
+                
                 Type1 = PokemonTypeCustom.Fire,
                 Type2 = PokemonTypeCustom.Fighting,
                 AbilityId = IronFist.Id,
@@ -427,7 +437,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 BaseSpecialAttack = 104,
                 BaseSpecialDefense = 71,
                 BaseSpeed = 108,
-                GenerationCustom = 4,
+               
                 EvHP = 0,
                 EvAttack = 0,
                 EvDefence = 0,
@@ -447,7 +457,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
             {
                 Id = 6,
                 Name = "Venusaur",
-                PokeDexNumber = 3,
+                
                 Type1 = PokemonTypeCustom.Grass,
                 Type2 = PokemonTypeCustom.Poison,
                 AbilityId = Chlorophyll.Id,
@@ -457,7 +467,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models.SeedDb
                 BaseSpecialAttack = 100,
                 BaseSpecialDefense = 100,
                 BaseSpeed = 80,
-                GenerationCustom = 1,
+                
                 EvHP = 0,
                 EvAttack = 0,
                 EvDefence = 0,
