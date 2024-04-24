@@ -40,8 +40,7 @@ namespace PokemonFinalProjectNet6.Data
 
         public DbSet<Ability> Abilities { get; set; } = null!;
         public DbSet<Pokemon> Pokemons { get; set; } = null!;
-        public DbSet<Team> Teams { get; set; } = null!;
-        public DbSet<Sudoko> Sudokos { get; set; } = null!;
+        public DbSet<Team> Teams { get; set; } = null!;       
         public DbSet<Move> Moves { get; set; } = null!;
         public DbSet<Player> Players { get; set; } = null!;
         public DbSet<PokemonMove> PokemonsMoves { get; set; } = null!;
