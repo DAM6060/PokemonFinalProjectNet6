@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Data\" />
     <Folder Include="Data\" />
     <Folder Include="Views\Hubs\" />

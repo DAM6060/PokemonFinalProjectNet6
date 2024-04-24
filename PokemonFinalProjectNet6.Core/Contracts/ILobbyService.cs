@@ -13,6 +13,6 @@ namespace PokemonFinalProjectNet6.Core.Contracts
 
         Task<LobbyServiceModel> GetLobbyByIdAsync(int lobbyId);
 
-
+		Task<LobbyServiceModel> GetLobbyByConnectionIdAsync(string connectionId);
 	}
 }

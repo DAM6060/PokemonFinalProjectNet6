@@ -38,12 +38,18 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+						name: "Areas",
+						pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+	endpoints.MapControllerRoute(
+				name: "default",
+						pattern: "{controller=Home}/{action=Index}/{id?}");
+	
+	endpoints.MapHub<BattleHub>("/battleHub");
+	endpoints.MapRazorPages();
+});
 
-app.MapControllerRoute(
-	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapHub<BattleHub>("/battleHub");
-
-app.MapRazorPages();
-
-app.Run();
+await app.CreatAdminRoleAsync();
+await app.RunAsync();

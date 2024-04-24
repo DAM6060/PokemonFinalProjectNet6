@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using PokemonFinalProjectNet6.Core.Contracts;
+using PokemonFinalProjectNet6.Core.Models.Battle;
 using PokemonFinalProjectNet6.Infrastructure.Data.Models;
 using System.Security.Claims;
 
@@ -17,15 +18,7 @@ namespace PokemonFinalProjectNet6.Hubs
             lobbyService = _lobbyService;
         }
 
-		public override Task OnConnectedAsync()
-		{
-            var lobby = GetLobbyForPlayer(Context.ConnectionId);
-			return base.OnConnectedAsync();
-		}
-        private Lobby GetLobbyForPlayer(string connectionId)
-        {
-			return null;
-		}
+		//public async Task AssignUserToGroup()
 
 
 

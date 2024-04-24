@@ -71,19 +71,11 @@ namespace PokemonFinalProjectNet6.Controllers
 
             var lobby = await lobbyService.GetLobbyByIdAsync(lobbyId);
 
-            await ConnectUserToHub(lobby.Players.Where(x => x.Id ==playerId).First());
+            //await ConnectUserToHub(lobby.Players.Where(x => x.Id ==playerId).First());
 
-            return Ok();           
+            return View(lobby);           
         
-        }
-		//public Task<IActionResult> MakeMove()
-		//{
-		//
-		//}
-		//public Task<IActionResult> EndBattle()
-		//{
-		//
-		//}
+        }		
 		
 		private async Task ConnectUserToHub(PlayerServiceModel player)
         {

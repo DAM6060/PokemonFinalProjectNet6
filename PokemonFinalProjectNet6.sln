@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34601.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonFinalProjectNet6", "PokemonFinalProjectNet6\PokemonFinalProjectNet6.csproj", "{50E3F636-4D54-4E9D-9985-C8418263443E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonFinalProjectNet6", "PokemonFinalProjectNet6\PokemonFinalProjectNet6.csproj", "{50E3F636-4D54-4E9D-9985-C8418263443E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonFinalProjectNet6.Infrastructure", "PokemonFinalProjectNet6.Infrastructure\PokemonFinalProjectNet6.Infrastructure.csproj", "{E590CB91-6404-47EA-AD09-4D6B76733231}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonFinalProjectNet6.Infrastructure", "PokemonFinalProjectNet6.Infrastructure\PokemonFinalProjectNet6.Infrastructure.csproj", "{E590CB91-6404-47EA-AD09-4D6B76733231}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonFinalProjectNet6.Core", "PokemonFinalProjectNet6.Core\PokemonFinalProjectNet6.Core.csproj", "{C0EB446F-13C5-4289-B339-D1DF408B949B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonFinalProjectNet6.Core", "PokemonFinalProjectNet6.Core\PokemonFinalProjectNet6.Core.csproj", "{C0EB446F-13C5-4289-B339-D1DF408B949B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonFinalPorjectNet6.Tests", "PokemonFinalPorjectNet6.Tests\PokemonFinalPorjectNet6.Tests.csproj", "{4F15B4E8-2B9C-43C6-BAD0-02110C19D5A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{C0EB446F-13C5-4289-B339-D1DF408B949B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0EB446F-13C5-4289-B339-D1DF408B949B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0EB446F-13C5-4289-B339-D1DF408B949B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F15B4E8-2B9C-43C6-BAD0-02110C19D5A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F15B4E8-2B9C-43C6-BAD0-02110C19D5A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F15B4E8-2B9C-43C6-BAD0-02110C19D5A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F15B4E8-2B9C-43C6-BAD0-02110C19D5A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
