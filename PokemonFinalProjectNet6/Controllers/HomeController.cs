@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PokemonFinalProjectNet6.Models;
 using System.Diagnostics;
+using static PokemonFinalProjectNet6.Areas.Admin.AdminConstants;
 
 namespace PokemonFinalProjectNet6.Controllers
 {
@@ -17,6 +18,10 @@ namespace PokemonFinalProjectNet6.Controllers
 
 		public IActionResult Index()
 		{
+			if (User.IsInRole(AdministratorRoleName))
+			{
+				return RedirectToAction("Index", "Home", new { area = "Admin" });
+			}
 			return View();
 		}		
 

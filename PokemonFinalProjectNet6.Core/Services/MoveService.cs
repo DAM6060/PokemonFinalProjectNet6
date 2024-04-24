@@ -80,18 +80,65 @@ namespace PokemonFinalProjectNet6.Core.Services
             };
         }
 
-		public async Task DeleteAllPokemonMoveByPokemonIdAsync(int pokemonId)
+		public async Task<int> CreateAsync(MoveFormModel model)
 		{
-            await repository.All<PokemonMove>()
-                .Where(pm => pm.PokemonId == pokemonId)
-                .ForEachAsync(pm => repository
-                .DeleteAsync<PokemonMove>(pokemonId));
-
+			Move move = new Move
+            {
+				Name = model.Name,
+				Description = model.Description,
+				Type = model.Type.ToString(),
+				Power = model.Power,
+				PowerPoints = model.PowerPoints,
+				Accuracy = model.Accuracy,
+				EffectChance = model.EffectChance,
+				Effect = model.Effect,
+				IsEffectUser = string.IsNullOrWhiteSpace(model.Effect)? null : model.IsEffectUser,
+				EffectDuration = model.EffectDuration,
+				Ailment = string.IsNullOrWhiteSpace(model.Ailment) ? "" : model.Ailment,
+				AilmentChance = string.IsNullOrWhiteSpace(model.Ailment) ? 0 : model.AilmentChance,
+				DamageClass = model.DamageClass,			
+				HealAmount = model.HealAmount,
+				HealType = model.HealAmount == 0 ? 0 : model.HealType,
+				Priority = model.Priority
+			};
+            await repository.AddAsync(move);
             await repository.SaveChangesAsync();
-			
+
+            return move.Id;
 		}
 
-		
+		public async Task EditAsync(MoveFormModel model)
+		{
+			var move = await repository.All<Move>()
+				.Where(m => m.Name == model.Name)
+				.FirstOrDefaultAsync();
+            if (move!= null)
+            {
+                move.Name = model.Name;
+                move.Description = model.Description;
+                move.Type = model.Type.ToString();
+                move.Power = model.Power;
+                move.PowerPoints = model.PowerPoints;
+                move.Accuracy = model.Accuracy;
+                move.EffectChance = model.EffectChance;
+                move.Effect = model.Effect;
+                move.IsEffectUser = string.IsNullOrWhiteSpace(model.Effect) ? null : model.IsEffectUser;
+                move.EffectDuration = model.EffectDuration;
+                move.Ailment = string.IsNullOrWhiteSpace(model.Ailment) ? "" : model.Ailment;
+                move.AilmentChance = string.IsNullOrWhiteSpace(model.Ailment) ? 0 : model.AilmentChance;
+                move.DamageClass = model.DamageClass;
+                move.HealAmount = model.HealAmount;
+                move.HealType = model.HealAmount == 0 ? 0 : model.HealType;
+                move.Priority = model.Priority;
+                await repository.SaveChangesAsync();
+            }
+		}
+
+		public async Task<bool> ExistsByIdAsync(int id)
+		{
+			return await repository.AllAsReadOnly<Move>()
+				.AnyAsync(m => m.Id == id);
+		}
 
 		public Task<List<MoveServiceModel>> GetAllMovesServiceModel()
         {
@@ -109,16 +156,31 @@ namespace PokemonFinalProjectNet6.Core.Services
                 .ToListAsync(); 
         }
 
-        public async Task<MoveServiceModel> MoveByIdAsync(int id)
-        {
-            return await repository.AllAsReadOnly<MoveServiceModel>()
-                .Where(m => m.Id == id)
-                .Select(m => new MoveServiceModel
+		public async Task<MoveFormModel> GetMoveFormModelAsync(int moveId)
+		{
+			return await repository.AllAsReadOnly<Move>()
+				.Where(m => m.Id == moveId)
+				.Select(m => new MoveFormModel
                 {
-                    Id = m.Id,
-                    Name = m.Name,                   
-                })
-                .FirstOrDefaultAsync();
-        }
+					Name = m.Name,
+					Description = m.Description,
+					Type = Enum.Parse<PokemonTypeCustom>(m.Type),
+					Power = m.Power,
+					PowerPoints = m.PowerPoints,
+					Accuracy = m.Accuracy,
+					EffectChance = m.EffectChance,
+					Effect = m.Effect,
+					IsEffectUser = m.IsEffectUser,
+					EffectDuration = m.EffectDuration,
+					Ailment = m.Ailment,
+					AilmentChance = m.AilmentChance,
+					DamageClass = m.DamageClass,
+					HealAmount = m.HealAmount,
+					HealType = m.HealType,
+					Priority = m.Priority
+				})
+				.FirstAsync();
+		}
+		
     }
 }

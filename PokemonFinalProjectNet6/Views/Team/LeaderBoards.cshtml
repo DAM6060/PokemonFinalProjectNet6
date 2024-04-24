@@ -7,6 +7,7 @@
 	ViewBag.MostPlayed = "LeaderBoards - Most Games Played";
 	ViewBag.BiggestPositiveDifferential = "LeaderBoards - Biggest Positive Differential";
 	ViewBag.BiggestNegativeDifferential = "LeaderBoards - Biggest Negative Differential";
+	ViewBag.AdminTeamToSkipId = 3;
 }
 
 <h2 class="text-center">
@@ -119,6 +120,10 @@
 	<tbody>
 		@foreach (var team in Model.Teams)
 		{
+			if (team.Id == ViewBag.AdminTeamToSkipId)
+			{
+				continue;
+			}
 			if (team.Pokemons.Count < 3)
 			{
 				for (int j = team.Pokemons.Count; j < 3; j++)
