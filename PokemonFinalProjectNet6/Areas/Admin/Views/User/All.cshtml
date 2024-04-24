@@ -1,0 +1,41 @@
+﻿@model IEnumerable<UserServiceModel>
+@{
+    ViewBag.Title = "All Users";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th><label>Email</label></th>
+            
+            <th><label>Player Name/label></th>
+            <th><label>User Is Player</label></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>
+                    <label>@user.Email</label>
+                </td>               
+                <td>
+                    <label>@user.PlayerName</label>
+                </td>
+                <td>
+                    @if (user.IsPlayer)
+                    {
+                        <label>✔</label>
+                    }
+                    else
+                    {
+                        <label class="text-center">❌</label>
+                    }
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

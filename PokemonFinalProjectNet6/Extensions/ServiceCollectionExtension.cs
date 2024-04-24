@@ -16,6 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ITeamService, TeamService>();
             services.AddScoped<IAbilityService, AbilityService>();
             services.AddScoped<IMoveService, MoveService>();       
+            services.AddScoped<IUserService, UserService>();
 
             return services;
         }

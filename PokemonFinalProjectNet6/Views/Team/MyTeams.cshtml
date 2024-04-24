@@ -4,6 +4,7 @@
 
 @{
 	ViewData["Title"] = "My Teams";
+    ViewBag.AdminTeamToSkipId = 3;
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -27,6 +28,10 @@
     <tbody>
         @foreach (var team in Model)
         {
+            if (team.Id == ViewBag.AdminTeamToSkipId)
+            {
+                continue;
+            }
             if (team.Pokemons.Count < 3)
             {
                 for (int j = team.Pokemons.Count; j < 3; j++)
