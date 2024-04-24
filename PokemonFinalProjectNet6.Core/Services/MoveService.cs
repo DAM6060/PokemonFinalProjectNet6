@@ -82,24 +82,25 @@ namespace PokemonFinalProjectNet6.Core.Services
 
 		public async Task<int> CreateAsync(MoveFormModel model)
 		{
+			var manipulatedModel = MoveManipulation(model);
 			Move move = new Move
             {
-				Name = model.Name,
-				Description = model.Description,
-				Type = model.Type.ToString(),
-				Power = model.Power,
-				PowerPoints = model.PowerPoints,
-				Accuracy = model.Accuracy,
-				EffectChance = model.EffectChance,
-				Effect = model.Effect,
-				IsEffectUser = string.IsNullOrWhiteSpace(model.Effect)? null : model.IsEffectUser,
-				EffectDuration = model.EffectDuration,
-				Ailment = string.IsNullOrWhiteSpace(model.Ailment) ? "" : model.Ailment,
-				AilmentChance = string.IsNullOrWhiteSpace(model.Ailment) ? 0 : model.AilmentChance,
-				DamageClass = model.DamageClass,			
-				HealAmount = model.HealAmount,
-				HealType = model.HealAmount == 0 ? 0 : model.HealType,
-				Priority = model.Priority
+				Name = manipulatedModel.Name,
+				Description = manipulatedModel.Description,
+				Type = manipulatedModel.Type.ToString(),
+				Power = manipulatedModel.Power,
+				PowerPoints = manipulatedModel.PowerPoints,
+				Accuracy = manipulatedModel.Accuracy,
+				EffectChance = manipulatedModel.EffectChance,
+				Effect = manipulatedModel.Effect,
+				IsEffectUser = string.IsNullOrWhiteSpace(manipulatedModel.Effect)? null : manipulatedModel.IsEffectUser,
+				EffectDuration = manipulatedModel.EffectDuration,
+				Ailment = string.IsNullOrWhiteSpace(manipulatedModel.Ailment) ? "" : manipulatedModel.Ailment,
+				AilmentChance = string.IsNullOrWhiteSpace(manipulatedModel.Ailment) ? 0 : manipulatedModel.AilmentChance,
+				DamageClass = manipulatedModel.DamageClass,			
+				HealAmount = manipulatedModel.HealAmount,
+				HealType = manipulatedModel.HealAmount == 0 ? 0 : manipulatedModel.HealType,
+				Priority = manipulatedModel.Priority
 			};
             await repository.AddAsync(move);
             await repository.SaveChangesAsync();
@@ -109,27 +110,28 @@ namespace PokemonFinalProjectNet6.Core.Services
 
 		public async Task EditAsync(MoveFormModel model)
 		{
+            var manipulatedModel = MoveManipulation(model);
 			var move = await repository.All<Move>()
 				.Where(m => m.Name == model.Name)
 				.FirstOrDefaultAsync();
             if (move!= null)
             {
-                move.Name = model.Name;
-                move.Description = model.Description;
-                move.Type = model.Type.ToString();
-                move.Power = model.Power;
-                move.PowerPoints = model.PowerPoints;
-                move.Accuracy = model.Accuracy;
-                move.EffectChance = model.EffectChance;
-                move.Effect = model.Effect;
-                move.IsEffectUser = string.IsNullOrWhiteSpace(model.Effect) ? null : model.IsEffectUser;
-                move.EffectDuration = model.EffectDuration;
-                move.Ailment = string.IsNullOrWhiteSpace(model.Ailment) ? "" : model.Ailment;
-                move.AilmentChance = string.IsNullOrWhiteSpace(model.Ailment) ? 0 : model.AilmentChance;
-                move.DamageClass = model.DamageClass;
-                move.HealAmount = model.HealAmount;
-                move.HealType = model.HealAmount == 0 ? 0 : model.HealType;
-                move.Priority = model.Priority;
+                move.Name = manipulatedModel.Name;
+                move.Description = manipulatedModel.Description;
+                move.Type = manipulatedModel.Type.ToString();
+                move.Power = manipulatedModel.Power;
+                move.PowerPoints = manipulatedModel.PowerPoints;
+                move.Accuracy = manipulatedModel.Accuracy;
+                move.EffectChance = manipulatedModel.EffectChance;
+                move.Effect = manipulatedModel.Effect;
+                move.IsEffectUser = string.IsNullOrWhiteSpace(manipulatedModel.Effect) ? null : manipulatedModel.IsEffectUser;
+                move.EffectDuration = manipulatedModel.EffectDuration;
+                move.Ailment = string.IsNullOrWhiteSpace(manipulatedModel.Ailment) ? "" : manipulatedModel.Ailment;
+                move.AilmentChance = string.IsNullOrWhiteSpace(manipulatedModel.Ailment) ? 0 : manipulatedModel.AilmentChance;
+                move.DamageClass = manipulatedModel.DamageClass;
+                move.HealAmount = manipulatedModel.HealAmount;
+                move.HealType = manipulatedModel.HealAmount == 0 ? 0 : manipulatedModel.HealType;
+                move.Priority = manipulatedModel.Priority;
                 await repository.SaveChangesAsync();
             }
 		}
@@ -179,8 +181,31 @@ namespace PokemonFinalProjectNet6.Core.Services
 					HealType = m.HealType,
 					Priority = m.Priority
 				})
-				.FirstAsync();
+				.FirstOrDefaultAsync();
 		}
-		
-    }
+		private MoveFormModel MoveManipulation(MoveFormModel model)
+		{
+			if (model.Effect.ToLower() == "none")
+			{
+				model.Effect = "";
+				model.EffectChance = 0;
+				model.EffectDuration = 0;
+			}
+			if (model.Ailment.ToLower() == "none")
+			{
+				model.Ailment = "";
+				model.AilmentChance = 0;
+
+			}
+			if (model.isEffectUserString == "Not applicable")
+			{
+				model.IsEffectUser = null;
+			}
+			else
+			{
+				model.IsEffectUser = model.isEffectUserString == "Yes";
+			}
+			return model;
+		}
+	}
 }

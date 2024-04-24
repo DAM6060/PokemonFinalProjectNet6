@@ -4,14 +4,12 @@ using PokemonFinalProjectNet6.Core.Models.Move;
 using PokemonFinalProjectNet6.Core.Models.Pokemon;
 using PokemonFinalProjectNet6.Infrastructure.Data.Common;
 using PokemonFinalProjectNet6.Infrastructure.Data.Models;
-using System.Buffers.Text;
-using System.Reflection.Metadata.Ecma335;
 using static PokemonFinalProjectNet6.Infrastructure.Constants.Constant;
 
 
 namespace PokemonFinalProjectNet6.Core.Services
 {
-    public class PokemonService : IPokemonService
+	public class PokemonService : IPokemonService
     {
         private readonly IRepository repository;
         
@@ -320,7 +318,7 @@ namespace PokemonFinalProjectNet6.Core.Services
 				})
 				.FirstAsync();
 		}
-        //May Remove this or think about it latter 
+        
 		public async Task EditSpecies(PokemonSpeciesFormModel model)
 		{
 			var pokemons = await repository.All<Pokemon>().

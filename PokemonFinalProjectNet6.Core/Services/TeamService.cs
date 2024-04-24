@@ -93,6 +93,8 @@ namespace PokemonFinalProjectNet6.Core.Services
 					Id = t.Id,
 					Name = t.Name,
 					PlayerId = t.PlayerId,
+                    Wins = t.Wins,
+                    Losses = t.Losses,
 					Pokemons = t.Pokemons.Select(p => new BattlePokemonServiceModel
                     {
 						Id = p.Id,
@@ -155,7 +157,7 @@ namespace PokemonFinalProjectNet6.Core.Services
                         {
                             Id = p.Id,
                             Name = p.Name,
-                            PokeDexNumber = p.PokeDexNumber,
+                            
                             BaseHp = p.BaseHP,
                             EvHp = p.EvHP,
                             HP = p.HP,
@@ -215,6 +217,8 @@ namespace PokemonFinalProjectNet6.Core.Services
 					Name = t.Name,
 					PlayerId = t.PlayerId,
 					Pokemons = t.Pokemons.Select(p => p.Name).ToList(),
+                    Wins = t.Wins,
+                    Losses = t.Losses
 				}).ToListAsync();
 		}
 

@@ -96,7 +96,7 @@ namespace PokemonFinalProjectNet6.Core.Services
 
 		public async Task<LobbyServiceModel> GetLobbyByIdAsync(int lobbyId)
 		{
-			return await repository.AllAsReadOnly<Lobby>().Include(l => l.Teams)
+			var lobby = await repository.AllAsReadOnly<Lobby>().Include(l => l.Teams)
 				.Where(l => l.Id == lobbyId)
 				.Select(l => new LobbyServiceModel
 				{
@@ -123,6 +123,8 @@ namespace PokemonFinalProjectNet6.Core.Services
 							SpecialDefense = p.SpecialDefense,
 							Type1 = p.Type1,
 							Type2 = p.Type2,
+							IsFainted = false,
+							IsOut = false,
 							Ability = new BattleAbilityServiceModel
 							{
 								Id = p.Ability.Id,
@@ -149,10 +151,21 @@ namespace PokemonFinalProjectNet6.Core.Services
 								HealType = m.Move.HealType,
 								Priority = m.Move.Priority
 							}).ToList()
-						}).ToList()
-					}).ToList()
-				
+						}).ToList()						
+					}).ToList()				
 				}).FirstAsync();
+
+			foreach (var team in lobby.Teams)
+			{
+				team.Pokemons[0].IsOut = true;
+            }
+
+			return lobby;
+		}
+
+		public Task<LobbyServiceModel> GetLobbyByConnectionIdAsync(string connectionId)
+		{
+			throw new NotImplementedException();
 		}
 	}
 
