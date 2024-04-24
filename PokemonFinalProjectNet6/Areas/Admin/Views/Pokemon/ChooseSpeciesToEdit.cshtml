@@ -1,0 +1,27 @@
+﻿@model IEnumerable<string>
+
+@{
+	ViewData["Title"] = "Choose Species To Edit";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table>
+	<thead>
+		<tr>
+			<th scope="col">Species</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var species in Model)
+		{
+			<tr>
+				<td>@species</td>
+				<td>
+					<a asp-controller="Pokemon" asp-action="EditSpecies" asp-route-name="@species" class="btn btn-primary">Edit</a>
+				</td>
+			</tr>
+		}
+</table>
+	
+

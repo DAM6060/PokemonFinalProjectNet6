@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TeamServiceModel> 
+@inject ITeamService teamService
+
+
+@{
+	ViewData["Title"] = "My Teams";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (!Model.Any())
+{
+    <h3 class="text-center">You have not created any Teams yet!</h3>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Team Name</th>
+            <th scope="col">P1</th>
+            <th scope="col">P2</th>
+            <th scope="col">P3</th>
+            <th scope="col">Wins</th>
+            <th scope="col">Losses</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var team in Model)
+        {
+            if (team.Pokemons.Count < 3)
+            {
+                for (int j = team.Pokemons.Count; j < 3; j++)
+                {
+                    team.Pokemons.Add("No Pokemon");
+                }
+            }
+            <tr>
+                <th scope="row">@team.Name</th>
+                <td>@team.Pokemons[0]</td>
+                <td>@team.Pokemons[1]</td>
+                <td>@team.Pokemons[2]</td>
+                <td>@team.Wins</td>
+                <td>@team.Losses</td>
+                <td>
+                <a asp-controller="Team" asp-action="Details" asp-route-id="@team.Id" class="btn btn-primary">Details</a> 
+                </td>                
+                <td>
+                <a asp-controller="Team" asp-action="Delete" asp-route-id="@team.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

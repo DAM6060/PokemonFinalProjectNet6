@@ -1,0 +1,63 @@
+﻿@model PokemonSpeciesFormModel
+
+<form method="post">
+	<div class="form-group>
+
+		<div class="form-group">
+			<label asp-for="Name"></label>
+			<input asp-for="Name" class="form-control" />
+			<span asp-validation-for="Name" class="text-danger"></span>
+		</div>
+		<div class="form-group"
+		<label asp-for="Type1"></label>
+			<select asp-for="Type1" class="form-control">
+			@foreach (var type in PokemonSpeciesFormModel.Types)
+			{
+											<option value="@type">@type</option>
+			}
+			</select>
+			<span asp-validation-for="Type1" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="Type2"></label>
+			<select asp-for="Type2" class="form-control">
+			@foreach (var type in PokemonSpeciesFormModel.Types)
+			{
+					<option value="@type">@type</option>
+			}
+			</select>
+			<span asp-validation-for="Type2" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="BaseHP"></label>
+			<input asp-for="BaseHP" class="form-control" />
+			<span asp-validation-for="BaseHP" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="BaseAttack"></label>
+			<input asp-for="BaseAttack" class="form-control" />
+			<span asp-validation-for="BaseAttack" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="BaseDefense"></label>
+			<input asp-for="BaseDefense" class="form-control" />
+			<span asp-validation-for="BaseDefense" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="BaseSpecialAttack"></label>
+			<input asp-for="BaseSpecialAttack" class="form-control" />
+			<span asp-validation-for="BaseSpecialAttack" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="BaseSpecialDefense"></label>
+			<input asp-for="BaseSpecialDefense" class="form-control" />
+			<span asp-validation-for="BaseSpecialDefense" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="BaseSpeed"></label>
+			<input asp-for="BaseSpeed" class="form-control" />
+			<span asp-validation-for="BaseSpeed" class="text-danger"></span>
+		</div>
+		<button type="submit" class="btn btn-primary">Create</button>
+	</div>
+</form>

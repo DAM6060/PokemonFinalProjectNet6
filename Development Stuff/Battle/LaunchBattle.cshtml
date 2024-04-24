@@ -1,0 +1,104 @@
+﻿@model LobbyServiceModel
+@inject IBattleService battleService
+@inject IPlayerService playerService
+@{
+	var playerName = @Model.Players.Where(p => p.Id == playerService.GetPlayerIdAsync(User.Id()).Result).First().Name;
+	var playerId = @Model.Players.Where(p => p.Id == playerService.GetPlayerIdAsync(User.Id()).Result).First().Id;
+	
+
+	
+	var	oppPokemonThatIsOut = Model.Teams.Where(t => t.Id != playerId).FirstOrDefault().Pokemons.Where(p => p.IsOut == true).FirstOrDefault();
+	
+	
+	var myPokemonThatIsOut = @Model.Teams.Where(t => t.Id == playerId).First().Pokemons.Where(p => p.IsOut == true).First();
+}
+<div>
+	<h1>Launch Battle</h1>
+</div>
+<input type="hidden" value="@Model.Id" id="groupId" />
+
+<div>
+	<div class="col">
+		<div class="container">
+			<div class="row">
+				<div class="col-2">Opponent</div>
+				<div class="col-4">
+
+					@if (oppPokemonThatIsOut == null)
+					{
+						<p>
+							Waiting for Opponent
+						</p>
+					}
+					@if (oppPokemonThatIsOut == null)
+					{
+						<p>
+							@oppPokemonThatIsOut.Name
+							@oppPokemonThatIsOut.Health
+						</p>
+					}
+
+					@oppPokemonThatIsOut.Name
+					@oppPokemonThatIsOut.Health
+
+
+				</div>
+				<div class="col-2">Mine</div>
+				<div class="col-4">
+					<p>
+						@myPokemonThatIsOut.Name
+						@myPokemonThatIsOut.Health
+
+					</p>
+				</div>
+				<div class="col-4">
+					@foreach (var move in myPokemonThatIsOut.Moves)
+					{
+						
+					}
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="col">
+		<div class="container">
+		</div>
+	</div>
+	<div class="col">
+		<div class="container">
+			<div class="row">&nbsp;</div>
+			<div class="row">
+				<div class="col-2">@playerName</div>
+				<div class="col-4"><input type="hidden" value="@playerName" id="playerInput" /></div>
+			</div>
+			<div class="row">
+				<div class="col-2">Message</div>
+				<div class="col-4"><input type="text" id="messageInput" /></div>
+			</div>
+
+			<div class="row">&nbsp;</div>
+			<div class="row">
+				<div class="col-6">
+					<input type="button" id="sendButton" value="Send Message" />
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<hr />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-6">
+				<ul id="messagesList"></ul>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+@section Scripts {
+	<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+	<script src="~/js/lobby.js"></script>
+}

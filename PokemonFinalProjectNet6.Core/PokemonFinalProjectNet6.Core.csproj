@@ -4,6 +4,19 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <ApplicationManifest>Models\Pokemon\PokemonFormModel.manifest</ApplicationManifest>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Models\Pokemon\New Text Document.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="6.0.29" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PokemonFinalProjectNet6.Infrastructure\PokemonFinalProjectNet6.Infrastructure.csproj" />
+  </ItemGroup>
 
 </Project>

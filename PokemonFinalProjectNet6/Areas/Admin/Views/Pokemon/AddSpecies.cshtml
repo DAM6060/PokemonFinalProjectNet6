@@ -1,0 +1,14 @@
+﻿@model PokemonSpeciesFormModel
+
+@{
+	ViewData["Title"] = "Add A New Specie";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<partial name="_PokemonSpeciesFormModel" model="@Model" />
+
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />"
+}

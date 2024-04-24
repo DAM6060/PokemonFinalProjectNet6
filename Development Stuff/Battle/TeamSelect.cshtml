@@ -1,0 +1,45 @@
+﻿@model PlayerTeamsServiceModel
+
+@{
+	ViewBag.Title = "TeamSelect";
+}
+
+<h1>@ViewBag.Title </h1>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title
+					">Select a Team</h4>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Team Name</th>									
+									<th>Pokemon 1</th>
+									<th>Pokemon 2</th>
+									<th>Pokemon 3</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var team in Model.Teams)
+								{
+									<tr>
+										<td>@team.Name</td>
+										<td>@team.Pokemons[0]</td>
+										<td>@team.Pokemons[1]</td>
+										<td>@team.Pokemons[2]</td>
+										<td>
+											<a asp-controller="Battle" 
+												asp-action="SelectTeam" 
+												asp-route-id="@team.Id" class="btn btn-primary">Select</a>
+										</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>

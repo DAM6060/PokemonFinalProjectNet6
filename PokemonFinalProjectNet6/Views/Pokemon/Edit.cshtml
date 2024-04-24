@@ -1,0 +1,132 @@
+﻿@model PokemonFormModel
+
+<form method="post">
+	<div class="form-group">
+		<div class="form-group">
+			<input asp-for="Name" type="hidden" value="@Model.Name" />
+			<input asp-for="Type1" type="hidden" value="@Model.Type1" />
+			<input asp-for="Type2" type="hidden" value="@Model.Type2" />
+			<input asp-for="BaseHp" type="hidden" value="@Model.BaseHp" />
+			<input asp-for="BaseAttack" type="hidden" value="@Model.BaseAttack" />
+			<input asp-for="BaseDefense" type="hidden" value="@Model.BaseDefense" />
+			<input asp-for="BaseSpecialAttack" type="hidden" value="@Model.BaseSpecialAttack" />
+			<input asp-for="BaseSpecialDefense" type="hidden" value="@Model.BaseSpecialDefense" />
+			<input asp-for="BaseSpeed" type="hidden" value="@Model.BaseSpeed" />
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<p>@Model.Name :</p>
+					</div>
+					<div class="col">
+						<div>
+							@if (Model.Type2.ToString() != "None")
+							{
+								<p>@Model.Type1 / @Model.Type2 </p>
+							}
+							else
+							{
+								<p>@Model.Type1</p>
+							}
+						</div>
+					</div>
+				</div>
+			</div>
+			<h3 class="small text-danger">Please select make sure each pokemon has different moves or else you will have to start over</h3>
+			<h3 class="small text-danger">Please select make sure each pokemon has no more than 510 in TotalEvs or you will start over</h3>
+			<div classrc="row">
+				<div class="form-group">
+					<label asp-for="EvHp">EvHp</label>
+					<input asp-for="EvHp" class="form-range" min="0" max="255">
+					<span asp-validation-for="EvHp" class="small text-danger"></span>
+					<span class="ml-2">Base: @Model.BaseHp</span>
+				</div>
+				<div class="form-group">
+					<label asp-for="EvAttack">EvAttack</label>
+					<input asp-for="EvAttack" class="form-control" min="0" max="255" />
+					<span asp-validation-for="EvAttack" class="small text-danger"></span>
+					<span class="ml-2">Base: @Model.BaseAttack</span>
+				</div>
+				<div class="form-group">
+					<label asp-for="EvDefense">EvDefense</label>
+					<input asp-for="EvDefense" class="form-control" min="0" max="255" />
+					<span asp-validation-for="EvDefense" class="small text-danger"></span>
+					<span class="ml-2">Base: @Model.BaseDefense</span>
+				</div>
+				<div class="form-group">
+					<label asp-for="EvSpecialAttack">EvSpecialAttack</label>
+					<input asp-for="EvSpecialAttack" class="form-control" min="0" max="255" />
+					<span asp-validation-for="EvSpecialAttack" class="small text-danger"></span>
+					<span class="ml-2">Base: @Model.BaseSpecialAttack</span>
+				</div>
+				<div class="form-group">
+					<label asp-for="EvSpecialDefense">EvSpecialDefense</label>
+					<input asp-for="EvSpecialDefense" class="form-control" min="0" max="255" />
+					<span asp-validation-for="EvSpecialDefense" class="small text-danger"></span>
+					<span class="ml-2">Base: @Model.BaseSpecialDefense</span>
+				</div>
+				<div class="form-group">
+					<label asp-for="EvSpeed">EvSpeed</label>
+					<input asp-for="EvSpeed" class="form-control" min="0" max="255" />
+					<span asp-validation-for="EvSpeed" class="small text-danger"></span>
+					<span class="ml-2">Base: @Model.BaseSpeed</span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="AbilityId"></label>
+					<select asp-for="AbilityId" class="form-control">
+						@foreach (var ability in Model.Abilities)
+						{
+							<option value="@ability.Id">@ability.Name</option>
+						}
+					</select>
+					<span asp-validation-for="AbilityId" class="small text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Move1IdForDb">Move 1</label>
+					<select asp-for="Move1IdForDb" class="form-control">
+						@foreach (var move in Model.MovesForDropDown)
+						{
+							<option value="@move.Id">@move.Name</option>
+						}
+					</select>
+					<span asp-validation-for="Move1IdForDb" class="small text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Move2IdForDb">Move 2</label>
+					<select asp-for="Move2IdForDb" class="form-control">
+						@foreach (var move in Model.MovesForDropDown)
+						{
+							<option value="@move.Id">@move.Name</option>
+						}
+					</select>
+					<span asp-validation-for="Move2IdForDb" class="small text
+								-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Move3IdForDb">Move 3</label>
+					<select asp-for="Move3IdForDb" class="form-control">
+						@foreach (var move in Model.MovesForDropDown)
+						{
+							<option value="@move.Id">@move.Name</option>
+						}
+					</select>
+					<span asp-validation-for="Move3IdForDb" class="small text
+										-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Move4IdForDb">Move 4</label>
+					<select asp-for="Move4IdForDb" class="form-control">
+						@foreach (var move in Model.MovesForDropDown)
+						{
+							<option value="@move.Id">@move.Name</option>
+						}
+					</select>
+					<span asp-validation-for="Move4IdForDb" class="small text-danger"></span>
+				</div>
+			</div>
+		</div>
+		<div class="text-center">
+			<input class="btn btn-primary mt-3" type="submit" value="Save" />
+		</div>
+	</div>
+</form>
