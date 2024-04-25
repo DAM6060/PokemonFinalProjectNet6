@@ -416,8 +416,7 @@ namespace PokemonFinalPorjectNet6.Tests
             var model = new PokemonFormModel()
             {
                 Name = "Venusaur",
-
-                Type1 = PokemonTypeCustom.Grass,
+                Type1 = PokemonTypeCustom.Fire,
                 Type2 = PokemonTypeCustom.Poison,
                 AbilityId = 1,
                 BaseHp = 80,
@@ -444,8 +443,7 @@ namespace PokemonFinalPorjectNet6.Tests
             var pokemon = await pokemonService.GetPokemonByIdAsync(1);
 
             Assert.That(pokemon.Name, Is.EqualTo("Venusaur"));
-
-            Assert.That(pokemon.Type1, Is.EqualTo(PokemonTypeCustom.Grass));
+            Assert.That(pokemon.Type1, Is.EqualTo(PokemonTypeCustom.Fire));
             Assert.That(pokemon.Type2, Is.EqualTo(PokemonTypeCustom.Poison));
             Assert.That(pokemon.AbilityId, Is.EqualTo(1));
             Assert.That(pokemon.BaseHP, Is.EqualTo(80));
