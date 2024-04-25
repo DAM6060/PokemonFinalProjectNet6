@@ -319,7 +319,7 @@ namespace PokemonFinalProjectNet6.Core.Services
 				.FirstAsync();
 		}
         
-		public async Task EditSpecies(PokemonSpeciesFormModel model)
+		public async Task EditSpeciesAsync(PokemonSpeciesFormModel model)
 		{
 			var pokemons = await repository.All<Pokemon>().
                 Where(p => p.Name == model.Name)

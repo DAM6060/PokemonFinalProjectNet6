@@ -58,7 +58,7 @@ namespace PokemonFinalProjectNet6.Areas.Admin.Controllers
 			{
 				return View(model);
 			}
-			await pokemonService.EditSpecies(model);
+			await pokemonService.EditSpeciesAsync(model);
 			return RedirectToAction("Index", "Home");
 		}
 
