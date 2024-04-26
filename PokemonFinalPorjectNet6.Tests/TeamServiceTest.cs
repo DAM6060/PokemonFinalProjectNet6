@@ -372,12 +372,12 @@ namespace PokemonFinalPorjectNet6.Tests
 			};
 
 			await teamService.CreateAsync(model);
-			var team = await teamService.GetTeamsByPlayerIdAsync(1);
+			var team = context.Teams.Include(t => t.Pokemons).ToList();
 			Assert.That(team.Last().Name, Is.EqualTo("Team2"));
 			Assert.That(team.Last().Wins, Is.EqualTo(0));
 			Assert.That(team.Last().Losses, Is.EqualTo(0));
-			Assert.That(team.Last().Pokemons.First(), Is.EqualTo("Venusaur"));
-			Assert.That(team.Last().Pokemons.Last(), Is.EqualTo("Infernoape"));
+			Assert.That(team.Last().Pokemons.First().Name, Is.EqualTo("Venusaur"));
+			Assert.That(team.Last().Pokemons.Last().Name, Is.EqualTo("Infernoape"));
 			Assert.AreEqual(2, team.Count());
 
 		}

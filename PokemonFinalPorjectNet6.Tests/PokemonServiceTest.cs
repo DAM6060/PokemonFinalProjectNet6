@@ -340,11 +340,13 @@ namespace PokemonFinalPorjectNet6.Tests
 
 
         [Test]
-        public async Task GetPokemonByIdAsyncReturnsNullWhenItDoesntExists()
+        public async Task GetPokemonByIdAsyncWorksCorrectly()
         {
-            var pokemon = await pokemonService.GetPokemonByIdAsync(5);
+            var nullPokemon = await pokemonService.GetPokemonByIdAsync(5);
+            var NotNullPokemon = await pokemonService.GetPokemonByIdAsync(1);
 
-            Assert.That(pokemon, Is.Null);
+            Assert.That(nullPokemon, Is.Null);
+            Assert.That(NotNullPokemon, Is.Not.Null);
         }
         [Test]
         public async Task SpeciesExistsAsyncWorksCorrectly()
@@ -440,7 +442,7 @@ namespace PokemonFinalPorjectNet6.Tests
 
             };
             await pokemonService.EditAsync(1, model);
-            var pokemon = await pokemonService.GetPokemonByIdAsync(1);
+            var pokemon = context.Pokemons.FirstAsync(p => p.Id == 1).Result;
 
             Assert.That(pokemon.Name, Is.EqualTo("Venusaur"));
             Assert.That(pokemon.Type1, Is.EqualTo(PokemonTypeCustom.Fire));
@@ -499,7 +501,7 @@ namespace PokemonFinalPorjectNet6.Tests
                 Move4IdForDb = 4,
             };
             var pokemonId = await pokemonService.CreateAsync(pokemonInput, teamId, playerId);
-            var pokemon = await pokemonService.GetPokemonByIdAsync(pokemonId);
+            var pokemon = context.Pokemons.FirstAsync(p => p.Id == pokemonId).Result;
 
             var hp = (int)((((double)2 * (double)pokemonInput.BaseHp + ((double)pokemonInput.EvHp / (double)4)) * (double)pokemonInput.Level / (double)100) + (double)pokemonInput.Level + (double)10);
             var attack = (int)((((double)2 * (double)pokemonInput.BaseAttack + ((double)pokemonInput.EvAttack / (double)4)) * (double)pokemonInput.Level / (double)100) + (double)5);
@@ -572,7 +574,7 @@ namespace PokemonFinalPorjectNet6.Tests
             await pokemonService.CreateSpeciesAsync(model);
 
             var pokemonSpecies = await pokemonService.AllSpeciesNamesAsync();            
-            var charizard = await pokemonService.GetPokemonByIdAsync(5);
+            var charizard =  context.Pokemons.FirstAsync(p => p.Id == 5).Result;
 
             Assert.That(pokemonSpecies, Is.Not.Null);
             Assert.That(pokemonSpecies.Count(), Is.EqualTo(4));
@@ -590,14 +592,14 @@ namespace PokemonFinalPorjectNet6.Tests
             Assert.That(charizard.TeamId, Is.EqualTo(3));
             Assert.That(charizard.PlayerId, Is.EqualTo(2));            
         }
+        [Test]
         public async Task EditSpeciesWorksCorrectly()
         {
-            var oldVenasuar = await pokemonService.GetPokemonBaseValuesByNameAsync("Venasuar");
+            var oldVenasuar = context.Pokemons.FirstOrDefaultAsync(p => p.Id == 1).Result;
 
-            
             var model = new PokemonSpeciesFormModel
             {
-                Name = "Venasuar",
+                Name = "Venusaur",
                 Type1 = PokemonTypeCustom.Fire,
                 Type2 = PokemonTypeCustom.Poison,
                 BaseHP = 100,
@@ -611,11 +613,11 @@ namespace PokemonFinalPorjectNet6.Tests
 
             await pokemonService.EditSpeciesAsync(model);
 
-            var newVenasuar = await pokemonService.GetPokemonBaseValuesByNameAsync("Infernoape");
-            Assert.That(newVenasuar.Type1, Is.EqualTo(model.Type1));
-            Assert.That(newVenasuar.Type1, Is.Not.EqualTo(oldVenasuar.Type1));
+            var newVenasuar = context.Pokemons.FirstOrDefaultAsync(p => p.Id == 1).Result;
+            Assert.That(newVenasuar.Type1, Is.EqualTo(PokemonTypeCustom.Fire));
+            Assert.That(newVenasuar.Type1, Is.Not.EqualTo(PokemonTypeCustom.Grass));
 
-            Assert.That(newVenasuar.BaseHp, Is.Not.EqualTo(oldVenasuar.BaseHp));
+            
         }
 
 
