@@ -30,8 +30,10 @@ namespace PokemonFinalProjectNet6.Core.Services
 
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
+                string normalizedSearchTerm = searchTerm.ToLower();
                 abilitiesToShow = abilitiesToShow
-                    .Where(x => x.Name.Contains(searchTerm));
+                    .Where(h => (h.Name.ToLower().Contains(normalizedSearchTerm) ||
+                                h.Description.ToLower().Contains(normalizedSearchTerm)));
             }
             if (sorting != AbilitySorting.Alphabetical )
             {

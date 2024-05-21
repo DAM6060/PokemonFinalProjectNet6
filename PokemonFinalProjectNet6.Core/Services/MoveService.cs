@@ -44,8 +44,10 @@ namespace PokemonFinalProjectNet6.Core.Services
 
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
+                string normalizedSearchTerm = searchTerm.ToLower();
                 movesToShow = movesToShow
-                    .Where(x => x.Name.Contains(searchTerm));
+                    .Where(h => (h.Name.ToLower().Contains(normalizedSearchTerm) ||
+                                h.Description.ToLower().Contains(normalizedSearchTerm)));
             }
             
             movesToShow = sorting switch

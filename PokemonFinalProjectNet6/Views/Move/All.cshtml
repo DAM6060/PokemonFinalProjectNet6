@@ -69,8 +69,9 @@
 <div class="row mb-5">
 	<div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start">
 		<a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
-		   asp-controller="@ViewBag.Controller"
-		   asp-action="@(ViewBag.Action)"
+		   
+		   asp-controller="Move"
+		   asp-action="All"
 		   asp-route-currentPage="@Model.PreviousPage"
 		   asp-route-searchTearm="@Model.SearchTerm"
 		   asp-route-damageClassFilter="@Model.DamageClassFilter"
@@ -84,8 +85,9 @@
 	<div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-end">
 		<a class="btn btn-primary
            @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
-		   asp-controller="@ViewBag.Controller"
-		   asp-action="@ViewBag.Action"
+		   asp-area=""
+		   asp-controller="Move"
+		   asp-action="All"
 		   asp-route-currentPage="@(Model.CurrentPage + 1)"
 		   asp-route-searchTearm="@Model.SearchTerm"
 		   asp-route-damageClassFilter="@Model.DamageClassFilter"

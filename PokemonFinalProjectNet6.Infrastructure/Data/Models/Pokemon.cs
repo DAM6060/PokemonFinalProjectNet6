@@ -125,55 +125,7 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
         public Player Player { get; set; } = null!;
 
 
-        //public static async Task<PokemonMyModel> CreatAsync(string name)
-        //{
-        //	var instance = new PokemonMyModel();
-
-        //	instance.pokeAPiClient = new PokeApiClient();
-
-        //	await instance.GetBaseDataCustom(name.ToLower());
-
-        //	return instance;
-
-        //}
-
-        //public async Task GetBaseDataCustom(string name)
-        //{
-        //	Pokemon pk = await pokeAPiClient.GetResourceAsync<Pokemon>(name);
-
-        //	Name = pk.Name;
-
-        //	//Base Stat Asignement
-        //	List<PokemonStat> stats = pk.Stats;
-        //	BaseHP = stats[0].BaseStat;
-        //	BaseAttack = stats[1].BaseStat;
-        //	BaseDefense = stats[2].BaseStat;
-        //	BaseSpecialAttack = stats[3].BaseStat;
-        //	BaseSpecialDefense = stats[4].BaseStat;
-        //	BaseSpeed = stats[5].BaseStat;
-        //	//Generation varaible
-
-        //	string versionName = pk.GameIndicies[0].Version.Url;
-        //	char gen = versionName[^2];
-        //	GenerationCustom = int.Parse(gen.ToString());
-
-        //	//Types
-        //	List<PokemonType> typeList = pk.Types;
-
-        //	string type1 = pk.Types[0].Type.Name;
-        //	string type2 = string.Empty;
-
-        //	if (typeList.Count > 1)
-        //	{
-        //		type2 = typeList[1].Type.Name.ToLower();
-        //	}
-        //	else
-        //	{
-        //		type2 = "none";
-        //	}
-        //	Types.Add(type1);
-        //	Types.Add(type2);
-        //}
+       
 
 
 
