@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using static PokemonFinalProjectNet6.Areas.Admin.AdminConstants;
 namespace Microsoft.AspNetCore.Builder 
-{ 
+{
 	public static class ApplicationBuilderExtensions
 	{
 		public static async Task CreatAdminRoleAsync(this IApplicationBuilder app)

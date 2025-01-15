@@ -13,8 +13,6 @@ namespace PokemonFinalProjectNet6.Core.Contracts
             int currentPage=1,
             int teamsPerPage=10);
 
-		        
-
         Task<IEnumerable<TeamServiceModel>> GetTeamsByPlayerIdAsync(int playerId);
 
 		Task DeleteAsync(int teamId);

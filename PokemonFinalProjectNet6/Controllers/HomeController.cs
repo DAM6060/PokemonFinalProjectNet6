@@ -36,7 +36,7 @@ namespace PokemonFinalProjectNet6.Controllers
 			}
 			else if (statusCode == 401)
 			{
-                return View("Error500");
+                return View("Error401");
             }
             else if (statusCode == 500)
 			{
