@@ -32,9 +32,14 @@ namespace PokemonFinalProjectNet6.Core.Services
             return await repository.AllAsReadOnly<Player>()
                 .AnyAsync(p => p.UserId == userId);
            
-        }		
+        }
 
-		public async Task<int?> GetPlayerIdAsync(string userId)
+        public async Task<Player?> GetPlayerByIdAsync(int playerId)
+        {
+            return await repository.GetByIdAsync<Player>(playerId);
+        }
+
+        public async Task<int?> GetPlayerIdAsync(string userId)
         {
             return (await repository.AllAsReadOnly<Player>()
                 .FirstOrDefaultAsync(p => p.UserId == userId))?.Id;
@@ -45,5 +50,6 @@ namespace PokemonFinalProjectNet6.Core.Services
             return repository.AllAsReadOnly<Player>()
                 .AnyAsync(p => p.Name == name);
         }
+        
     }
 }
