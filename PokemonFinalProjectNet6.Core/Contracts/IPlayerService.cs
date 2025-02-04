@@ -13,7 +13,9 @@ namespace PokemonFinalProjectNet6.Core.Contracts
 
         Task<int?> GetPlayerIdAsync(string userId);
 
-        
-        
+        Task<Player?> GetPlayerByIdAsync(int playerId);
+
+
+
     }
 }
