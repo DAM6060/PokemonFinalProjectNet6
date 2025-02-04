@@ -1,3 +1,6 @@
+using PokemonFinalProjectNet6.Hubs;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -11,6 +14,8 @@ builder.Services.AddApplicationServices();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -35,6 +40,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapHub<LobbyHub>("/lobbyHub");
 
 app.UseEndpoints(endpoints =>
 {
