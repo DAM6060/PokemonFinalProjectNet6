@@ -25,7 +25,12 @@ namespace PokemonFinalProjectNet6.Infrastructure.Data.Models
 
         public List<Pokemon> Pokemon { get; set; } = new List<Pokemon>();
 
-       
-       
+        public int? LobbyId { get; set; }
+
+        [ForeignKey(nameof(LobbyId))]
+        public Lobby? Lobby { get; set; } = null!;
+
+
+
     }
 }
